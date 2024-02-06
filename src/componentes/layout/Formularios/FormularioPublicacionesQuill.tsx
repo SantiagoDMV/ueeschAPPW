@@ -138,7 +138,7 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
       content: (
         <span className={styles.spanMensajesInformacion}>
           Para mejorar la experiencia de visualización de las noticias y
-          anuncios, se solicita que ingrese un "Título de Previsualización".
+          anuncios, se solicita que ingrese un Título de Previsualización.
           Este título de previsualización será mostrado en vistas previas más
           pequeñas de las publicaciones, proporcionando a los usuarios un
           contexto rápido sobre el contenido.
