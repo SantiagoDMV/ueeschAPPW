@@ -1,0 +1,12 @@
+.conetenedorNoticias{
+    min-height: calc(100vh - 4rem);
+    display: flex;
+}
+
+.contenedorPanel{
+    width: 15%;
+}
+
+.contenedorContenido{
+    width: 85%;
+}

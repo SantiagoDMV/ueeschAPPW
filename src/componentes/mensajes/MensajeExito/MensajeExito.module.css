@@ -1,0 +1,50 @@
+.contenedorMensaje{
+    background-color: rgb(105, 187, 126);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.9rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    font-size: 0.85rem;
+    flex-direction: row;
+    gap: 1rem;
+    color: white;
+    font-size: 15px;
+    max-width: 70%;   
+    z-index: 1;
+}
+.iconoMensajeExito{
+  font-size: 20px;
+}
+.contenedorInformacion{
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.informacion p{
+    font-style: oblique;
+}
+
+  
+  @media only screen and (max-width:580px) {
+    .contenedorMensaje{
+      top: 20%;
+      bottom: unset;
+      left: unset;
+      right: unset;
+        text-align: justify;
+        flex-direction: column;
+        margin: 0 20px;
+        max-width: 100%;
+    }
+  }

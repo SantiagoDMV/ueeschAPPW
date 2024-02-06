@@ -1,0 +1,60 @@
+.contendorHijos{
+    display: flex;
+    justify-content: center;
+    align-items:stretch;
+    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+}
+.hijos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    max-height: 100%;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.hijo{    
+    padding: 2rem;
+    flex-basis: 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    /*color: var(--text-color);*/
+    color: black;
+    gap: 1rem;
+    min-width: 100%;
+    color: white;
+}
+.hijo h3{    
+    width: 100%;
+    text-align: start;
+}
+
+.contenedorIcono{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.iconoHijo{
+    font-size: 30px;
+}
+
+.hijo:nth-child(1) {
+    background-color: rgb(42, 149, 162); /* Verde Azulado */
+}
+
+.hijo:nth-child(2) {
+    background-color: rgb(22, 97, 107); /* Verde Oscuro */
+}
+
+.hijo:nth-child(3) {
+    background-color: rgb(230, 184, 72); /* Amarillo Dorado */
+}

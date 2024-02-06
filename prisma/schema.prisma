@@ -1,0 +1,102 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model usuario {
+  id_usuario       Int           @id @default(autoincrement()) @map("id_usuario")
+  id_moodle        Int?          @map("id_moodle")
+  id_rol           Int          @map("id_rol")
+  cedula_usuario   String        @map("cedula_usuario")
+  nombre_usuario   String        @map("nombre_usuario")
+  apellido_usuario String        @map("apellido_usuario")
+  email_usuario    String        @unique @map("email_usuario")
+  password_usuario String        @map("password_usuario")
+  imagen_usuario   String        @map("imagen_usuario")
+  creado_en        DateTime                 @default(now()) @map("creado_en")
+  actualizado_en   DateTime?                @map("actualizado_en")
+  eliminado_en     DateTime?                 @map("eliminado_en")
+  ultimo_acceso    DateTime? @map("ultimo_acceso")
+  publicaciones    publicacion[]
+  importacion_usuarios    importacion_usuarios[]
+  rol              rol           @relation(fields: [id_rol], references: [id_rol])
+  asistencia_servicio       asistencia_servicio[] 
+}
+
+model rol {
+  id_rol     Int       @id @default(autoincrement())
+  nombre_rol String @map("nombre_rol")
+  descripcion_rol String? @map("descripcion_rol")
+  usuarios   usuario[]
+}
+
+model tipo_multimedia {
+  id_tipo_multimedia Int    @id @default(autoincrement())
+  descripcion_tipo  String  @map("descripcion_tipo")
+  multimedia multimedia[]
+}
+
+model multimedia {
+  id_multimedia    Int               @id @default(autoincrement())
+  id_tipo_multimedia Int             @map("id_tipo_multimedia")
+  ruta_multimedia  String            @map("ruta_multimedia")
+  id_publicacion   Int              @map("id_publicacion")
+  creado_en               DateTime                 @default(now()) @map("creado_en")
+  actualizado_en               DateTime                 @updatedAt @map("actualizado_en")
+  tipo_multimedia  tipo_multimedia   @relation(fields: [id_tipo_multimedia], references: [id_tipo_multimedia])
+  publicacion      publicacion?      @relation(fields: [id_publicacion], references: [id_publicacion])
+}
+
+
+model asistencia_servicio {
+  id_asistencia_servicio Int @id @default(autoincrement()) @map("id_asistencia_servicio")
+  id_servicio Int         @map("id_servicio")
+  id_usuario Int          @map("id_usuario")
+  creado_en               DateTime                 @default(now()) @map("creado_en")
+  usuario usuario @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
+  servicio publicacion @relation(fields: [id_servicio], references: [id_publicacion], onDelete: Cascade)
+}
+
+// model asistencia_actividad {
+//   id_asistencia_actividad Int @id @default(autoincrement()) @map("id_asistencia_actividad")
+//   id_actividad Int         @map("id_actividad")
+//   id_usuario Int          @map("id_usuario")
+//   create_at DateTime      @default(now()) @map("create_at")
+//   usuario usuario @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
+//   servicio publicacion @relation(fields: [id_actividad], references: [id_publicacion])
+// }
+
+
+model publicacion {
+  id_publicacion         Int                      @id @default(autoincrement()) @map("id_publicacion")
+  id_usuario             Int                      @map("id_usuario")
+  id_tipo_publicacion Int @map("id_tipo_publicacion")
+  titulo_publicacion     String                   @map("titulo_publicacion")
+  contenido_publicacion  String                   @map("contenido_publicacion")
+  creado_en               DateTime                 @default(now()) @map("creado_en")
+  actualizado_en               DateTime?                 @map("actualizado_en")
+  eliminado_en               DateTime?                 @map("eliminado_en")
+  multimedia             multimedia[]             // Relación con múltiples entradas de multimedia
+  usuario usuario @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
+  tipo_publicacion tipo_publicacion  @relation(fields: [id_tipo_publicacion], references: [id_tipo_publicacion])
+  asistencia_servicio       asistencia_servicio[] 
+  //asistencia_actividad       asistencia_actividad[] 
+}
+
+model tipo_publicacion{
+  id_tipo_publicacion Int @id @default(autoincrement()) @map("id_tipo_publicacion")
+  nombre_tipo_publicacion     String                   @map("nombre_tipo_publicacion")
+  descripcion_tipo_publicacion String                   @map("descripcion_tipo_publicacion")
+  publicacion publicacion[]
+}
+
+model importacion_usuarios{
+  id_importacion Int  @id @default(autoincrement()) @map("id_importacion")
+  id_usuario Int @map("id_usuario")
+  creado_en               DateTime                 @default(now()) @map("creado_en")
+  usuario                usuario                  @relation(fields: [id_usuario], references: [id_usuario])
+}

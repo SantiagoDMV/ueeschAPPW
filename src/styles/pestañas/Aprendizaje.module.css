@@ -1,0 +1,124 @@
+.contenedorHistoria{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(13, 60, 94);
+    padding-bottom: 3rem;
+}
+
+.contenedorHistoria p{
+    color: rgb(76, 75, 75);
+}
+
+.contenedorImagen{
+    background-image: url('../../../public/imagenes/pageHistoria/header/header.jpg');
+    min-height: 50vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
+
+.contenedorImagen span{
+    width: 100%;
+    background-color: rgba(2, 6, 13, 0.267);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    text-align: center;
+}
+
+
+.iconoTitulo{
+    font-size: 100px;
+    color: rgb(51, 122, 153);
+}
+
+.contenedorTitulo{
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(51, 122, 153);
+}
+
+.tituloPresentacion{    
+    padding: 1rem;
+}
+
+.contenedorPresentacion{
+    background-color: #f4f6f8;
+    padding: 4rem;
+    padding-bottom: 0rem;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    text-align: justify;
+    flex-direction: column;
+    margin-top: -12rem;
+    max-width: 70%;
+    color: rgb(13, 60, 94);
+    font-size: 16px;
+    overflow: auto;
+}
+
+.contenedorPresentacion h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.contenedorListas{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.contenedorListas h2{
+    font-size: 1.5rem;
+}
+
+.contenedorListas li{
+    color: black;
+    margin-left: 2rem;
+}
+
+.video{
+    border: none;
+    width:560px; 
+    height:315px; 
+}
+
+
+@media only screen and (max-width: 1050px) {
+    
+    .contenedorPresentacion{
+        flex-direction: column;
+        max-width: 90%;
+        padding: 2rem;
+    }
+
+    .contenedorAvances{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .contenedorPresentacion{
+        max-width: 100%;
+    }
+
+    .contendirExplorando{
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
+    }
+}

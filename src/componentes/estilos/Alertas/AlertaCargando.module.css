@@ -1,0 +1,18 @@
+.contenedorAlertaCargando{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.568);
+}
+
+.contenedorAlertaCargando label{
+font-size: 1rem;
+color: white;
+}

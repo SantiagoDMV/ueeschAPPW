@@ -1,0 +1,7 @@
+buildCommand: "npm run build"
+publish: {
+  "type": "github",
+  "repo": "https://github.com/SantiagoDMV/ueeschAPPW.git",
+  "branch": "main",
+  "dir": "/",
+}

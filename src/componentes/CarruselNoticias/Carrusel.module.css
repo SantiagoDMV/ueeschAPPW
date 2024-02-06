@@ -1,0 +1,35 @@
+.carruselImagen{
+    width: 100%;
+    object-fit: contain;
+    min-height: 400px;
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+  }
+  
+  .left{
+    color: black;
+    background-color: black;
+    margin: 20px;
+  }
+  
+
+  .contenedorCarruselInformacion{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .contenedorCarruselInformacion .LinkButton{
+    margin-top: 10px;
+    width: 30%;
+    border: none;
+    outline-offset: none;
+    padding: 10px;
+    background-color: rgb(52, 99, 143);
+    color: white;
+    min-width: 100px;
+    cursor: pointer;
+  }

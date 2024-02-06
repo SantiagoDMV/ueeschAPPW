@@ -1,0 +1,80 @@
+.fondo{
+    position: fixed;
+    top: 5%;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgba(52, 51, 53, 0.568);
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorMensaje{
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+    position: fixed;
+    top:20%;
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: rgb(43, 128, 156);
+    font-size: 15px;
+}
+.iconoMensajeExito{
+  font-size: 40px;
+}
+.contenedorInformacion{
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+.informacion p{
+    font-style: oblique;
+}
+.botonesConfirmacionEliminacion{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botonesConfirmacionEliminacion button{
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(1){
+    background-color: rgb(78, 147, 204);
+    color: white;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(2){
+    background-color: rgb(204, 78, 78);
+    color: white;
+}
+
+  @media only screen and (max-width:580px) {
+    .contenedorMensaje{
+        text-align: justify;
+        flex-direction: column;
+        margin: 0 20px;
+    }
+  }

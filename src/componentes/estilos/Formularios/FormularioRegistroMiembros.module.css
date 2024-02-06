@@ -1,0 +1,150 @@
+.informacionRegistro{
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formulario {
+    padding: 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .formulario label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .formulariocampos {
+    flex-grow: 2;
+    flex-basis: 0;
+    margin: 0 20px;
+    width: 70%;
+  }
+    
+.formulariocamposMiembros{
+  display: flex;
+  flex-direction: column;
+    
+}
+  .inputs {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .inputs input{
+    background-color: white;
+  }
+
+  .inputs label:nth-child(1){
+    margin-bottom: 7px;
+    font-size: 0.9rem;
+    margin-right: 20px;
+  }
+
+  .inputs select{
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .formulario input {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #0000002f;
+    color: rgb(87, 84, 84);
+    outline: none;
+    width: 100%;
+  }
+
+  .contenedorRol{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .contenedorSelectorRol{
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  .labelMensajeRol{
+    flex-grow: 3;
+    flex-basis: 0;
+    background-color: rgba(52, 107, 170, 0.418);
+    color: rgb(43, 78, 124);
+    padding:3px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+  }
+  
+  .contenedorbtn {
+    
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn {
+    background-color: #2d7799;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.11);
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #1b2727;
+    transition: background-color 0.3s;
+  }
+  
+  .iconos:hover {
+    background-color: #1b2727;
+    transition: background-color 0.3s;
+  }
+  
+  .opciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+  
+  .opciones label:nth-child(1) {
+    font-size: 0.9rem;
+    color: #1b2727;
+  }
+
+
+  .mensajeError{
+    border-radius: 5px;
+    color: rgb(148, 42, 42);
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    background-color: rgb(243, 207, 207);
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+
+  @media only screen and (max-width: 890px) {
+    .informacionRegistro{
+      margin-top: 2rem;
+    }
+  }
+  

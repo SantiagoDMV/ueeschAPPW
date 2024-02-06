@@ -1,0 +1,64 @@
+.contenedorMensaje{
+    background-color: rgb(49, 49, 49);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    font-size: 0.85rem;
+    flex-direction: row;
+    gap: 1rem;
+    color: white;
+    max-width: 350px;
+}
+
+.contenedorInformacion{
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    
+}
+
+.contenedorInformacion h4{
+    margin-bottom: 0.5rem;
+    text-align: start;
+    width: 100%;
+}
+
+.informacion{
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.informacion p{
+    font-style: oblique;
+}
+
+.circleLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    border: 4px solid #ccc;
+    border-top-color: #3498db;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animación de rotación */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

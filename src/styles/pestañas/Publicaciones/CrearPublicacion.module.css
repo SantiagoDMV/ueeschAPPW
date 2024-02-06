@@ -1,0 +1,33 @@
+.contenedorCrearPublicacion{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: calc(100vh - 4rem);
+}
+
+.contenedorCrearPublicacion h3{
+    text-align: center;
+    padding: 1rem;
+}
+
+
+.contenedorInformacionCrearPublicacion{
+    font-size: 14px;
+    text-align: justify;
+    background-color: rgba(157, 236, 191, 0.675);
+    padding: 1.3rem;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    color: black;
+}
+.contenedorInformacionCrearPublicacion ul{
+    padding-left: 20px;
+}
+
+
+@media only screen and (max-width: 700px){
+    .contenedorCrearPublicacion{
+        flex-direction: column;
+    }
+}

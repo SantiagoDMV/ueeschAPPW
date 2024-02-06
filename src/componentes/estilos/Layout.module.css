@@ -1,0 +1,23 @@
+.nav{
+    z-index: 100;
+    background-color: white;
+
+}
+.layout{
+    z-index: 0;
+    box-sizing: border-box;
+    color: black;
+    
+}
+
+.hijos{
+    margin-top: 4rem;
+    background-color: #f4f6f8;
+}
+
+.chatAyuda{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+}

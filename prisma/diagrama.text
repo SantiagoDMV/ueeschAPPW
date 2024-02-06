@@ -1,0 +1,64 @@
+Table cuenta {
+  id_cuenta int [primary key]
+  email_cuenta text [not null, unique]
+  passw_cuenta text [not null]
+}
+
+Table rol {
+  id_rol int [primary key]
+  nombre_rol text [not null]
+}
+
+Table usuario {
+  id_usuario int [primary key]
+  id_rol int [not null]
+  cedula_usuario text [not null]
+  nombre_usuario text [not null]
+  apellido_usuario text [not null]
+  email_usuario text [not null, unique]
+  password_usuario text [not null]
+  imagen_usuario text [not null]
+  create_at timestamp [not null, default: `CURRENT_TIMESTAMP(3)`]
+  update_at timestamp [not null]
+  ultimo_acceso timestamp [not null]
+
+}
+
+Table publicacion {
+  id_publicacion int [primary key]
+  id_usuario int [not null]
+  titulo_publicacion text [not null]
+  contenido_publicacion text [not null]
+  create_at timestamp [not null, default: `CURRENT_TIMESTAMP(3)`]
+  update_at timestamp [not null]
+}
+
+TABLE "like" {
+    "id_like" int [primary key,not null]
+    "id_publicacion" int [not null]
+    "id_usuario" int [not null]
+}
+
+TABLE "multimedia" {
+    "id_multimedia" int [not null]
+    "id_publicacion" int [not null]
+    "tipo_multimedia" text [not null]
+    "ruta_multimedia" text [not null]
+}
+
+TABLE "noticias" {
+    "id_noticia" int [primary key]
+    id_usuario int [not null]
+    "contenido" TEXT [not null]
+    create_at timestamp [not null, default: `CURRENT_TIMESTAMP(3)`]
+    update_at timestamp [not null]
+}
+
+// Foreign Keys
+Ref: noticias.id_usuario > usuario.id_usuario
+Ref: multimedia.id_publicacion > publicacion.id_publicacion
+Ref: like.id_publicacion > publicacion.id_publicacion
+Ref: like.id_usuario > usuario.id_usuario 
+Ref: cuenta.email_cuenta > usuario.email_usuario
+Ref: usuario.id_rol > rol.id_rol
+Ref: publicacion.id_usuario > usuario.id_usuario

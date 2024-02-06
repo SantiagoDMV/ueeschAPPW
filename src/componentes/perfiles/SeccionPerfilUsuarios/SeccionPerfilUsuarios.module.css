@@ -1,0 +1,78 @@
+.contenedorInformacionMoodle{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.contenedorInformacionMoodle button{
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(44, 116, 155);
+    color: white;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconoBotonInformacionMoodle{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+.mensajeError{
+    position: absolute;
+    top: 0;
+    
+    margin: 0 auto;
+    padding: 1rem;
+    color: black;
+    box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.135);
+    background-color: rgb(201, 93, 93);
+    color: white;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+
+  .contenedorEmailHijos{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   width: 100%;
+   gap: 1rem; 
+   padding: 1.5rem;
+   text-align: justify;
+  }
+  .contenedorInputs{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .inputEmail{
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.477);
+    border-radius: 5px;
+    outline: none;
+  }
+  .botonEmail{
+    background-color: rgb(55, 111, 163);
+    color: white;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }

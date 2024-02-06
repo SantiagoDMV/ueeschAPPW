@@ -1,0 +1,96 @@
+.formulario{
+    background-color: white;
+    padding: 3rem 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulariocampos{
+    width: 80%;
+}
+.tituloRegistro{
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputs{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputs label{
+    padding-right: 1.5rem;
+}
+
+.inputs input{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.39);
+    border-radius: 10px;    
+    min-width: 100%;
+}
+
+.opciones{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(25, 127, 141);
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btnCancelar{
+    padding: 10px;
+    margin-left: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(202, 33, 47);
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.inputs select{
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+.inputs select option{
+    padding: 10px;
+}
+
+.mensajeError{
+    border-radius: 5px;
+    color: rgb(148, 42, 42);
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    background-color: rgb(243, 207, 207);
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    margin-top: 10px;
+    width: 100%;
+  }
