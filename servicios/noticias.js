@@ -1,4 +1,3 @@
-import NoticiaRepository from "../data/noticiasRepository"
 import { ObtenerInformacionCookie } from "../util/cookies/UserCookie"
 import { verify } from "jsonwebtoken";
 import { buscarDatos, eliminarDatos, enviarDatos } from "./googleDriveService/GoogleDrive";
