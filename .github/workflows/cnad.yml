@@ -40,7 +40,6 @@ jobs:
             - name: Clone repository
               uses: actions/checkout@v3
 
-			# Important step, this is use to restart your server
             - name: Creating restart file
               run: |
                 mkdir tmp && touch tmp/restart.txt 
@@ -52,7 +51,6 @@ jobs:
                 name: dot_next_folder
                 path: .next
 
-			# Using FTP to upload your files to cpanel
             - name: 📂 Sync files
               uses: SamKirkland/FTP-Deploy-Action@4.3.2
               with:
