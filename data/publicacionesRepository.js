@@ -202,13 +202,17 @@ async mostrarServicios(){
       const idTipoPublicacionInt = parseInt(id_tipo_publicacion, 10);
       const prisma = this.getInstance();
       try {
+        const fechaActual = new Date(fecha_eliminacion);
+        const fechaActualLocal = new Date(
+            fechaActual.getTime() - fechaActual.getTimezoneOffset() * 60000
+          );
         const respuesta = await prisma.publicacion.create({
           data:{
             id_usuario : idUser, 
             id_tipo_publicacion: idTipoPublicacionInt,
             titulo_publicacion: titulo, 
             contenido_publicacion: contenido, 
-            eliminado_en: !fecha_eliminacion ? null : new Date(fecha_eliminacion)
+            eliminado_en: !fecha_eliminacion ? null : fechaActualLocal
           }
         });
         prisma.$disconnect();

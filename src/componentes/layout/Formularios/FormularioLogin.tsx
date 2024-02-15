@@ -3,7 +3,7 @@ import { useState ,useRef } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineUser, AiOutlineKey } from "react-icons/ai";
 import Image from "next/image";
-import logo from "../../../../public/imagenes/nav/logoUnidad.png";
+import logo from "/public/imagenes/nav/logoUnidad.png";
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
 

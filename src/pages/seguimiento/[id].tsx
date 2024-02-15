@@ -12,7 +12,7 @@ import InformacionUsuarios from "../../componentes/layout/secciones/Moodle/Infor
 import Layout from "@/componentes/layout/Layout";
 
 export default function Seguimientoacademico({ cursosUser,userId, moodle,usuarioCookie,setUsuarioCookie}: any) {
-  console.log(cursosUser)
+  
   ChartJS.defaults.plugins.legend.display = false;
   ChartJS.defaults.plugins.tooltip.mode = 'index';
   ChartJS.defaults.plugins.tooltip.intersect = false;
@@ -24,7 +24,7 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
     
 
     const obtenerTareasMoodle = async () => {
-      console.log(tareas)
+      
       try {
         const respuesta = await axios.get(
           `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=gradereport_user_get_grades_table&moodlewsrestformat=json&courseid=${cursoSeleccionado}&userid=${userId}`
@@ -98,7 +98,7 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
   
   const obtenerDatosGrafico = () => {
     if (tareas) {
-      console.log(tareas);
+      
   
       const data = {
         datasets: [

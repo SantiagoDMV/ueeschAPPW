@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "@/componentes/layout/Layout";
 import { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
 

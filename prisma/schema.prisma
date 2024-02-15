@@ -4,6 +4,7 @@ generator client {
 }
 datasource db {
   provider = "mysql"
+  //provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -20,7 +21,7 @@ model usuario {
   creado_en        DateTime                 @default(now()) @map("creado_en")
   actualizado_en   DateTime?                @map("actualizado_en")
   eliminado_en     DateTime?                 @map("eliminado_en")
-  ultimo_acceso    DateTime? @map("ultimo_acceso")
+  ultimo_acceso    DateTime?          @map("ultimo_acceso")
   publicaciones    publicacion[]
   importacion_usuarios    importacion_usuarios[]
   rol              rol           @relation(fields: [id_rol], references: [id_rol])
@@ -61,16 +62,6 @@ model asistencia_servicio {
   servicio publicacion @relation(fields: [id_servicio], references: [id_publicacion], onDelete: Cascade)
 }
 
-// model asistencia_actividad {
-//   id_asistencia_actividad Int @id @default(autoincrement()) @map("id_asistencia_actividad")
-//   id_actividad Int         @map("id_actividad")
-//   id_usuario Int          @map("id_usuario")
-//   create_at DateTime      @default(now()) @map("create_at")
-//   usuario usuario @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
-//   servicio publicacion @relation(fields: [id_actividad], references: [id_publicacion])
-// }
-
-
 model publicacion {
   id_publicacion         Int                      @id @default(autoincrement()) @map("id_publicacion")
   id_usuario             Int                      @map("id_usuario")
@@ -84,7 +75,6 @@ model publicacion {
   usuario usuario @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
   tipo_publicacion tipo_publicacion  @relation(fields: [id_tipo_publicacion], references: [id_tipo_publicacion])
   asistencia_servicio       asistencia_servicio[] 
-  //asistencia_actividad       asistencia_actividad[] 
 }
 
 model tipo_publicacion{

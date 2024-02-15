@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "rimraf .next && next build",
+    "start": "set NODE_ENV=production node server.js",
     "lint": "next lint",
-    "deploy": "next build && next export && gh-pages -d out -b gh-pages"
+    "deploy": "set NODE_ENV=production next build && set NODE_ENV=production next start && gh-pages -d out -b gh-pages"
   },
   "dependencies": {
+    "@bitc/cnad": "^1.1.0",
     "@prisma/client": "^4.16.2",
     "@react-pdf/renderer": "^3.1.12",
     "@types/node": "18.15.11",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
+    "@types/react-icons": "^3.0.0",
     "@types/react-slick": "^0.23.13",
     "prisma": "^4.16.2"
   }

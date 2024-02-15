@@ -15,12 +15,6 @@ VALUES
   (3, 'Profesor', 'Los Profesores tienen acceso al seguimiento del curso y al seguimiento de sus estudiantes en los cursos que imparten. También pueden realizar publicaciones en el sistema.'),
   (4, 'Estudiante', 'Los Estudiantes pueden revisar su propio seguimiento actual de los cursos que están cursando.'),
   (5, 'Representante', 'Los Representantes son responsables de estudiantes menores de edad, con acceso al seguimiento de los cursos de sus hijos.');
-  
--- Insertar registros en la tabla "tipo_multimedia"
-INSERT INTO "tipo_multimedia" ("descripcion_tipo") VALUES
-  ('Imagen'),
-  ('Video')
-
 
 -- Insertar tipos de publicación para una unidad educativa
 INSERT INTO tipo_publicacion (nombre_tipo_publicacion, descripcion_tipo_publicacion)
@@ -28,6 +22,14 @@ VALUES
   ('servicio', 'Información sobre servicios disponibles en la unidad educativa, como asesorías, apoyo, etc.'),
   ('anuncio', 'Anuncios importantes y comunicados para la comunidad educativa.'),
   ('noticia', 'Noticias relevantes sobre eventos, logros o novedades en la unidad educativa.')
+
+  
+-- Insertar registros en la tabla "tipo_multimedia"
+INSERT INTO "tipo_multimedia" ("descripcion_tipo") VALUES
+  ('Imagen'),
+  ('Video')
+
+
 
 
 

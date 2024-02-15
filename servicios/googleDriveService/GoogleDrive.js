@@ -195,5 +195,4 @@ export const eliminarDatos = async (nombre, files) => {
   await drive.files.delete({
     fileId: fileId,
   });
-  console.log(`Archivo '${nombre}' eliminado correctamente.`);
 };

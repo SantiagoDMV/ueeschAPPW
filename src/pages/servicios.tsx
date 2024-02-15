@@ -1,14 +1,14 @@
 import Layout from "@/componentes/layout/Layout";
 import estilos from "../styles/pestañas/Servicios.module.css";
-import axios,{AxiosError} from "axios";
-import { useState, useEffect,useRef } from "react";
+import axios, { AxiosError } from "axios";
+import { useState, useEffect} from "react";
 import { SyncLoader } from "react-spinners";
-import Carrusel from '../componentes/Carrrusel/CarruselPersonalPublicacion'
-import ReactMarkdown from 'react-markdown';
+import Carrusel from "../componentes/Carrrusel/CarruselPersonalPublicacion";
+import ReactMarkdown from "react-markdown";
 import Ventana from "@/componentes/ventanas/Ventana";
 import InformacionUsuariosAsistentes from "@/componentes/layout/secciones/informacionUsuariosAsistentes/InformacionUsuariosAsistentes";
-import cheerio from 'cheerio';
-import ReactDOMServer from 'react-dom/server';
+import cheerio from "cheerio";
+import ReactDOMServer from "react-dom/server";
 import Link from "next/link";
 import { Toaster, toast } from "sonner";
 
@@ -20,52 +20,49 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>();
   const [publicacion, setDatosPublicacion] = useState<any>();
   const [datosMultimedia, setDatosMultimedia] = useState<any>();
-  const [estado,setEstado] = useState<boolean>(false)
-  const [idPublicacion,setIdPublicacion] = useState<any>()
+  const [estado, setEstado] = useState<boolean>(false);
+  const [idPublicacion, setIdPublicacion] = useState<any>();
 
-
-
-const [datosPublicacionesContenido,setDatosPublicacionesContenido]= useState<any[]>([])
+  const [datosPublicacionesContenido, setDatosPublicacionesContenido] =
+    useState<any[]>([]);
 
   const obtenerDatosPublicaciones = async () => {
     const respuesta = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/servicios`
     );
-    
-    respuesta.data.datos.map((e:any) => (
+
+    respuesta.data.datos.map((e: any) =>
       replaceImgWithNextImage(e.contenido_publicacion)
-    ))
+    );
 
-    setDatosPublicacion(respuesta.data.datos)
+    setDatosPublicacion(respuesta.data.datos);
     setDatosPublicaciones(respuesta.data.datos);
-
 
     setDatosMultimedia(respuesta.data.datosMultimedia);
   };
 
-
-  const enviarAsistencia = async (id:any) => {
+  const enviarAsistencia = async (id: any) => {
     let loadingToastId: any = null;
-    const boton =document.getElementById('botonRegistro') as HTMLButtonElement | null;
-    if(boton){
-    boton.disabled = true;
-    boton.style.backgroundColor = 'rgb(229,192,45)'
+    const boton = document.getElementById(
+      "botonRegistro"
+    ) as HTMLButtonElement | null;
+    if (boton) {
+      boton.disabled = true;
+      boton.style.backgroundColor = "rgb(229,192,45)";
     }
-    try{
-        loadingToastId = toast.info(
-          "Registrando asistencia, esto puede llevar un momento...",
-          {
-            style: {
-              border: "none",
-            },
-          }
-        );
-  
-    
-    await axios.post('/api/publicaciones/servicios', {id_publicacion : id})
-    
+    try {
+      loadingToastId = toast.info(
+        "Registrando asistencia, esto puede llevar un momento...",
+        {
+          style: {
+            border: "none",
+          },
+        }
+      );
 
-    toast.dismiss(loadingToastId);
+      await axios.post("/api/publicaciones/servicios", { id_publicacion: id });
+
+      toast.dismiss(loadingToastId);
 
       toast.success("Asistencia registrada.", {
         style: {
@@ -73,13 +70,11 @@ const [datosPublicacionesContenido,setDatosPublicacionesContenido]= useState<any
           border: "none",
         },
       });
-    
-    
-} catch (error) {
-  ////////////////////////////////////////////////////////////////////////
-const errorMensaje:any = (error as AxiosError).response?.data;    
+    } catch (error) {
+      ////////////////////////////////////////////////////////////////////////
+      const errorMensaje: any = (error as AxiosError).response?.data;
 
-toast.dismiss(loadingToastId);
+      toast.dismiss(loadingToastId);
 
       toast.error(errorMensaje.mensaje, {
         style: {
@@ -87,50 +82,46 @@ toast.dismiss(loadingToastId);
           border: "none",
         },
       });
+    }
+  };
 
-}
-};
+  const mostratListaAistentes = (id: any) => {
+    setEstado(true);
+    setIdPublicacion(id);
+  };
 
-
-const mostratListaAistentes = (id:any) =>{
-  setEstado(true);
-  setIdPublicacion(id)
-}
-
-const arrayContenido:any = []
+  const arrayContenido: any = [];
   const replaceImgWithNextImage = (htmlContent: string) => {
     const $ = cheerio.load(htmlContent, { xmlMode: true });
 
-    $('img').each((index, element) => {
-      const imgSrc = $(element).attr('src');
+    $("img").each((element) => {
+      const imgSrc = $(element).attr("src");
       if (imgSrc) {
-        const imgComponent = (
-          <p></p>
-        );
+        const imgComponent = <p></p>;
         const imgHtml = ReactDOMServer.renderToStaticMarkup(imgComponent);
 
         $(element).replaceWith(imgHtml);
       }
     });
 
-    arrayContenido.push($.xml())
-    
-setDatosPublicacionesContenido(arrayContenido);
+    arrayContenido.push($.xml());
 
-
+    setDatosPublicacionesContenido(arrayContenido);
   };
-
-
-
 
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
-    <Ventana estado={estado}>
-    <InformacionUsuariosAsistentes idPublicacion = {idPublicacion} setEstado = {setEstado} tituloServicio={'Curso de Lenguaje de Señas para Padres: Comunicación Inclusiva en Familia'}/>
-    </Ventana> 
-    
+      <Ventana estado={estado}>
+        <InformacionUsuariosAsistentes
+          idPublicacion={idPublicacion}
+          setEstado={setEstado}
+          tituloServicio={
+            "Curso de Lenguaje de Señas para Padres: Comunicación Inclusiva en Familia"
+          }
+        />
+      </Ventana>
+
       <div className={estilos.contenedorPrincipalServicios}>
-        
         <div className={estilos.contenedorServicios}>
           {!datosPublicaciones ? (
             <div className={estilos.conteneCargando}>
@@ -138,62 +129,83 @@ setDatosPublicacionesContenido(arrayContenido);
 
               <SyncLoader color={"#558"} loading={true} size={30} />
             </div>
-          ) : datosPublicaciones.length === 0?
-          <div className={estilos.conteneCargando}>
+          ) : datosPublicaciones.length === 0 ? (
+            <div className={estilos.conteneCargando}>
               <h2>No existen servicios en este momento</h2>
             </div>
-          :(
+          ) : (
             datosPublicaciones.map((e: any, index: number) => (
               <div key={index} className={estilos.contenedorServicioUnico}>
-                {datosMultimedia && datosMultimedia.length > 0 && 
+                {datosPublicaciones && datosPublicaciones.length > 0 && (
                   <>
-              {
-                  (datosMultimedia && datosMultimedia.filter((m: any) => m.id_publicacion === e.id_publicacion).length !==0) &&
-              <div className={estilos.contenedorCarrusel}>
-                      <Carrusel datosMultimedia={datosMultimedia} idPublicacion = {e.id_publicacion}/>
-                </div>
-                }
-            
+                    {datosMultimedia &&
+                      datosMultimedia.filter(
+                        (m: any) => m.id_publicacion === e.id_publicacion
+                      ).length !== 0 && (
+                        <div className={estilos.contenedorCarrusel}>
+                          <Carrusel
+                            datosMultimedia={datosMultimedia}
+                            idPublicacion={e.id_publicacion}
+                          />
+                        </div>
+                      )}
 
                     <div className={estilos.contenedorInformacion}>
-
-                    {publicacion && (
-        <div className={estilos.publicacion}>
-          <div className={estilos.contenedorContenidoPublicacion}>
-            <div className={estilos.contenidoPublicacion}>
-              {datosPublicacionesContenido.length !== 0 ? (
-                // <div dangerouslySetInnerHTML={{ __html: datosPublicacionesContenido[index] }} />
-                <>
-                <h2 className={estilos.tituloServicio}>{e.titulo_publicacion}</h2>
-                <span><Link target='_blank' href={`${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${e.id_publicacion}`}>Leer más</Link></span>
-                </>
-              ) : (
-                <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
-              )}
-            </div>
-          </div>
-
-        </div>
-      )}                    
+                      {publicacion && (
+                        <div className={estilos.publicacion}>
+                          <div
+                            className={estilos.contenedorContenidoPublicacion}
+                          >
+                            <div className={estilos.contenidoPublicacion}>
+                              {datosPublicacionesContenido.length !== 0 ? (
+                                // <div dangerouslySetInnerHTML={{ __html: datosPublicacionesContenido[index] }} />
+                                <>
+                                  <h2 className={estilos.tituloServicio}>
+                                    {e.titulo_publicacion}
+                                  </h2>
+                                  <span>
+                                    <Link
+                                      target="_blank"
+                                      href={`${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${e.id_publicacion}`}
+                                    >
+                                      Leer más
+                                    </Link>
+                                  </span>
+                                </>
+                              ) : (
+                                <ReactMarkdown>
+                                  {publicacion.contenido_publicacion}
+                                </ReactMarkdown>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <div className={estilos.contenedorBotonUnete}>
-                      <button onClick={()=>enviarAsistencia(e.id_publicacion)} id="botonRegistro">Registrarme</button>
+                        <button
+                          onClick={() => enviarAsistencia(e.id_publicacion)}
+                          id="botonRegistro"
+                        >
+                          Registrarme
+                        </button>
 
-                    {usuarioCookie.rol===1 &&
-                      <button onClick={()=>mostratListaAistentes(e.id_publicacion)}>Ver asistentes</button>
-                    }
-
+                        {usuarioCookie.rol === 1 && (
+                          <button
+                            onClick={() =>
+                              mostratListaAistentes(e.id_publicacion)
+                            }
+                          >
+                            Ver asistentes
+                          </button>
+                        )}
                       </div>
                     </div>
-            
-                
                   </>
-                }
-                
+                )}
               </div>
             ))
           )}
         </div>
-
       </div>
       <Toaster
         theme="dark"
@@ -204,4 +216,3 @@ setDatosPublicacionesContenido(arrayContenido);
     </Layout>
   );
 }
-

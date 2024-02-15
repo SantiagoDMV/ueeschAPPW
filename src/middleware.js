@@ -33,13 +33,9 @@ export async function middleware(request) {
           return NextResponse.redirect(new URL("/", request.url));
         }
         break;
-      // case '/seguimientoacademico':
-      //   // Acceso general a la sección de seguimiento académico
-      //   return NextResponse.next();
+      
       default:
-        // Verificación específica para /seguimientoacademico/:path*
-
-        // Verificación específica para /seguimientoacademico/:path*
+        
         if (  (userRole !== 1 && userRole !== 2) && !path.startsWith(`/seguimiento/${idMoodle}`) ) {
           return NextResponse.redirect(new URL(`/seguimiento/${idMoodle}`, request.url));
         }

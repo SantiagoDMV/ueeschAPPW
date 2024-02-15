@@ -24,7 +24,7 @@ export default function InformacionUserMoodle({usersInf}:any) {
       <ul>
         {usersInf ? (
           usersInf.map((e: any, index: number) => (
-              <Link key={index} href={`/seguimientoacademico/${e.id}`} target="_BLANK">
+              <Link key={index} href={`/seguimiento/${e.id}`} target="_BLANK">
                 <li id={`${e.id}`}>
                 {e.fullname}
                 </li>    

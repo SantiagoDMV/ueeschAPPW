@@ -1,15 +1,14 @@
-import { AiOutlineSchedule, AiOutlineUnlock } from "react-icons/ai";
 import style from "../../estilos/Perfil.module.css";
 import CambiarContraseña from "../../ventanas/CambiarContraseña";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import AlertaCargando from "../../alertas/AlertaCargando";
+import { Toaster, toast } from "sonner";
 
 export default function FormualrioPerfil({ usuario }: any) {
   const [estado, setEstado] = useState(false);
   const [imagen, setImagen] = useState("");
-  const [estadoAlertaCargando, setEstadoAlertaCargando] = useState(false);
 
   const activarAlertaActualizacion = () => {
     setEstado(true);
@@ -19,16 +18,29 @@ export default function FormualrioPerfil({ usuario }: any) {
     if (estado === false) {
       document.getElementById("contenedorAlerta")?.remove();
     }
-  }, []);
+  }, [estado]);
 
   const enviarImagen = (e: any) => {
-    //console.log(e.target.files[0])
-
     let file = e.target.files[0];
     if (!file) return;
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
-    //console.log(fileReader.result)
+
+    const fileSizeInBytes = file.size;
+    const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+
+    const maxFileSizeInMegabytes = 1;
+    if (fileSizeInMegabytes > maxFileSizeInMegabytes) {
+        toast.error("Error: El archivo excede el límite de tamaño permitido (1 MB).", {
+            style: {
+                backgroundColor: "rgb(203,90,90)",
+                border: "none",
+            },
+        });
+        return;
+    }
+
+
 
     fileReader.onload = async () => {
       if (
@@ -39,46 +51,52 @@ export default function FormualrioPerfil({ usuario }: any) {
       ) {
         alert("Solo se admitn archivos validos");
       } else {
-        abrirMensaje();
-        axios
-          .put("/api/usuarios?cambio=imagen", [fileReader.result])
-          .then((imagenRespuesta) => {
-            setImagen(imagenRespuesta.data);
-            abrirMensaje()
+        let loadingToastId: any = null;
+        try {
+          loadingToastId = toast.info(
+              "Realizando cambios, esto puede llevar un momento...",
+              {
+                  style: {
+                      border: "none",
+                  },
+              }
+          );
+      
+          axios
+              .put("/api/usuarios?cambio=imagen", [fileReader.result])
+              .then((imagenRespuesta) => {
+                  setImagen(imagenRespuesta.data);
+                  toast.dismiss(loadingToastId);
+      
+                  toast.success("Los cambios fueron realizados exitosamente.", {
+                      style: {
+                          backgroundColor: "rgb(90,203,154)",
+                          border: "none",
+                      },
+                  });
+              });
+        } catch (error) {
+          ////////////////////////////////////////////////////////////////////////
+          const errorMensaje: any = (error as AxiosError).response?.data;
+          toast.dismiss(loadingToastId);
+
+          toast.error(errorMensaje.mensaje, {
+            style: {
+              backgroundColor: "rgb(203,90,90)",
+              border: "none",
+            },
           });
+        
+        }
       }
     };
   };
 
-  const abrirMensaje = () => {
-    if (document.getElementById("mensajeCambioImagen"))
-      return document.getElementById("mensajeCambioImagen")?.remove();
-
-    const div = document.getElementById("contenedorImagen");
-    const divMensaje = document.createElement("div");
-    const label = document.createElement("label");
-    divMensaje.classList.add(`${style.mensajeCabioImagen}`);
-    divMensaje.id = "mensajeCambioImagen"
-    label.innerText = "Los cambios se estan realizando en este momento"
-    divMensaje.appendChild(label);
-    div?.appendChild(divMensaje)
-
-    /*setTimeout(() => {
-      document.getElementById("mensajeCambioImagen")?.remove();
-    }, 5000);*/
-  }
-
   return (
     <div className={style.contenedorContenidoInformacion}>
       <div className={style.contenedorImagenNombre} id="contenedorImagen">
-        {estadoAlertaCargando === true ? (
-          <AlertaCargando valor={estadoAlertaCargando} />
-        ) : (
-          ""
-        )}
         <div className={style.fondo}>
           <div className={style.contenedorInfPrincipal}>
-          
             <div className={style.contenedorImagen}>
               {imagen ? (
                 <>
@@ -130,54 +148,58 @@ export default function FormualrioPerfil({ usuario }: any) {
 
       <div className={style.contenedorInformacionUsuario}>
         <div className={style.contenedorInformacion}>
-          
-            <div className={style.nombreUsuario}>{usuario.nombre} {usuario.apellido}</div>
-            <h5>
-              {(usuario.rol === 5) ? 
+          <div className={style.nombreUsuario}>
+            {usuario.nombre} {usuario.apellido}
+          </div>
+          <h5>
+            {usuario.rol === 5 ? (
               <div className={style.rol}>Representante</div>
-              : 
-            (usuario.rol === 4) ? 
-                <div className={style.rol}>Estudiante</div>
-                : 
-              (usuario.rol === 3) ? 
+            ) : usuario.rol === 4 ? (
+              <div className={style.rol}>Estudiante</div>
+            ) : usuario.rol === 3 ? (
               <div className={style.rol}>Docente</div>
-              : 
-              ((usuario.rol === 2) ? 
+            ) : usuario.rol === 2 ? (
               <div className={style.rol}>Administrador</div>
-              : (usuario.rol === 1) && 
-              <div className={style.rol}>Super Administrador</div>
-              )}
-            </h5>
-            <br />
-            <h4>Información del perfil</h4>
-            <div className={style.email}>Email: {usuario.email}</div>
-            <label>Cédula: {usuario.cedula ? usuario.cedula  : '?'}</label>
-            
-
-
-            {estado === true ? (
-              <div className={style.contenedorCambioContraseña}>
-                <CambiarContraseña
-                  mensaje="Tu seguridad es nuestra prioridad. No compartas tu contraseña"
-                  actualizacionEstado={setEstado}
-                  id="contenedorAlerta"
-                />
-              </div>
             ) : (
-              ""
+              usuario.rol === 1 && (
+                <div className={style.rol}>Super Administrador</div>
+              )
             )}
-            {
+          </h5>
+          <br />
+          <h4>Información del perfil</h4>
+          <div className={style.email}>Email: {usuario.email}</div>
+          <label>Cédula: {usuario.cedula ? usuario.cedula : "?"}</label>
+
+          {estado === true ? (
+            <div className={style.contenedorCambioContraseña}>
+              <CambiarContraseña
+                mensaje="Tu seguridad es nuestra prioridad. No compartas tu contraseña"
+                actualizacionEstado={setEstado}
+                id="contenedorAlerta"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+          {
             //<label className={style.linkEdicionPerfil}>Editar Perfil</label>
-            }
+          }
 
-            <a onClick={() => activarAlertaActualizacion()} className={style.linkEdicionContraseña}>
-              Cambiar contraseña
-            </a>
-
-            
+          <a
+            onClick={() => activarAlertaActualizacion()}
+            className={style.linkEdicionContraseña}
+          >
+            Cambiar contraseña
+          </a>
         </div>
-
       </div>
+      <Toaster
+        theme="dark"
+        position="bottom-left"
+        visibleToasts={3}
+        duration={3000}
+      />
     </div>
   );
 }
