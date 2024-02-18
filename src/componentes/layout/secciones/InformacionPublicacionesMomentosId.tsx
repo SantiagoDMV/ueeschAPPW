@@ -22,7 +22,7 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
     if (typeof window !== 'undefined') {
       const compartirEnFacebook = () => {
         window.open(
-          `http://www.facebook.com/sharer/sharer.php?u=https://ueesch-5h2a.onrender.com`,
+          `http://www.facebook.com/sharer/sharer.php?u=https://ueesch-5h2a.onrender.com/publicaciones/publicacion/17`,
           'Compartir en Facebook',
           'width=600,height=900'
         );
