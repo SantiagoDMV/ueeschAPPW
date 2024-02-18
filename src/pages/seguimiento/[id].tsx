@@ -178,7 +178,7 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
              }
           }) }</h4>
           <h4>Rol Actual en el curso: Estudiante</h4>
-          <Link href={`/reportes/notas?id=${usuarioCookie.id_moodle}&curso=${cursoSeleccionado}`} 
+          <Link href={`/reportes/notas?id=${userId}&curso=${cursoSeleccionado}`} 
           className={estilos.reporteNotasSpan}>Reporte de notas</Link>
           <div className={estilos.tareasCursos}>
                 <InformacionModulosMoodle cursoId = {cursoSeleccionado} userId = {userId} moodle ={ moodle} obtenerTareasMoodle={obtenerTareasMoodle} tareas={tareas} setTareas={setTareas}/>

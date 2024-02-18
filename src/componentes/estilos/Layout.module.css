@@ -1,75 +1,152 @@
-.nav{
-    z-index: 100;
-    background-color: white;
-
+.nav {
+  z-index: 100;
+  background-color: white;
 }
-.layout{
-    z-index: 0;
-    box-sizing: border-box;
-    color: black;
-    
+.layout {
+  z-index: 0;
+  box-sizing: border-box;
+  color: black;
 }
 
-.hijos{
-    margin-top: 4rem;
-    background-color: #f4f6f8;
+.hijos {
+  margin-top: 4rem;
+  background-color: #f4f6f8;
 }
 
-.cotonCompartirFacebook{
-font-size: 2.5rem;
-background-color: #4267b2;
-color: white;
-padding: 3px;
-cursor: pointer;
+.contenedorBotonesCompartir {
+  position: fixed;
+  top: 4rem;
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  backdrop-filter: blur(3px);
 }
 
-.cotonCompartirTwitter{
-    font-size: 2.5rem;
-    background-color: black;
-    color: white;
-    padding: 3px;
-    cursor: pointer;
+.contenedorAbrirOpciones {
+  position: fixed;
+  top: 4rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
 }
 
-.cotonCompartirWhatsapp{
-    font-size: 2.5rem;
-    background-color: rgb(19, 155, 112);
-    color: white;
-    padding: 3px;
-    cursor: pointer;
-}
-
-.contenedorBotonesCompartir{
-    position: fixed;
-    top: 20%;
-    left: 0px;
-    z-index: 1;
-}
-
-.botonAbrirOpcionesDeCompartir{
-    background-color: white;
-    padding: 4px;
-    font-size: 1.5rem;
-    border-radius: 0 10px 10px 0;
-    user-select: none;
-    cursor: pointer;
+.botonAbrirOpcionesDeCompartir {
+  background-color: white;
+  padding: 4px;
+  font-size: 1.8rem;
+  border-radius: 0 10px 10px 0;
+  user-select: none;
+  cursor: pointer;
+  margin-top: 2rem;
 }
 
 .botonesCompartir {
-    position: absolute;
-    transform: translateX(-100%); 
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
+
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  background-color: white;
+  box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.081);
+  height: 100%;
+  padding: 0 1px;
+}
+
+.botonesCompartir .link {
+  width: 100%;
+  padding: 20px;
+  background-color: #cccccc;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.botonesCompartir .link:hover {
+  background-color: #d8d8d8;
+}
+
+.compartirRedesSociales {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cotonCompartirFacebook {
+  background-color: #4267b2;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.cotonCompartirFacebook:hover {
+    background-color: #4b74c5;
+}
+
+.iconoFacebook {
+  font-size: 25px;
+}
+
+.cotonCompartirX {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+}
+.cotonCompartirX:hover {
+    background-color: rgb(29, 29, 29);
+}
+
+.iconoX {
+  font-size: 25px;
+}
+
+.cotonCompartirWhatsapp {
+  background-color: rgb(17, 138, 100);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+}
+.cotonCompartirWhatsapp:hover {
+    background-color: rgb(20, 162, 117);
+}
+.iconoWhatsapp {
+  font-size: 25px;
 }
 
 .mostrar {
-    transform: translateX(0); 
+  transform: translateX(0);
 }
 
-.chatAyuda{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1;
+.chatAyuda {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+@media only screen and (max-width:600px) {
+    .botonesCompartir {
+        position: absolute; 
+        width: 100%;
+    }   
 }

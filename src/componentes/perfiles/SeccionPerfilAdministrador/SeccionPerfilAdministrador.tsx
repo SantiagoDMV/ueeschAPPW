@@ -33,17 +33,7 @@ export default function SeccionPerfilAdministrador({ usuarioCookie }: any) {
   return (
     <div className={styles.contenedorInferior}>
       <div className={styles.seccionIzquierda}>
-        {usuarioCookie &&
-          (usuarioCookie.rol === 1 || usuarioCookie.rol === 2) && (
-            <Link
-              href={"/administracion"}
-              target="_BLANK"
-              className={styles.linkAdministracion}
-            >
-              Admisitrar sitio
-            </Link>
-          )}
-        <Link
+       <Link
           href={"/publicaciones/crearpublicacion"}
           target="_BLANK"
           className={styles.linkAdministracion}
