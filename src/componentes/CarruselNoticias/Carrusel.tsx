@@ -28,28 +28,39 @@ function SamplePrevArrow(props:any) {
 }
 
 export default function CarruselImágenes({ datosNoticias }: any) {  
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-      };
-      return (
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
+
+  const handleLeerMasClick = (id: string) => {
+    // Redirigir a la página de detalles de la publicación
+    window.location.href = `/publicaciones/publicacion/${id}`;
+  };
+
+  return (
     <div className={styles.contenedorPrinpialCarrusel}>
- <Slider {...settings}>
+      <Slider {...settings}>
         {datosNoticias &&
           datosNoticias.map((e: any, index: number) => (
             <div key={index} className={styles.carouselSlide}>
-                <div className={styles.contenedorCarruselInformacion}>
+              <div className={styles.contenedorCarruselInformacion}>
                 <h4>{e.titulo_publicacion}</h4>
-                <Link href={`/publicaciones/publicacion/${e.id_publicacion}`} className={styles.LinkButton}>Leer más</Link>
-                </div>
+                <button
+                  className={styles.LinkButton}
+                  onClick={() => handleLeerMasClick(e.id_publicacion)}
+                >
+                  Leer más
+                </button>
+              </div>
             </div>
           ))}
-</Slider>
+      </Slider>
     </div>
   );
 }

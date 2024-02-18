@@ -18,8 +18,6 @@
   padding: 10px 25px;
   border-radius: 40px;
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.029);
-  
-  margin-bottom: 2rem;
 }
 
 .informacioUsuarioCreadorPublicacion{
@@ -86,11 +84,22 @@
   .publicacion {
     flex-direction: column;
     text-align: center;
+    width: 90%;
     padding-bottom: 25px;
   }
 
   .contenidoPublicacion {
     align-items: center;
     gap: 10px;
+  }
+  .informacioUsuarioCreadorPublicacion
+  {
+    align-items: center;
+  }
+  .informacioUusuarioCreador{
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    
   }
 }

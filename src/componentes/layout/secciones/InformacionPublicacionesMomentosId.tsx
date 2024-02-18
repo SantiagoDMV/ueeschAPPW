@@ -6,11 +6,11 @@ import ReactMarkdown from 'react-markdown';
 import cheerio from 'cheerio';
 import Usuarios from '@/componentes/Reporte/TablaUsuarios/TablaUsuarios';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+
 
 export default function Publicaciones({ publicacion, multimedia,informacionUsuarioCreador }: any) {
   const [processedContent, setProcessedContent] = useState<string | null>(null);
-  const router = useRouter();
+  
   useEffect(() => {
     if (publicacion) {
       const contentWithImages = replaceImgWithNextImage(publicacion.contenido_publicacion);
@@ -18,28 +18,6 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
     }
   }, [publicacion]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const compartirEnFacebook = () => {
-        const urlActual = window.location.href;
-        //const urlCompartir = `${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${publicacion.id_publicacion}`;
-        window.open(
-          `http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlActual)}`,
-          'Compartir en Facebook',
-          'width=800,height=800'
-        );
-      };
-
-      // Agregar el evento de clic al botón de compartir
-      const boton=  document.getElementById('botonCompartir') as HTMLButtonElement
-      boton.addEventListener('click', compartirEnFacebook);
-      
-      // Retira el evento de clic cuando el componente se desmonte
-      return () => {
-        boton.removeEventListener('click', compartirEnFacebook);
-      };
-    }
-  }, [router]);
 
   const replaceImgWithNextImage = (htmlContent: string) => {
     const $ = cheerio.load(htmlContent, { xmlMode: true });
@@ -95,18 +73,8 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
           <div className={style.contenedorContenidoPublicacion}>
             <div className={style.contenidoPublicacion}>
               <h1>{publicacion.titulo_publicacion}</h1>
-              <button id="botonCompartir">Compartir en Facebook</button>
               
-
-              {processedContent ? (
-                <div dangerouslySetInnerHTML={{ __html: processedContent }} />
-              ) : (
-                <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
-              )}
-            </div>
-            
-          </div>
-          <div className={style.informacioUusuarioCreador}>
+              <div className={style.informacioUusuarioCreador}>
               <Image
               alt={`imagenUsuario_${informacionUsuarioCreador.nombre_usuario}_${informacionUsuarioCreador.apellido_usuario}`}
               className={style.imagenFotoCreador}
@@ -115,11 +83,20 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
               height={60}
               />
               <div className={style.informacioUsuarioCreadorPublicacion}>
-                <h4>Datos de la publicación</h4>
+                {/* <h4>Datos de la publicación</h4> */}
               <span>Autor {informacionUsuarioCreador.nombre_usuario}{" "}{informacionUsuarioCreador.apellido_usuario}</span>
-              <span>Creada el {convertirFechaHora(publicacion.creado_en)}</span>
+              <span>Publicación creada el {convertirFechaHora(publicacion.creado_en)}</span>
               </div>
-              </div>
+              </div>              
+
+              {processedContent ? (
+                <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+              ) : (
+                <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
+              )}
+            </div>
+                        
+          </div>
         </div>
       ) : (
         <h3 className={style.tituloPublicaciones}>No existen publicaciones actualmente</h3>
