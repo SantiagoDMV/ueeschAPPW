@@ -52,8 +52,10 @@ const eliminacionConfirmacion = (id:any) => {
     setEstadoVentanaEliminacion(false);
         
         let loadingToastId: any = null;
+    const boton = document.getElementById('botonEliminar') as HTMLButtonElement;
 
         try {
+          boton.disabled = true;
           loadingToastId = toast.info(
             "Eliminando publicación/publicaciones, esto puede llevar un momento...",
             {
@@ -88,6 +90,8 @@ const eliminacionConfirmacion = (id:any) => {
         border: "none",
       },
     });
+  }finally{
+    boton.disabled = false;
   }
 };
 
@@ -147,6 +151,7 @@ const eliminacionConfirmacion = (id:any) => {
                 >Actualizar</button>
                 
                 <button
+                id="botonEliminar"
                 onClick={() => eliminacionConfirmacion(e.id_publicacion)}>Eliminar</button>
                 </div>
               }

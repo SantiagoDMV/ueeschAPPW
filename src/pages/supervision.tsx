@@ -210,9 +210,12 @@ color={"#558"} loading={true} size={70}/>
                             informacioEstudiante.lastaccess
                           )}
                         </span>
+                         
                       </div>
                     </div>
                   )}
+
+                  <Link href={`/reportes/notas?id=${id_estudiante_number}&curso=${curso_id_number}`}>Reporte de notas</Link>
 
                   <div className={estilos.contenedorInformacionPrincipalCursos}>
                     <div className={estilos.contendorInformacionCursos}>

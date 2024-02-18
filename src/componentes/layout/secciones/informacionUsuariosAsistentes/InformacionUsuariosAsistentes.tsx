@@ -55,8 +55,11 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
 
 
   const eliminarEnvioDatos = async () => {
+    
     let loadingToastId: any = null;
+    const boton = document.getElementById('botonELiminar') as HTMLButtonElement;
     try {
+      boton.disabled =true;
       loadingToastId = toast.info(
         "Eliminando usuario/usuarios, esto puede llevar un momento...",
         {
@@ -94,6 +97,7 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
         });
       } finally {
       setUsuariosSeleccionados([])
+      boton.disabled =false;
     }
     
   };
@@ -116,15 +120,38 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
 
   const obtenerListaUsuarios = async () =>{
     setEstadoVistaAgregar(true)
-    const respuesta = await axios.get('/api/usuarios')
-    setUsuariosLista(respuesta.data)
+    let loadingToastId: any = null;
+    try{
+      toast.info("Obteniendo lista de usuarios", {
+          style: {
+            border: "none",
+          },
+      });
+      const respuesta = await axios.get('/api/usuarios')
+      setUsuariosLista(respuesta.data)
+      toast.dismiss(loadingToastId);
+    } catch (error) {
+      ////////////////////////////////////////////////////////////////////////
+      const errorMensaje: any = (error as AxiosError).response?.data;
+
+      toast.dismiss(loadingToastId);
+
+      toast.error(errorMensaje.mensaje, {
+        style: {
+          backgroundColor: "rgb(203,90,90)",
+          border: "none",
+        },
+      });
+    } 
+    
   }
 
 
   const enviarUsuariosLista = async () =>{
     let loadingToastId: any = null;
+    const boton = document.getElementById('botonAgregar') as HTMLButtonElement;
     try {
-
+boton.disabled = true;
       if(usuariosSeleccionadosAgregar.length === 0 || !usuariosSeleccionadosAgregar){
         toast.error("Seleccione al menos un usuario.", {
           style: {
@@ -171,7 +198,7 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
       } finally {
       
       setUsuariosSeleccionadosAgregar([])
-
+      boton.disabled = false;
       
     }
     
@@ -198,7 +225,7 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
     }
 
 {
- estadoVistaAgregar &&
+ estadoVistaAgregar && usuariosLista &&
     <div className={estilos.fondo}>
     <div className={estilos.contenedorMensajeAgregar} id="contenedor">
     <div className={estilos.contenedorInformacion}>
@@ -274,8 +301,9 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
   <p>Aquí puedes gestionar la lista de asistentes para este servicio. Agrega nuevos usuarios para que participen o elimina a aquellos que ya no deben estar.</p>
 </div>
 <div className={estilos.contenedorOpcionesLista}>
-<button onClick={()=>(obtenerListaUsuarios())}>Agregar</button>
-<button className={estilos.botonEliminar} onClick={() => eliminacionConfirmacion()}>Eliminar</button>
+<button onClick={()=>(obtenerListaUsuarios())}
+id='botonAgregar'>Agregar</button>
+<button id='botonELiminar' className={estilos.botonEliminar} onClick={() => eliminacionConfirmacion()}>Eliminar</button>
 </div>
 
       <table className={estilos.tablaInformacionAsistentes}>

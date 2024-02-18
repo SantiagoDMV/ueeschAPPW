@@ -140,7 +140,9 @@ export default function InformacionUserMoodle({
 
   const eliminarEnvioDatos = async () => {
     let loadingToastId: any = null;
+    const boton = document.getElementById('botonEliminar') as HTMLButtonElement;
     try {
+      boton.disabled = true;
       setEstadoVentanaEliminacion(false);
       loadingToastId = toast.info(
         "Eliminando usuario/usuarios, esto puede llevar un momento...",
@@ -183,6 +185,8 @@ export default function InformacionUserMoodle({
           border: "none",
         },
       });
+    }finally{
+      boton.disabled = false;
     }
   };
 
@@ -278,6 +282,7 @@ export default function InformacionUserMoodle({
                 <button
                   className={estilos.botonEliminar}
                   onClick={() => eliminacionConfirmacion()}
+                  id="botonEliminar"
                 >
                   Eliminar
                 </button>

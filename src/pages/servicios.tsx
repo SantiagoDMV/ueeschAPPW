@@ -45,7 +45,9 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
 
   const enviarAsistencia = async (id: any) => {
     let loadingToastId: any = null;
+    const boton = document.getElementById('botonRegistro') as HTMLButtonElement;
     try {
+      boton.disabled = true;
       loadingToastId = toast.info(
         "Registrando asistencia, esto puede llevar un momento...",
         {
@@ -78,6 +80,8 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
           border: "none",
         },
       });
+    }finally{
+      boton.disabled =false;
     }
   };
 
@@ -87,7 +91,9 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
 
   const quitarAsistencia = async (id: any) => {
     let loadingToastId: any = null;
+    const boton = document.getElementById('botonQuitarAsistencia') as HTMLButtonElement;
     try {
+      boton.disabled=true;
       loadingToastId = toast.info(
         "Quitando registro de asistencia, esto puede llevar un momento...",
         {
@@ -120,12 +126,14 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
           border: "none",
         },
       });
+    }finally{
+      boton.disabled=false;
     }
   };
 
 
 
-  const mostratListaAistentes = (id: any, titulo:any) => {
+  const mostrarListaAsistentes = (id: any, titulo:any) => {
     setEstado(true);
     setTituloPublicacionAsistentes(titulo);
     setIdPublicacion(id);
@@ -236,7 +244,7 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
                         <button
                           onClick={() => quitarAsistencia(e.id_publicacion)}
                           className={estilos.botonQuitarRegistro}
-                          id="botonRegistro"
+                          id="botonQuitarAsistencia"
                         >
                           Quitar registro
                         </button>
@@ -247,7 +255,7 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
                           <button
                           className={estilos.botonRegistro}
                             onClick={() =>
-                              mostratListaAistentes(e.id_publicacion, e.titulo_publicacion)
+                              mostrarListaAsistentes(e.id_publicacion, e.titulo_publicacion)
                             }
                           >
                             Ver asistentes

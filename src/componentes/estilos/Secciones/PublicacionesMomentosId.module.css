@@ -4,6 +4,32 @@
     justify-content: center;
 }
 
+.imagenFotoCreador{
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+}
+.informacioUusuarioCreador{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+  padding: 10px 25px;
+  border-radius: 40px;
+  box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.029);
+  
+  margin-bottom: 2rem;
+}
+
+.informacioUsuarioCreadorPublicacion{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .publicacion {
   display: flex;
   flex-direction: column;

@@ -61,6 +61,26 @@ export const obtenerUsuarios = async (req, res) => {
   return { valor: true, datos: consulta };
 };
 
+
+
+export const obtenerInformacionUsuario = async (req, res) => {
+  const {idUser} = req.body;
+  
+  const usuariosRepo = new UsuariosRepository();
+  let consulta;
+  consulta = await usuariosRepo.obtenerUsuarioInformacion(idUser);
+  
+  if (!consulta)
+    return {
+      statusCode: 500,
+      valor: false,
+      mensaje: "Error interno en el servidor",
+    };
+
+  return { valor: true, datos: consulta };
+};
+
+
 ////////////////////SERVICIO REGISTRO DE USUARIO////////////////////////
 function obtenerEmailsYCedulas(usuarios) {
   const emails = usuarios.map((usuario) => usuario.email_usuario);

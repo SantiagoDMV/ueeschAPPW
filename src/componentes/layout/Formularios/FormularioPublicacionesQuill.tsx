@@ -24,8 +24,10 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
 
   const creacionPublicacion = async () => {
     let loadingToastId: any = null;
-
+    const boton = document.getElementById('botonPublicar') as HTMLButtonElement;
     try {
+      boton.disabled = true;
+      
       loadingToastId = toast.info(
         "Creando publicación, esto puede llevar un momento...",
         {
@@ -35,7 +37,7 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
         }
       );
 
-      await axios.post("/api/publicaciones", {
+      await axios.post("/api/publicacioness", {
         contenido: content,
         datosPublicacion: contenido,
       });
@@ -68,6 +70,8 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
           border: "none",
         },
       });
+    }finally{
+      boton.disabled = false;
     }
   };
 
@@ -278,6 +282,7 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
 
         <button
           onClick={() => creacionPublicacion()}
+          id='botonPublicar'
         >
           Publicar
         </button>

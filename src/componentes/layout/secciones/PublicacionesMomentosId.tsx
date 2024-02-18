@@ -1,6 +1,7 @@
 import InformacionPublicaciones from "./InformacionPublicacionesMomentosId";
 
 export default function Publicaciones({
+  informacionUsuarioCreador,
   datosPublicaciones,
   datosMultimedia,
 }: any) {
@@ -9,6 +10,7 @@ export default function Publicaciones({
     <>
       {datosPublicaciones &&
         <InformacionPublicaciones
+        informacionUsuarioCreador={informacionUsuarioCreador}
           publicacion={datosPublicaciones}
           multimedia={datosMultimedia}
         />

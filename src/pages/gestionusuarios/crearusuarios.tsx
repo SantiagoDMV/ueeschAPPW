@@ -21,7 +21,7 @@ export default function CrearUsuarios({
       //apellido_usuario: '',
       //email_usuario: '',
       index_usuario: 1,
-      id_rol: 3,
+      id_rol: 4,
       cedula_usuario: "",
       //password : '',
       nombre_usuario: "",
@@ -68,7 +68,7 @@ export default function CrearUsuarios({
       ...usuarios,
       {
         index_usuario: index,
-        id_rol: 3,
+        id_rol: 4,
         cedula_usuario: "",
         nombre_usuario: "",
         apellido_usuario: "",
@@ -90,7 +90,7 @@ export default function CrearUsuarios({
     setUsuarios([
       {
         index_usuario: 1,
-        id_rol: 3,
+        id_rol: 4,
         cedula_usuario: "",
         nombre_usuario: "",
         apellido_usuario: "",
@@ -108,7 +108,7 @@ export default function CrearUsuarios({
         mensaje: "Registrando usuarios, esto puede llevar un momento...",
       });
 
-      await axios.post("/api/usuarioss", { usuariosAmbosSistemas: usuarios });
+      await axios.post("/api/usuarios", { usuariosAmbosSistemas: usuarios });
 
       //limpiarCampos();
       setMensajeExito({

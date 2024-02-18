@@ -60,6 +60,7 @@
   border: none;
   outline: none;
   color: white;
+  cursor:pointer;
 }
 
 .contenedorOpcionesLista button:nth-child(1){

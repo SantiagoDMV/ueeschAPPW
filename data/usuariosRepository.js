@@ -38,6 +38,23 @@ class UsuariosRepository {
     }
   }
 
+
+  async obtenerUsuarioInformacion(id) {
+    const prisma = this.getInstance();
+    try {
+      const respuesta = await prisma.usuario.findFirst({
+        where:{
+          id_usuario: id
+        }
+      });
+      prisma.$disconnect();
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+      prisma.$disconnect();
+    }
+  }
+
   async obtenerUsuariosAdmin() {
     const prisma = this.getInstance();
     try {

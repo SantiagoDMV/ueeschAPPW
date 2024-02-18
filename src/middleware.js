@@ -55,7 +55,6 @@ export const config = {
     "/seguimiento",
     "/administracion",
     "/reportes",
-    "/supervision",
     "/seguimiento/:path*",
   ],
 };

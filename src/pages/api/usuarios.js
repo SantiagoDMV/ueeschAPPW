@@ -1,4 +1,4 @@
-import {obtenerUsuarios,registrarUsuarios,registrarUsuariosAmbosSistemas, actualizarUsuarios,actualizarFechaEliminacion,eliminarUsuarios,actualizarImagenUsuarios} from "../../../servicios/usuarios" 
+import {obtenerUsuarios,obtenerInformacionUsuario,registrarUsuarios,registrarUsuariosAmbosSistemas, actualizarUsuarios,actualizarFechaEliminacion,eliminarUsuarios,actualizarImagenUsuarios} from "../../../servicios/usuarios" 
 
 export default async function usuarios(req,res) {
     if(req.method === "GET"){
@@ -7,7 +7,12 @@ export default async function usuarios(req,res) {
         return res.status(peticion.statusCode).json(peticion);
         return res.status(200).json(peticion.datos);
     }else if(req.method === "POST"){
-        
+        if(req.body.idUser){
+            const peticion = await obtenerInformacionUsuario(req);
+            if(!peticion.valor)
+            return res.status(peticion.statusCode).json(peticion);
+            return res.status(200).json({datos: peticion.datos})
+        }
         if(req.body.userEmails){
             
             const peticion = await eliminarUsuarios(req);
