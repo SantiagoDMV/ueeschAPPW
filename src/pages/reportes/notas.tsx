@@ -306,6 +306,7 @@ export default function ReporteNotas({
                   {vectorTareasT &&
                     vectorTareasT.map((e: any, index: number) => (
                       <View
+                      key={index}
                         style={{
                           display: "flex",
                           flexDirection: "row",
