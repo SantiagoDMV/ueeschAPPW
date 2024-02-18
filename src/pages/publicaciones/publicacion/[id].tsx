@@ -74,6 +74,7 @@ export default function MomentosId({
 
   return (
     <>
+  
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
       
       <div className={estilos.contenedorPrincipalMomentos}>

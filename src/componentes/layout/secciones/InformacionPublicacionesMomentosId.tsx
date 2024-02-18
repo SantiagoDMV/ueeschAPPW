@@ -4,8 +4,8 @@ import Image from 'next/image';
 import style from '../../estilos/Secciones/PublicacionesMomentosId.module.css';
 import ReactMarkdown from 'react-markdown';
 import cheerio from 'cheerio';
-import Head from 'next/head';
 import Usuarios from '@/componentes/Reporte/TablaUsuarios/TablaUsuarios';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function Publicaciones({ publicacion, multimedia,informacionUsuarioCreador }: any) {
@@ -21,10 +21,12 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const compartirEnFacebook = () => {
+        const urlActual = window.location.href;
+        //const urlCompartir = `${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${publicacion.id_publicacion}`;
         window.open(
-          `http://www.facebook.com/sharer/sharer.php?u=https://ueesch-5h2a.onrender.com/publicaciones/publicacion/17`,
+          `http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlActual)}`,
           'Compartir en Facebook',
-          'width=600,height=900'
+          'width=800,height=800'
         );
       };
 
@@ -79,19 +81,13 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
   return (
     <>
     <Head>
-        <title>{process.env.NOMBRE_EMPRESA}</title>
-        {publicacion && 
-        <meta property="og:title" content={`${publicacion.titulo_publicacion}`} />
-}
-        {informacionUsuarioCreador && 
-        <meta property="og:description" content={`${informacionUsuarioCreador.nombre_usuario} ${informacionUsuarioCreador.apellido_usuario}`} />
-        }
-        <meta property="og:url" content={`www.ueesch-5h2a.onrender.com/publicaciones/publicacion/17`} />
         
-        {/* <meta property="og:image" content={`${publicacion.imagen_publicacion}`} /> */}
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={`Unidad Educativa Especializada Sordos de Chimborazo`}/>
+        <meta property="og:title" content={`${publicacion.titulo_publicacion}`} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${publicacion.id_publicacion}`} />
+        {/* <meta property="og:image" content={imagen.src} /> */}
+    </Head>
     <div className={style.contenedorPrincipalInformacionPublicacion}>
       
       {publicacion ? (
@@ -100,6 +96,7 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
             <div className={style.contenidoPublicacion}>
               <h1>{publicacion.titulo_publicacion}</h1>
               <button id="botonCompartir">Compartir en Facebook</button>
+              
 
               {processedContent ? (
                 <div dangerouslySetInnerHTML={{ __html: processedContent }} />
@@ -131,3 +128,4 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
     </>
   );
 }
+
