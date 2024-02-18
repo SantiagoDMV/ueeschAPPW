@@ -44,7 +44,7 @@ export default function OpcionesAdministracion() {
                 className={
                   estilos.opcionAdministracionIzquierdaContenedorImagen
                 }
-                onClick={() => (window.location.href = `/gestionpublicaciones`)}
+                onClick={() => (window.location.href = `/publicaciones-servicios`)}
               >
                 <Image
                   className={estilos.imgGestion}
@@ -56,11 +56,11 @@ export default function OpcionesAdministracion() {
             </div>
             <div
               className={estilos.opcionAdministracionDerecha}
-              onClick={() => (window.location.href = `/gestionpublicaciones`)}
+              onClick={() => (window.location.href = `/publicaciones-servicios`)}
             >
-              <h3>Gestionar publicaciones</h3>
+              <h3>Publicaciones y servicios</h3>
               <p>
-                El panel de gestión de publicaciones se ocupa de las funciones
+                El panel de publicaciones y servicios se ocupa de las funciones
                 relacionadas con el contenido que se comparte en la aplicación.
                 Esto podría incluir la creación, edición y eliminación de
                 publicaciones.

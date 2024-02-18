@@ -180,8 +180,32 @@ async mostrarServicios(){
   }
 }
 
+async mostrarServiciosUsuarioRegistrado(ids){
+  const prisma = this.getInstance();
+  try {
+      const respuesta = await prisma.publicacion.findMany({
+          orderBy:{
+            id_publicacion: 'desc',
+          },
+          where:{
+            id_tipo_publicacion: 1,
+            eliminado_en: null,
+            id_publicacion: {
+              in: ids.map(id => parseInt(id, 10)),
+            },
+          }
+      });    
+      prisma.$disconnect();
+      return respuesta
+  } catch (error) {
+      console.log(error)
+      prisma.$disconnect();
+      return false
+  }
+}
+
+
     async obtenerPublicacion(idPublicacion){
-      console.log(idPublicacion)
         const prisma = this.getInstance();
         try {
             const respuesta = await prisma.publicacion.findUnique({
@@ -472,4 +496,26 @@ async mostrarServicios(){
         return false
     }
 }
+
+
+async buscarUsuarioIdRegistrado(idUser){
+  const prisma = this.getInstance();
+  try {
+    const respuesta = await prisma.asistencia_servicio.findMany({
+      where: {
+        id_usuario: idUser,
+      },
+    });
+      prisma.$disconnect();
+      return respuesta
+  } catch (error) {
+      console.log(error)
+      prisma.$disconnect();
+      return false
+  }
 }
+
+}
+
+
+

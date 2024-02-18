@@ -7,11 +7,7 @@ export default async function usuarios(req,res) {
         return res.status(peticion.statusCode).json(peticion);
         return res.status(200).json(peticion.datos);
     }else if(req.method === "POST"){
-        try {
-            
-        } catch (error) {
-            
-        }
+        
         if(req.body.userEmails){
             
             const peticion = await eliminarUsuarios(req);

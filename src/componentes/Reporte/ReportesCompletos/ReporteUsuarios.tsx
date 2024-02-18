@@ -9,7 +9,6 @@ export default function ReporteUsuarios({
   columnasUsuarios,
   usuarioCreador
 }: any) {
-  console.log(usuarioCreador)
   return (
 
     <PDFViewer style={{ minWidth: "100%", minHeight: "calc(100vh - 4rem)" }}>
@@ -18,7 +17,7 @@ export default function ReporteUsuarios({
           <Cabecera usuario={usuarioCreador} />
 
           <View style={{ marginTop: 20, marginBottom: 20 }}>
-            <Text style={{ fontSize: 18, marginBottom: 10 }}>
+            <Text style={{ fontSize: 16, marginBottom: 10 }}>
             Informe de Usuarios del Sistema
             </Text>
             <Text style={{ fontSize: 14 }}>

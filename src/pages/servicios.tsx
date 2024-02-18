@@ -22,15 +22,17 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
   const [datosMultimedia, setDatosMultimedia] = useState<any>();
   const [estado, setEstado] = useState<boolean>(false);
   const [idPublicacion, setIdPublicacion] = useState<any>();
+  const [tituloPublicacionAsistentes, setTituloPublicacionAsistentes] = useState<any>();
 
   const [datosPublicacionesContenido, setDatosPublicacionesContenido] =
     useState<any[]>([]);
 
   const obtenerDatosPublicaciones = async () => {
+    
     const respuesta = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/servicios`
     );
-
+      
     respuesta.data.datos.map((e: any) =>
       replaceImgWithNextImage(e.contenido_publicacion)
     );
@@ -43,13 +45,6 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
 
   const enviarAsistencia = async (id: any) => {
     let loadingToastId: any = null;
-    const boton = document.getElementById(
-      "botonRegistro"
-    ) as HTMLButtonElement | null;
-    if (boton) {
-      boton.disabled = true;
-      boton.style.backgroundColor = "rgb(229,192,45)";
-    }
     try {
       loadingToastId = toast.info(
         "Registrando asistencia, esto puede llevar un momento...",
@@ -70,6 +65,7 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
           border: "none",
         },
       });
+      obtenerDatosPublicaciones()
     } catch (error) {
       ////////////////////////////////////////////////////////////////////////
       const errorMensaje: any = (error as AxiosError).response?.data;
@@ -85,8 +81,53 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
     }
   };
 
-  const mostratListaAistentes = (id: any) => {
+
+
+
+
+  const quitarAsistencia = async (id: any) => {
+    let loadingToastId: any = null;
+    try {
+      loadingToastId = toast.info(
+        "Quitando registro de asistencia, esto puede llevar un momento...",
+        {
+          style: {
+            border: "none",
+          },
+        }
+      );
+
+      await axios.post("/api/publicaciones/servicios", { id_publicacion_quitar: id });
+
+      toast.dismiss(loadingToastId);
+
+      toast.success("Registro de asistencia eliminado.", {
+        style: {
+          backgroundColor: "rgb(90,203,154)",
+          border: "none",
+        },
+      });
+      obtenerDatosPublicaciones()
+    } catch (error) {
+      ////////////////////////////////////////////////////////////////////////
+      const errorMensaje: any = (error as AxiosError).response?.data;
+
+      toast.dismiss(loadingToastId);
+
+      toast.error(errorMensaje.mensaje, {
+        style: {
+          backgroundColor: "rgb(203,90,90)",
+          border: "none",
+        },
+      });
+    }
+  };
+
+
+
+  const mostratListaAistentes = (id: any, titulo:any) => {
     setEstado(true);
+    setTituloPublicacionAsistentes(titulo);
     setIdPublicacion(id);
   };
 
@@ -116,7 +157,7 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
           idPublicacion={idPublicacion}
           setEstado={setEstado}
           tituloServicio={
-            "Curso de Lenguaje de Señas para Padres: Comunicación Inclusiva en Familia"
+            tituloPublicacionAsistentes
           }
         />
       </Ventana>
@@ -182,17 +223,31 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
                         </div>
                       )}
                       <div className={estilos.contenedorBotonUnete}>
-                        <button
+                        {
+                          e.encontrado === false?
+                          <button
                           onClick={() => enviarAsistencia(e.id_publicacion)}
+                          className={estilos.botonRegistro}
                           id="botonRegistro"
                         >
                           Registrarme
                         </button>
+                        : 
+                        <button
+                          onClick={() => quitarAsistencia(e.id_publicacion)}
+                          className={estilos.botonQuitarRegistro}
+                          id="botonRegistro"
+                        >
+                          Quitar registro
+                        </button>
+                        }
+                        
 
                         {usuarioCookie.rol === 1 && (
                           <button
+                          className={estilos.botonRegistro}
                             onClick={() =>
-                              mostratListaAistentes(e.id_publicacion)
+                              mostratListaAistentes(e.id_publicacion, e.titulo_publicacion)
                             }
                           >
                             Ver asistentes

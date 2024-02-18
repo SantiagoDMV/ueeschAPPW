@@ -8,11 +8,16 @@
 
 .informacionRegistro{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     text-align: justify;
-    width: 100%;
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 2rem 0;
+    padding-bottom: 0;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
   }
 
   .botonesRadio{
@@ -32,9 +37,6 @@
     width: 100%;
   }
 
-  .botonesRadio p {
-  }
-
   .contenedorInformacionRoles{
     padding: 20px;
     display: flex;
@@ -44,8 +46,9 @@
     text-align: justify;
     gap: 10px;
     width: 100%;
+    text-align: center;
     /* background-color: rgb(230, 184, 72); */
-    background-color: white;
+    
     border-bottom: 1px solid black;
   }
 
@@ -54,6 +57,27 @@
     list-style: none;
     font-size: 15px;
     padding-left: 15px;
+    display: flex;
+    gap:0.5rem;
+    flex-direction: column;
+  }
+
+  .contenedorInformacionRoles ul li{
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+
+  .contenedorInformacionRoles ul li:nth-child(1){
+    background-color: rgb(216, 193, 239);
+  }
+  .contenedorInformacionRoles ul li:nth-child(2){
+    background-color: rgb(193, 206, 239);
+  }
+  .contenedorInformacionRoles ul li:nth-child(3){
+    background-color: rgb(193, 239, 219);
+  }
+  .contenedorInformacionRoles ul li:nth-child(4){
+    background-color: rgb(219, 239, 193);
   }
 
   .contenedorPInf{
@@ -73,8 +97,8 @@
   }
 
   .informacionRegistro h2{
-    color: white;
-    padding-bottom: 1rem;
+    color: black;
+    padding-bottom: 1rem; 
   }
   
   .contendorNumeroEstudiante{
@@ -82,16 +106,10 @@
   }
   
   .formulario {
-      padding: 2rem 0;
-      padding-bottom: 1rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 80%;
-      background-color: rgb(22, 97, 107);
-      box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.03);
+      align-items: flex-start;
+      width: 100%;
     }
     
     .formulario label {
@@ -105,14 +123,37 @@
       flex-basis: 0;
       width: 100%;
       display: flex;
-      gap: 0.5rem;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0 1rem;
+      background-color: white;
+      min-height: calc(100vh - 4rem);
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      flex-direction: column;      
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
       background-color: white;
-      padding: 2rem;
-      
     }
+    
+    .opciones label:nth-child(1) {
+      font-size: 0.9rem;
+      color: #1b2727;
+    }
+  
 
     .formulariocampos table{
         border-collapse: collapse;
@@ -208,9 +249,9 @@
     }
     
     .btn {
-      background-color: #f1f3f5;
+      background-color: #3492c8;
       padding: 10px;
-      color: black;
+      color: white;
       border-radius: 10px;
       border: none;
       cursor: pointer;
@@ -229,22 +270,7 @@
       transition: background-color 0.3s;
     }
     
-    .opciones {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      
-      flex-direction: column;
-      min-width: 100%;
-    }
     
-    .opciones label:nth-child(1) {
-      font-size: 0.9rem;
-      color: #1b2727;
-    }
-  
-  
     .mensajeError{
       border-radius: 5px;
       color: rgb(148, 42, 42);
@@ -258,7 +284,26 @@
       width: 100%;
     }
   
-  
+    @media only screen and (max-width: 980px) {
+      .formulario{
+        flex-direction: column;
+        display: block;
+      }
+      .informacionRegistro{
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow-y: hidden;
+      }
+      .formulariocampos{
+        min-height: auto;
+        padding: 0;
+        padding-bottom: 1rem;
+        
+      }
+    }
+
+
     @media only screen and (max-width: 890px) {
       .informacionRegistro{
         margin-top: 2rem;

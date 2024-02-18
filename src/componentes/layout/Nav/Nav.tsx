@@ -49,7 +49,6 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
             width={65}
             height={60}
             quality={100}
-            priority={true}
             alt="Logo_Unidad"
           />
 

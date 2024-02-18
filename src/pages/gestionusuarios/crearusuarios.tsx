@@ -11,8 +11,8 @@ export default function CrearUsuarios({
   usuarioCookie,
   setUsuarioCookie,
 }: any) {
-//  const [createpassword, setCreatepassword] = useState(false);
-const [indexU, setIndex] = useState(1);
+  //  const [createpassword, setCreatepassword] = useState(false);
+  const [indexU, setIndex] = useState(1);
   const [usuarios, setUsuarios] = useState([
     {
       //id_moodle: idMoodle,
@@ -61,17 +61,24 @@ const [indexU, setIndex] = useState(1);
 
   const agregarUsuario = () => {
     //setUsuarios([...usuarios, { id_moodle: idMoodle, cedula_usuario: '', nombre_usuario: '', apellido_usuario: '', email_usuario_usuario: '', password_usuario: '', password_usuario_confirmar: '' }]);
- 
- const index = indexU+1
- setIndex(index)
+
+    const index = indexU + 1;
+    setIndex(index);
     setUsuarios([
       ...usuarios,
-      { index_usuario: index,id_rol: 3, cedula_usuario: "", nombre_usuario: "", apellido_usuario: "", email_usuario: "" },
+      {
+        index_usuario: index,
+        id_rol: 3,
+        cedula_usuario: "",
+        nombre_usuario: "",
+        apellido_usuario: "",
+        email_usuario: "",
+      },
     ]);
   };
 
   const eliminarUsuario = (index: number) => {
-    if(usuarios.length === 1) return
+    if (usuarios.length === 1) return;
     const nuevosUsuarios = [...usuarios];
     nuevosUsuarios.splice(index, 1);
     setUsuarios(nuevosUsuarios);
@@ -79,16 +86,17 @@ const [indexU, setIndex] = useState(1);
 
   const limpiarCampos = () => {
     setIndex(1);
-    
-    setUsuarios([{
+
+    setUsuarios([
+      {
         index_usuario: 1,
         id_rol: 3,
-        cedula_usuario: "", 
+        cedula_usuario: "",
         nombre_usuario: "",
         apellido_usuario: "",
         email_usuario: "",
-        
-  }])
+      },
+    ]);
   };
 
   const envioDatos = async (e: any) => {
@@ -100,7 +108,7 @@ const [indexU, setIndex] = useState(1);
         mensaje: "Registrando usuarios, esto puede llevar un momento...",
       });
 
-      await axios.post("/api/usuarios", {usuariosAmbosSistemas: usuarios});
+      await axios.post("/api/usuarioss", { usuariosAmbosSistemas: usuarios });
 
       //limpiarCampos();
       setMensajeExito({
@@ -167,39 +175,94 @@ const [indexU, setIndex] = useState(1);
 
         <form className={styles.formulario} onSubmit={envioDatos}>
           <div className={styles.informacionRegistro} id="presentacion">
-            <h2>Registro de usuarios</h2>
-
+            <h2>Agregar usuarios</h2>
 
             <div className={styles.contenedorInformacionRoles}>
-            <h4>Roles en el Sistema:</h4>
-            <ul>
-              {
-usuarioCookie && usuarioCookie.rol === 1 &&
-        <li><span >Administradores:</span> Asociados al número 2. Tiene un nivel elevado de acceso al sistema y puede realizar configuraciones, gestionar usuarios, y administrar todas las funcionalidades del sistema, pero con ciertas restricciones.</li>
-              }
-        <li><span >Docentes:</span> Asociados al número 3. Tienen acceso al seguimiento del curso y al seguimiento de sus estudiantes en los cursos que imparten. También pueden realizar publicaciones en el sistema.</li>
-        <li><span >Estudiantes:</span> Asociados al número 4. Pueden revisar su propio seguimiento actual de los cursos que están cursando.</li>
-        <li><span >Representantes:</span> Asociados al número 5. Responsables de estudiantes menores de edad, con acceso al seguimiento de los cursos de sus hijos.</li>
-    </ul>
+              <h4>Roles en el Sistema:</h4>
+              {/* <ul>
+                {usuarioCookie && usuarioCookie.rol === 1 && (
+                  <li>
+                    <span>Administradores:</span> Asociados al número 2. Tiene
+                    un nivel elevado de acceso al sistema y puede realizar
+                    configuraciones, gestionar usuarios, y administrar todas las
+                    funcionalidades del sistema, pero con ciertas restricciones.
+                  </li>
+                )}
+                <li>
+                  <span>Docentes:</span> Asociados al número 3. Tienen acceso al
+                  seguimiento del curso y al seguimiento de sus estudiantes en
+                  los cursos que imparten. También pueden realizar publicaciones
+                  en el sistema.
+                </li>
+                <li>
+                  <span>Estudiantes:</span> Asociados al número 4. Pueden
+                  revisar su propio seguimiento actual de los cursos que están
+                  cursando.
+                </li>
+                <li>
+                  <span>Representantes:</span> Asociados al número 5.
+                  Responsables de estudiantes menores de edad, con acceso al
+                  seguimiento de los cursos de sus hijos.
+                </li>
+              </ul> */}
+<ul>
+                {usuarioCookie && usuarioCookie.rol === 1 && (
+                  <li>
+                    <span>Administradores:</span> Asociados al número 2
+                  </li>
+                )}
+                <li>
+                  <span>Docentes:</span> Asociados al número 3
+                </li>
+                <li>
+                  <span>Estudiantes:</span> Asociados al número 4
+                </li>
+                <li>
+                  <span>Representantes:</span> Asociados al número 5
+                </li>
+              </ul>
 
-<div className={styles.contenedorPInf}>
-    <p className={styles.pInf}>Los usuarios con roles de estudiante y docente serán creados en Moodle para acceder a las funciones educativas adicionales.</p>
-    </div>
-
+              <div className={styles.contenedorPInf}>
+                <p className={styles.pInf}>
+                  Los usuarios con roles de estudiante y docente serán creados
+                  en Moodle para acceder a las funciones educativas adicionales.
+                </p>
+              </div>
             </div>
-
 
             <div className={styles.botonesRadio}>
-              <p>Para todos los usuarios registrados, la contraseña predeterminada será su número de cédula.</p>
+              <p>
+                Para todos los usuarios agregados, la contraseña
+                predeterminada será su número de cédula.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.formulariocampos}>
+            <div className={styles.opciones} id="opciones">
+              <div className={styles.contenedorbtn}>
+                <button
+                  type="button"
+                  className={styles.btn}
+                  onClick={agregarUsuario}
+                >
+                  Agregar Usuario
+                </button>
+                <button
+                  type="submit"
+                  className={styles.btn}
+                  name="submitbutton"
+                  id="id_submitbutton"
+                >
+                  Registrar usuarios
+                </button>
+              </div>
             </div>
 
-            
-          </div>
-          <div className={styles.formulariocampos}>
             <table>
               <thead>
                 <tr>
-                <th>#</th>
+                  <th>#</th>
                   <th>Rol</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
@@ -212,31 +275,31 @@ usuarioCookie && usuarioCookie.rol === 1 &&
               <tbody>
                 {usuarios.map((usuario, index) => (
                   <tr key={index}>
-                    <td className={styles.contendorNumeroEstudiante}>{index + 1}</td>
-                      <td className={styles.contendorNumeroRoles}>
-                        {
-                          usuarioCookie && usuarioCookie.rol !== 1 ? 
-                          <input
-                        type="number"
-                        name="id_rol"
-                        value={usuario.id_rol}
-                        onChange={(e) => escucharCambio(e, index)}
-                        min="3"
-                        max="5"
-                      />
-                      :
-                      <input
-                        type="number"
-                        name="id_rol"
-                        value={usuario.id_rol}
-                        onChange={(e) => escucharCambio(e, index)}
-                        min="2"
-                        max="5"
-                      />
-                        }
-                      
+                    <td className={styles.contendorNumeroEstudiante}>
+                      {index + 1}
                     </td>
-                  
+                    <td className={styles.contendorNumeroRoles}>
+                      {usuarioCookie && usuarioCookie.rol !== 1 ? (
+                        <input
+                          type="number"
+                          name="id_rol"
+                          value={usuario.id_rol}
+                          onChange={(e) => escucharCambio(e, index)}
+                          min="3"
+                          max="5"
+                        />
+                      ) : (
+                        <input
+                          type="number"
+                          name="id_rol"
+                          value={usuario.id_rol}
+                          onChange={(e) => escucharCambio(e, index)}
+                          min="2"
+                          max="5"
+                        />
+                      )}
+                    </td>
+
                     <td>
                       <input
                         type="text"
@@ -280,7 +343,7 @@ usuarioCookie && usuarioCookie.rol === 1 &&
                         type="button"
                         onClick={() => eliminarUsuario(index)}
                       >
-                        <AiOutlineClose/>
+                        <AiOutlineClose />
                       </button>
                     </td>
                   </tr>
@@ -288,28 +351,6 @@ usuarioCookie && usuarioCookie.rol === 1 &&
               </tbody>
             </table>
           </div>
-
-
-          <div className={styles.opciones} id="opciones">
-              <div className={styles.contenedorbtn}>
-                <button
-                  type="button"
-                  className={styles.btn}
-                  onClick={agregarUsuario}
-                >
-                  Agregar Usuario
-                </button>
-                <button
-                  type="submit"
-                  className={styles.btn}
-                  name="submitbutton"
-                  id="id_submitbutton"
-                >
-                  Registrar usuarios
-                </button>
-              </div>
-            </div>
-
         </form>
       </div>
     </Layout>

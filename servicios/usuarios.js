@@ -454,6 +454,24 @@ export const actualizarUsuarios = async (req) => {
     if (credenciales.password_usuario)
       hashingPassw = await hashing(credenciales.password_usuario);
 
+
+      const consulta = await usuarioRepo.actualizarUsuario(
+        emailActual,
+        idRol,
+        userData.cedula_usuario,
+        userData.email_usuario,
+        userData.nombre_usuario,
+        userData.apellido_usuario,
+        hashingPassw
+      );
+  
+      if (!consulta)
+        return {
+          statusCode: 500,
+          valor: false,
+          mensaje: "Error interno en el servidor",
+        };
+
     if (idRol === 3 || idRol === 4)
       try {
         //http://localhost/webservice/rest/server.php?wstoken=12b89bff274ec679c86157d7591cc0ab&wsfunction=core_user_delete_users&moodlewsrestformat=json&userids[0]=10
@@ -468,23 +486,6 @@ export const actualizarUsuarios = async (req) => {
             "No se pudó completar el proceso, el servidor de moodle no se encuentra disponible, sin embargo los datos fueron actualizados en la base de datos local",
         };
       }
-
-    const consulta = await usuarioRepo.actualizarUsuario(
-      emailActual,
-      idRol,
-      userData.cedula_usuario,
-      userData.email_usuario,
-      userData.nombre_usuario,
-      userData.apellido_usuario,
-      hashingPassw
-    );
-
-    if (!consulta)
-      return {
-        statusCode: 500,
-        valor: false,
-        mensaje: "Error interno en el servidor",
-      };
 
     return { valor: consulta };
   } catch (error) {

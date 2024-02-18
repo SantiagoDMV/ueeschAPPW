@@ -2,8 +2,7 @@ import style from "../../estilos/Secciones/Publicaciones.module.css";
 import InformacionPublicaciones from "./InformacionPublicaciones";
 import FormularioActualizacion from "../../layout/Formularios/FormularioActualizacionPublicacion";
 import Ventana from "../../ventanas/Ventana";
-import {useState,useEffect} from 'react'
-import axios from 'axios'
+import {useState} from 'react'
 
 export default function Publicaciones({
   datosPublicaciones,

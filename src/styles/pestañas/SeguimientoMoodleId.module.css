@@ -87,7 +87,15 @@
 }
 
 
-@media screen and (max-width:800px){
+.reporteNotasSpan{
+    background-color: rgb(53, 111, 155);
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media screen and (max-width:900px){
     .contenedorInformacionCuros{
         flex-wrap: wrap;
     }
@@ -112,6 +120,8 @@
     .contenedorInformacionCuros{
         flex-direction: column;
         display: block;
+        padding: 0;
+        text-align: center;
     }
     .contenedorCursos{
         overflow-y:unset;

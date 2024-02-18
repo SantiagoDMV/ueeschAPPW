@@ -617,36 +617,24 @@ async actualizarIdMoodle(id_moodle, email) {
       return false;
     }
   }
-}
-export default UsuariosRepository;
 
-/* elimina las creaciones a cada rato y solo de una una conexion y se elimina cuando ya se sale de la ruta 
 
-import conexionDb from "./conexion/db"
-
-class UsuariosRepository {
-
-  constructor() {
-    if(!UsuariosRepository.instance){
-      const prismaInstance = new conexionDb();
-      this.instance = prismaInstance.getInstance();
-    }
-  }
-
-  getInstance() {
-    return UsuariosRepository.instance;
-  }
-
-  async obtenerUsuarios() {
-
+  async obtenerCuentasVinculadas(id) {
+    const prisma = this.getInstance();
     try {
-      const respuesta = await this.instance.usuario.findMany();
-    
+      
+      const respuesta = await prisma.usuario.findMany({
+        where: {
+          id_moodle: id,
+        }
+      });
+      prisma.$disconnect();
       return respuesta;
     } catch (error) {
-      console.log(error)
-      //prisma.$disconnect();
+      console.log(error);
+      prisma.$disconnect();
+      return false;
     }
   }
-
-*/
+}
+export default UsuariosRepository;

@@ -110,7 +110,7 @@ export default function TablaInformacion({mostrarUsuariosEliminados,infUsers,sel
                       <td className={estilos.filas}><AiTwotoneEdit onClick={() => actualizacionEstado(e.id_usuario)} className={estilos.iconoActualizar} /></td>
                       :
                       (
-                      (usuarioCookie.rol === 1) ? 
+                      (usuarioCookie && usuarioCookie.rol === 1) ? 
                       (
                         <td className={estilos.filas}><AiTwotoneEdit onClick={() => actualizacionEstado(e.id_usuario)} className={estilos.iconoActualizar} /></td>
                       )

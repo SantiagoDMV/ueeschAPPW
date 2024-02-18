@@ -6,6 +6,8 @@ import {
   AiOutlineQuestion,
 } from "react-icons/ai";
 import { Toaster, toast } from "sonner";
+import Ventana from "@/componentes/ventanas/Ventana";
+import InformacionUsuariosAsistentes from "@/componentes/layout/secciones/informacionUsuariosAsistentes/InformacionUsuariosAsistentes";
 
 export default function Publicaciones({
   publicacion,
@@ -19,6 +21,16 @@ export default function Publicaciones({
   
   const [estadoVentanaEliminacion, setEstadoVentanaEliminacion] = useState<boolean>(false);
   const [idPublicacionEliminar,setIdPublicacionEliminar ] = useState<number>()
+  const [estadoVentanaAsistentes, setEstadoVentanaAsistentes] = useState<boolean>(false);
+  const [idPublicacion, setIdPublicacion] = useState<any>();
+  const [tituloPublicacionAsistentes, setTituloPublicacionAsistentes] = useState<any>();
+
+
+  const mostratListaAistentes = (id: any, titulo:any) => {
+    setEstadoVentanaAsistentes(true);
+    setTituloPublicacionAsistentes(titulo);
+    setIdPublicacion(id);
+  };
 
 const eliminacionConfirmacion = (id:any) => {
     setEstadoVentanaEliminacion(true);
@@ -27,7 +39,6 @@ const eliminacionConfirmacion = (id:any) => {
 
 
   const actualizacionEstado = (id: any) => {
-    console.log(id)
     console.log(publicacionInf)
     const usuariosSeleccionado = publicacionInf.filter(
       (e: any) => e.id_publicacion === id
@@ -85,6 +96,18 @@ const eliminacionConfirmacion = (id:any) => {
 
   return (
     <>
+<Ventana estado={estadoVentanaAsistentes}>
+        <InformacionUsuariosAsistentes
+          idPublicacion={idPublicacion}
+          setEstado={setEstadoVentanaAsistentes}
+          tituloServicio={
+            tituloPublicacionAsistentes
+          }
+          usuarioCookie = {usuarioCookie}
+        />
+      </Ventana>
+
+
 {estadoVentanaEliminacion && (
         <div className={style.fondo}>
           <div className={style.contenedorMensaje} id="contenedor">
@@ -126,6 +149,17 @@ const eliminacionConfirmacion = (id:any) => {
                 <button
                 onClick={() => eliminacionConfirmacion(e.id_publicacion)}>Eliminar</button>
                 </div>
+              }
+              {
+                e.id_tipo_publicacion === 1 && 
+                <button
+                          className={style.verAsistentes}
+                            onClick={() =>
+                              mostratListaAistentes(e.id_publicacion, e.titulo_publicacion)
+                            }
+                          >
+                            Ver asistentes
+                </button>
               }
               <div className={style.h4}>{e.titulo_publicacion}</div>
               <label>{accesoUltimo(e.creado_en)}</label>

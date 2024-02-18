@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineCalendar } from "react-icons/ai";
 import Layout from "@/componentes/layout/Layout";
+import Footer from "@/componentes/layout/Footer/Footer";
 
 import Head from "next/head";
 import Header from "../componentes/layout/Header/Header";
@@ -99,7 +100,6 @@ export default function Home({ usuarioCookie, setUsuarioCookie }: any) {
               <div className={style.contenedorPublicaciones}>
                 <Publicaciones datosPublicaciones={datosPublicaciones} 
                 obtenerInformacionPublicaciones={obtenerInformacionPublicaciones}/>
-                
               </div>
               <div className={style.contenedorBotonVerTodo}>
                 <Link href={"publicaciones"} className={style.botonVerTodo}>
@@ -121,49 +121,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie }: any) {
           <SeccionMisionVision />
         </div>
       </Layout>
+      <Footer/>
     </>
   );
 }
-
-//<SeccionMisionVision/>
-//<Footer></Footer>
-
-// export const getServerSideProps = async (context: any) => {
-//   if (cachePublicaciones || cacheMultimedia) {
-//     return {
-//       props: {
-//         datosPublicaciones: cachePublicaciones,
-//         datosMultimedia: cacheMultimedia,
-//       },
-//     };
-//   }
-//   try {
-//     const respuesta = await axios.get(
-//       `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones`
-//     );
-//     cachePublicaciones = respuesta.data.datos;
-//     cacheMultimedia = respuesta.data.datosMultimedia;
-//     return {
-//       props: {
-//         datosPublicaciones: cachePublicaciones,
-//         datosMultimedia: cacheMultimedia,
-//       },
-//     };
-//   } catch (error) {
-//     console.error("Error al obtener las publicaciones:", error);
-//     cachePublicaciones = null;
-//   }
-// };
-
-/////////////////////////////////////////////////////////////////
-
-// Combina los objetos y convierte el contenido JSON en objetos JavaScript
-// const objetoCombinado = respuesta.data.map((objeto:any) => {
-//   return {
-//     ...objeto,
-//     contenido: JSON.parse(objeto.contenido),
-//   };
-// });
-
-// Almacena el objeto combinado en la caché
-//cachePublicaciones = objetoCombinado;

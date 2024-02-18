@@ -1,14 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import estilos from './InformacionUsuariosAsistentes.module.css';
 import axios,{AxiosError} from 'axios';
-import MensajeError from "@/componentes/mensajes/MensajeError/MensajeError";
-import MensajeCargando from "@/componentes/mensajes/MensajeCargando/MensajeCargando";
-import MensajeExito from "@/componentes/mensajes/MensajeExito/MensajeExito";
 import {AiOutlineQuestion, AiFillCloseCircle} from 'react-icons/ai'
 import { SyncLoader } from "react-spinners";
+import { Toaster, toast } from "sonner";
 
 
-export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado,tituloServicio }: any) {
+export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado,tituloServicio,usuarioCookie }: any) {
   useEffect(() => {
     obtenerUsuarios();
   }, []);
@@ -19,25 +17,6 @@ export default function InformacionUsuariosAsistentes({ idPublicacion, setEstado
   const [usuariosSeleccionadosAgregar, setUsuariosSeleccionadosAgregar] = useState<any>([]);
   const [estadoVentanaEliminacion, setEstadoVentanaEliminacion] = useState<boolean>(false);
   const [estadoVistaAgregar, setEstadoVistaAgregar] = useState<boolean>(false);
-
-////////////////////////////////////////////////////////////////////////
-const [mensajeErrorEstado, setMensajeErrorEstado] = useState({
-  estado: false,
-  titulo: '',
-  informacion: ''
-})
-const [mensajeCargando,setMensajeCargando] = useState<any>({
-  estado:false,
-  mensaje: ''
-})
-
-const [mensajeExito,setMensajeExito] = useState<any>({
-  estado:false,
-  mensaje: ''
-})
-const timeoutId = useRef<NodeJS.Timeout | null>(null);
-////////////////////////////////////////////////////////////////////////
-
 
   const obtenerUsuarios = async () => {
     try {
@@ -50,7 +29,6 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
       console.error('Error al obtener usuarios:', error);
     }
   };
-
 
   const seleccionUsuarios = (value: any) => {
     if (usuariosSeleccionados.includes(value)) {
@@ -77,64 +55,45 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
 
   const eliminarEnvioDatos = async () => {
+    let loadingToastId: any = null;
     try {
+      loadingToastId = toast.info(
+        "Eliminando usuario/usuarios, esto puede llevar un momento...",
+        {
+          style: {
+            border: "none",
+          },
+        }
+      );
+
       setEstadoVentanaEliminacion(false)
-      setMensajeCargando({
-        estado:true,
-        mensaje: 'Eliminando usuario/usuarios, esto puede llevar un momento...'
-      })
+      
       await axios.post("/api/publicaciones/servicios", {idsUsuariosEliminar: usuariosSeleccionados , idPublicacion: idPublicacion})
-      setMensajeExito({
-        estado: true,
-        mensaje: 'El usuarios/usuarios fueron eliminados exitosamente'
+      toast.dismiss(loadingToastId);
+
+      toast.success("El usuarios/usuarios fueron eliminados exitosamente.", {
+        style: {
+          backgroundColor: "rgb(90,203,154)",
+          border: "none",
+        },
       });
+      
         obtenerUsuarios()  
+        setEstado(false)
       } catch (error) {
         ////////////////////////////////////////////////////////////////////////
-      const errorMensaje:any = (error as AxiosError).response?.data;    
-      setMensajeCargando({
-        estado:false,
-        mensaje: ''
-      })
-      if(timeoutId.current){
-      clearTimeout(timeoutId.current)
-      }
+        const errorMensaje: any = (error as AxiosError).response?.data;
   
-      setMensajeErrorEstado({
-        estado:true,
-        titulo: 'Error',
-        informacion:errorMensaje.mensaje
-      })
+        toast.dismiss(loadingToastId);
   
-      timeoutId.current = setTimeout(() => {
-        setMensajeErrorEstado({
-          estado:false,
-          titulo:'',
-          informacion:''
-        })
-      }, 3000);
-    } finally {
-      
+        toast.error(errorMensaje.mensaje, {
+          style: {
+            backgroundColor: "rgb(203,90,90)",
+            border: "none",
+          },
+        });
+      } finally {
       setUsuariosSeleccionados([])
-
-      setTimeout(() => {
-        setMensajeExito({
-          estado: false,
-          mensaje: ''
-        });
-      }, 3000);
-      
-      setTimeout(() => {
-        setMensajeExito({
-          estado: false,
-          mensaje: ''
-        });
-      }, 3000);
-  
-      setMensajeCargando({
-        estado: false,
-        mensaje: ''
-      });
     }
     
   };
@@ -142,19 +101,12 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
   const eliminacionConfirmacion = () => {
     if (usuariosSeleccionados.length === 0){ 
 
-      setMensajeErrorEstado({
-        estado:true,
-        titulo:'Advertencia',
-        informacion:'Seleccione al menos un registro para eliminar.'
-      })
-
-      timeoutId.current = setTimeout(() => {
-        setMensajeErrorEstado({
-          estado:false,
-          titulo:'',
-          informacion:''
-        })
-      }, 3000);
+      toast.error('Advertencia. Seleccione al menos un registro para eliminar.', {
+        style: {
+          backgroundColor: "rgb(203,90,90)",
+          border: "none",
+        },
+      });
       
       return
     }
@@ -170,76 +122,63 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
 
   const enviarUsuariosLista = async () =>{
+    let loadingToastId: any = null;
     try {
-      setEstadoVistaAgregar(false)
-      setMensajeCargando({
-        estado:true,
-        mensaje: 'Agregando usuario/usuarios, esto puede llevar un momento...'
-      })
+
+      if(usuariosSeleccionadosAgregar.length === 0 || !usuariosSeleccionadosAgregar){
+        toast.error("Seleccione al menos un usuario.", {
+          style: {
+            backgroundColor: "rgb(255,165,0)",
+            border: "none",
+          },
+        });
+        return
+      }
+
+      toast.dismiss(loadingToastId);
+      loadingToastId = toast.info(
+        'Agregando usuario/usuarios, esto puede llevar un momento...',
+        {
+          style: {
+            border: "none",
+          },
+        }
+      );
+      
       await axios.post("/api/publicaciones/servicios", {idsUsuariosAgregar: usuariosSeleccionadosAgregar , idPublicacion: idPublicacion})
-      setMensajeExito({
-        estado: true,
-        mensaje: 'El usuarios/usuarios fueron agregados exitosamente'
+      toast.dismiss(loadingToastId);
+
+      toast.success("Asistencia registrada.", {
+        style: {
+          backgroundColor: "rgb(90,203,154)",
+          border: "none",
+        },
       });
         obtenerUsuarios()  
+        setEstado(false)
       } catch (error) {
         ////////////////////////////////////////////////////////////////////////
-      const errorMensaje:any = (error as AxiosError).response?.data;    
-      setMensajeCargando({
-        estado:false,
-        mensaje: ''
-      })
-      if(timeoutId.current){
-      clearTimeout(timeoutId.current)
-      }
+        const errorMensaje: any = (error as AxiosError).response?.data;
   
-      setMensajeErrorEstado({
-        estado:true,
-        titulo: 'Error',
-        informacion:errorMensaje.mensaje
-      })
+        toast.dismiss(loadingToastId);
   
-      timeoutId.current = setTimeout(() => {
-        setMensajeErrorEstado({
-          estado:false,
-          titulo:'',
-          informacion:''
-        })
-      }, 3000);
-    } finally {
+        toast.error(errorMensaje.mensaje, {
+          style: {
+            backgroundColor: "rgb(203,90,90)",
+            border: "none",
+          },
+        });
+      } finally {
       
       setUsuariosSeleccionadosAgregar([])
 
-      setTimeout(() => {
-        setMensajeExito({
-          estado: false,
-          mensaje: ''
-        });
-      }, 3000);
       
-      setTimeout(() => {
-        setMensajeExito({
-          estado: false,
-          mensaje: ''
-        });
-      }, 3000);
-  
-      setMensajeCargando({
-        estado: false,
-        mensaje: ''
-      });
     }
     
   };
 
-
-
   return (
     <>
-<MensajeCargando informacion={mensajeCargando.mensaje} estado={mensajeCargando.estado}/>
-    <MensajeExito informacion={mensajeExito.mensaje} estado={mensajeExito.estado}/>
-    <MensajeError estado={mensajeErrorEstado.estado} titulo={mensajeErrorEstado.titulo} informacion={mensajeErrorEstado.informacion}/>
-
 
 { estadoVentanaEliminacion &&
     <div className={estilos.fondo}>
@@ -385,6 +324,12 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
         </tbody>
       </table>
       </div>}
+      <Toaster
+        theme="dark"
+        position="bottom-left"
+        visibleToasts={3}
+        duration={3000}
+      />
     </>
   );
 }

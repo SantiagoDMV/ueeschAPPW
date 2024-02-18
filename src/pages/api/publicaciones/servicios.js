@@ -1,19 +1,45 @@
-import {agregarUsuariosNuevosServicio,eliminarAsistentesServicio,mostrarAsistentesServicio,agregarUsuarioServicio, mostrarServicios} from "../../../../servicios/publicaciones/servicios"
+import {mostrarServiciosIdUsuario,agregarUsuariosNuevosServicio,eliminarAsistentesServicio,mostrarAsistentesServicio,agregarUsuarioServicio, mostrarServicios, eliminarAsistenciaUsuario} from "../../../../servicios/publicaciones/servicios"
 
 export default async function publicaciones(req,res){
     if(req.method === "GET"){
-        const servicio = await mostrarServicios();
+        const servicio = await mostrarServicios(req);
         if(!servicio.valor) return res.status(servicio.statusCode).json(servicio.mensaje);
         //datosMultimedia
         if(servicio.datos.length === 0) 
         console.warn('Advertencia: La cantidad de servicios devuelta es 0. Verifica si existen servicios disponibles.');
 
+        const serviciosConRegistro = servicio.datos.map(publicacion => {
+          let encontrado = false;
+          
+          if (Array.isArray(servicio.verificacion)) {
+            encontrado = servicio.verificacion.some(serv => serv.id_servicio === publicacion.id_publicacion);
+          } else if (typeof servicio.verificacion === 'object' && servicio.verificacion !== null) {
+            encontrado = servicio.verificacion.id_servicio === publicacion.id_publicacion;
+          }
+          return { ...publicacion, encontrado };
+        });
 
         return res.status(200).json({
-            datos: servicio.datos,
+            datos: serviciosConRegistro,
             datosMultimedia: servicio.datosMultimedia,
           });
     }else if(req.method === "POST"){
+      if(req.body.idUsuarioServicios){
+        
+        const servicio = await mostrarServiciosIdUsuario(req);
+        if(!servicio.valor) return res.status(servicio.statusCode).json(servicio.mensaje);
+        return res.status(200).json({datos: servicio.datos})
+      }
+
+      if(req.body.id_publicacion_quitar){
+        const {id_publicacion_quitar} = req.body
+        const servicio = await eliminarAsistenciaUsuario(req, id_publicacion_quitar);
+        if(!servicio.valor) return res.status(servicio.statusCode).json({mensaje: servicio.mensaje});
+  
+        return res.status(200).json({
+            mensaje: 'Registrado eliminado exitosamente'
+          });  
+      }
       const {idPublicacionAsistentes} = req.body;
       if(idPublicacionAsistentes){
         const servicio = await mostrarAsistentesServicio(idPublicacionAsistentes);

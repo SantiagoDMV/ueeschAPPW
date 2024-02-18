@@ -5,7 +5,6 @@ import SeccionPerfilAdministracion from "@/componentes/perfiles/SeccionPerfilAdm
 import { useState,useEffect } from "react";
 import axios,{AxiosError} from "axios";
 import Layout from "@/componentes/layout/Layout";
-import FormularioPublicaciones from "../componentes/layout/Formularios/FormularioPublicacionesQuill";
 import Link from "next/link";
 
 export default function Perfil({usuarioCookie,setUsuarioCookie}:any) {
@@ -50,7 +49,7 @@ export default function Perfil({usuarioCookie,setUsuarioCookie}:any) {
         <div className={styles.contenedorInferior}>    
   {
     //usuario && (usuario.rol === 5 || usuario.rol === 4 || usuario.rol === 3) ?
-    usuario && (usuario.rol === 5 || usuario.rol === 4) ?
+    usuarioCookie && usuario && (usuario.rol === 5 || usuario.rol === 4) ?
     (
     usuario.rol ===3 ? 
     
@@ -63,11 +62,11 @@ export default function Perfil({usuarioCookie,setUsuarioCookie}:any) {
             >
               Nueva publicación
             </Link>
-      <SeccionPerfilUsuarios id_moodle = {usuario.id_moodle}/>
+      <SeccionPerfilUsuarios id_moodle = {usuario.id_moodle} usuarioCookie={usuarioCookie}/>
       </div>
       </div>
-      :
-    <SeccionPerfilUsuarios id_moodle = {usuario.id_moodle}/>
+      : usuarioCookie && usuario &&
+    <SeccionPerfilUsuarios id_moodle = {usuario.id_moodle} usuarioCookie={usuarioCookie}/>
     )
     : usuario && (usuario.rol === 1 || usuario.rol === 2 || usuario.rol === 3) && 
     <SeccionPerfilAdministracion usuarioCookie={usuarioCookie}/>

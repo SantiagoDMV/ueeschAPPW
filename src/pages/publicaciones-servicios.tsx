@@ -25,6 +25,7 @@ export default function GestionUsuarios({
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones`,
       { mostrar_tipos_publicaciones: "todo" }
     );
+  
     setDatosP(respuesta.data.datos);
     setDatosM(respuesta.data.datosMultimedia);
     setDatosU(respuesta.data.detallesUsuarios);

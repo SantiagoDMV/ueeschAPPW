@@ -1,16 +1,22 @@
-import {login_usuarios,cambiarContraseña} from "../../../servicios/sesiones";
+import {login_usuarios,cambiarContraseña, obtenerCuentasVinculadas} from "../../../servicios/sesiones";
 import {BorrarCookieUSer} from '../../../servicios/cookies/manejoCookies'
 
 export default async function sesiones(req, res) {
   
   if (req.method === "POST") {
     try {
+      if(req.body.moodleCuentasVinculadas){
+        const respuesta = await obtenerCuentasVinculadas(req)
+        if(!respuesta.valor)
+        return res.status(respuesta.status).json({mensaje: respuesta.mensaje})
+
+        return res.status(200).json(respuesta.cuentas)
+      }
       const respuesta = await login_usuarios(req, res);
 
       if(respuesta.redirectTo){
       return res.status(respuesta.status).json(respuesta)
       }
-
 
       if(!respuesta.valor)
         return res.status(respuesta.status).json({mensaje: respuesta.mensaje})

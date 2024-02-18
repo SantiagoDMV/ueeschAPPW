@@ -156,7 +156,19 @@
     color: white;
 }
 
+.verAsistentes{
+    padding: 5px;
+    border: none;
+    outline: none;
+    border: 1px solid black;
+    margin: 5px 0;
+    cursor: pointer;
+}
 
+.verAsistentes:hover{
+    background-color: black;
+    color: white;
+}
 
 @media only screen and (max-width:750px) {
  .publicacion{

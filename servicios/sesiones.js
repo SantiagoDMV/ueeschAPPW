@@ -135,3 +135,42 @@ export async function cambiarContraseña(req) {
     }
   }
 } 
+
+
+export async function obtenerCuentasVinculadas(req) {
+  try {
+    const {moodleCuentasVinculadas} = req.body;     
+    const moodleCuentasVinculadasEntero = parseInt(moodleCuentasVinculadas);
+
+  if (! Number.isInteger(moodleCuentasVinculadasEntero)) 
+    return {
+    statusCode: 400,
+    valor: false,
+    mensaje: "El parámetro ingresado no es válido"
+    }
+
+   const usuariosRepo = new UsuariosRepository();
+    const respuesta = await usuariosRepo.obtenerCuentasVinculadas(moodleCuentasVinculadasEntero);
+
+
+    if (!respuesta)
+      return {
+        statusCode: 500,
+        valor: false,
+        mensaje: "Error interno en el servidor"
+    }
+   
+    return {
+      statusCode: 200,
+      valor: true,
+      cuentas: respuesta
+    }
+
+  } catch (error) {
+    return {
+      statusCode: 500,
+      valor: false,
+      mensaje: "Error interno en el servidor"
+    }
+  }
+} 

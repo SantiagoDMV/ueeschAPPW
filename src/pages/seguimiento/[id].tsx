@@ -1,6 +1,6 @@
 import axios from "axios";
 import estilos from "../../styles/pestañas/SeguimientoMoodleId.module.css";
-import { Bar,Pie,Scatter} from "react-chartjs-2";
+import { Bar,Scatter} from "react-chartjs-2";
 import * as ChartJS from 'chart.js/auto';
 import {ChartOptions} from 'chart.js';
 import CursosUsuarioMoodle from "../../componentes/layout/secciones/Moodle/CursosUsuarioMoodle";
@@ -8,10 +8,12 @@ import InformacionModulosMoodle from "../../componentes/layout/secciones/Moodle/
 import { useState } from "react";
 import 'chartjs-adapter-moment';
 import InformacionUsuarios from "../../componentes/layout/secciones/Moodle/InformacionUsuariosMoodle";
+import Link from "next/link";
 
 import Layout from "@/componentes/layout/Layout";
 
 export default function Seguimientoacademico({ cursosUser,userId, moodle,usuarioCookie,setUsuarioCookie}: any) {
+
   
   ChartJS.defaults.plugins.legend.display = false;
   ChartJS.defaults.plugins.tooltip.mode = 'index';
@@ -24,7 +26,6 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
     
 
     const obtenerTareasMoodle = async () => {
-      
       try {
         const respuesta = await axios.get(
           `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=gradereport_user_get_grades_table&moodlewsrestformat=json&courseid=${cursoSeleccionado}&userid=${userId}`
@@ -49,6 +50,7 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
         const respuesta = await axios.post(
           `/api/moodle/core_enrol_get_enrolled_users`,{cursoId: id, id_moodle: userId}
         );
+        
         
         setUsuariosInformacion(respuesta.data.cursosUSer)
         setInformacionCursoUsuario(respuesta.data.informacionUsuario)
@@ -84,71 +86,71 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
   
   const cursosCompletados = cursosUser.filter((curso: any) => curso.completed);
 
-  const dataCursosCompletados = {
-    labels: ["Completados", "No completados"],
-    datasets: [
-      {
-        data: [cursosCompletados.length, cursosUser.length - cursosCompletados.length],
-        backgroundColor: ["#2ecc71", "#e74c3c"],
-      },
-    ],
-  };
+  // const dataCursosCompletados = {
+  //   labels: ["Completados", "No completados"],
+  //   datasets: [
+  //     {
+  //       data: [cursosCompletados.length, cursosUser.length - cursosCompletados.length],
+  //       backgroundColor: ["#2ecc71", "#e74c3c"],
+  //     },
+  //   ],
+  // };
   
   const optionsCursosCompletados = {};  
   
-  const obtenerDatosGrafico = () => {
-    if (tareas) {
+  // const obtenerDatosGrafico = () => {
+  //   if (tareas) {
       
   
-      const data = {
-        datasets: [
-          {
-            label: "Calificaciones de Tareas",
-            data: tareas.map((tarea: any) => {
-              if (tarea.itemname && tarea.itemname.content) {
-                const match = tarea.itemname.content.match(/<a[^>]*title="(.*?)"[^>]*>/);
-                const titulo = match ? match[1] : '';
-                const nombreTarea = titulo.replace(/^(Vincular a la actividad|Link to Assignment activity)/i, '').trim();
+  //     const data = {
+  //       datasets: [
+  //         {
+  //           label: "Calificaciones de Tareas",
+  //           data: tareas.map((tarea: any) => {
+  //             if (tarea.itemname && tarea.itemname.content) {
+  //               const match = tarea.itemname.content.match(/<a[^>]*title="(.*?)"[^>]*>/);
+  //               const titulo = match ? match[1] : '';
+  //               const nombreTarea = titulo.replace(/^(Vincular a la actividad|Link to Assignment activity)/i, '').trim();
   
-                return {
-                  x: nombreTarea, // Utilizamos el nombre de la tarea en el eje x
-                  y: tarea.grade && tarea.grade.content ? parseFloat(tarea.grade.content) : 0,
-                };
-              } else {
-                return null;
-              }
-            }).filter(Boolean),
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)",
-            borderWidth: 1,
-          },
-        ],
-      };
+  //               return {
+  //                 x: nombreTarea, // Utilizamos el nombre de la tarea en el eje x
+  //                 y: tarea.grade && tarea.grade.content ? parseFloat(tarea.grade.content) : 0,
+  //               };
+  //             } else {
+  //               return null;
+  //             }
+  //           }).filter(Boolean),
+  //           backgroundColor: "rgba(75,192,192,0.2)",
+  //           borderColor: "rgba(75,192,192,1)",
+  //           borderWidth: 1,
+  //         },
+  //       ],
+  //     };
   
-      return data;
-    } else {
-      return {
-        datasets: [
-          {
-            label: "Calificaciones de Tareas",
-            data: [],
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)",
-            borderWidth: 1,
-          },
-        ],
-      };
-    }
-  };
+  //     return data;
+  //   } else {
+  //     return {
+  //       datasets: [
+  //         {
+  //           label: "Calificaciones de Tareas",
+  //           data: [],
+  //           backgroundColor: "rgba(75,192,192,0.2)",
+  //           borderColor: "rgba(75,192,192,1)",
+  //           borderWidth: 1,
+  //         },
+  //       ],
+  //     };
+  //   }
+  // };
   
-  const optionsCalificaciones = {
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 100,
-      },
-    },
-  };
+  // const optionsCalificaciones = {
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //       max: 100,
+  //     },
+  //   },
+  // };
 
 
   const mostrarTareas = (id:any) =>{      
@@ -170,14 +172,28 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
           {
           informacionCursoUsuario && informacionCursoUsuario.roles[0].roleid === 5?
           <>
+          <h4>{cursoSeleccionado && cursosUser.map((e:any)=>{
+             if(e.id === cursoSeleccionado){
+              return e.fullname
+             }
+          }) }</h4>
           <h4>Rol Actual en el curso: Estudiante</h4>
+          <Link href={`/reportes/notas?id=${usuarioCookie.id_moodle}&curso=${cursoSeleccionado}`} 
+          className={estilos.reporteNotasSpan}>Reporte de notas</Link>
           <div className={estilos.tareasCursos}>
                 <InformacionModulosMoodle cursoId = {cursoSeleccionado} userId = {userId} moodle ={ moodle} obtenerTareasMoodle={obtenerTareasMoodle} tareas={tareas} setTareas={setTareas}/>
           </div>
           </>
           : informacionCursoUsuario && (informacionCursoUsuario.roles[0].roleid === 3||informacionCursoUsuario.roles[0].roleid === 4) ?
           <>
+
+<h4>{cursoSeleccionado && cursosUser.map((e:any)=>{
+             if(e.id === cursoSeleccionado){
+              return e.fullname
+             }
+          }) }</h4>
           <h4>Rol Actual en el curso: Profesor</h4>        
+          
           <InformacionUsuarios usersInf = {usuariosInformacion} cursoId = {cursoSeleccionado}/>
            </> 
           : informacionCursoUsuario && (informacionCursoUsuario.roles[0].roleid === 2) &&
@@ -206,20 +222,20 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
               )
             }
           </div>
-          <div className={estilos.graficoPastel}>
+          {/* <div className={estilos.graficoPastel}>
           <div className={estilos.pastel}>
             <Pie data={dataCursosCompletados} options={optionsCursosCompletados} />
             </div>
-            </div>
+            </div> */}
         </div>
         }
 
       </div>
-      { tareas &&
+      {/* { tareas &&
 <div className={estilos.contenedorInformacionTareas}>
 <Scatter data={obtenerDatosGrafico()} options={optionsCalificaciones} className={estilos.barrasCalificaciones} />
       </div>
-      }
+      } */}
       </div>
     </Layout>
   );

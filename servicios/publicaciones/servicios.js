@@ -18,7 +18,7 @@ export async function agregarUsuarioServicio(req) {
             return {
                 statusCode: 500,
                 valor: false,
-                mensaje: "Parece que ya confirmaste tu asistencia. No te preocupes, ¡ya estás en la lista!"
+                mensaje: "Parece que ya confirmaste tu asistencia en este servicio. No te preocupes, ¡ya estás en la lista!"
             }
 
         const datos = await repo.agregarUsuarioServicio(id_publicacion,user.id); 
@@ -79,8 +79,13 @@ export async function agregarUsuariosNuevosServicio(idsUsuariosAgregar,idPublica
 }
 
 
-export async function mostrarServicios() {
+export async function mostrarServicios(req) {
     try {
+        const { UserCookie } = req.cookies;
+        const user = verify(UserCookie, process.env.TOKEN_SECRET);
+
+        const verificacion = await repo.buscarUsuarioIdRegistrado(user.id);
+
         const datos = await repo.mostrarServicios(); 
         const datosMultimedia = await repoMultimedia.obtenerImagenes(datos);
         
@@ -95,6 +100,7 @@ export async function mostrarServicios() {
         return {
             datos: datos,
             datosMultimedia: datosMultimedia,
+            verificacion: verificacion,
             valor: true
         }
 
@@ -109,6 +115,48 @@ export async function mostrarServicios() {
     }
 }
 
+
+export async function mostrarServiciosIdUsuario(req) {
+    try {
+        const { idUsuarioServicios } = req.body;
+        const verificacion = await repo.buscarUsuarioIdRegistrado(idUsuarioServicios);
+        
+        if(!verificacion)
+            return {
+                statusCode: 500,
+                valor: false,
+                mensaje: "Ocurrio un error al intentar obtener los servicio."
+            }
+
+        const idServiciosUnicos = [...new Set(verificacion.map(item => item.id_servicio))];
+
+        
+        const datos = await repo.mostrarServiciosUsuarioRegistrado(idServiciosUnicos); 
+
+        if (!datos)
+            return {
+                statusCode: 500,
+                valor: false,
+                mensaje: "Error interno en el servidor"
+            };
+
+        return {
+            datos: datos,
+            valor: true
+        }
+
+
+    } catch (error) {
+        console.log("Ocurrio un error al mostrar las publicaciones: ", error)
+        return {
+            statusCode: 500,
+            valor: false,
+            mensaje: "Error interno del servidor"
+        };
+    }
+}
+
+
 export async function mostrarAsistentesServicio(idPublicacion) {
     try {
         
@@ -120,7 +168,6 @@ export async function mostrarAsistentesServicio(idPublicacion) {
             datos: []
         };
 
-        console.log('datos: ',datos)
         if (datos && datos.length > 0) {
             const idUsuarios = datos.map((asistente) => asistente.id_usuario);
             const detallesUsuarios = await repo.obtenerDetallesUsuarios(idUsuarios);
@@ -168,7 +215,42 @@ export async function eliminarAsistentesServicio(idsUsuariosEliminar,idPublicaci
 
 
     } catch (error) {
-        console.log("Ocurrio un error al mostrar los usuarios: ", error)
+        console.log("Ocurrio un error al eliminar el registro: ", error)
+        return {
+            statusCode: 500,
+            valor: false,
+            mensaje: "Error interno del servidor"
+        };
+    }
+}
+
+
+
+
+
+export async function eliminarAsistenciaUsuario(req,idPublicacion) {
+    try {
+        const { UserCookie } = req.cookies;
+        const user = verify(UserCookie, process.env.TOKEN_SECRET);
+
+        const datos = await repo.eliminarAsistentes(user.id,idPublicacion); 
+        
+        if (!datos)
+            return {
+                statusCode: 500,
+                valor: false,
+                mensaje: "Error, al intentar eliminar el registro en el servicio seleccionado"
+            };
+
+
+        return {
+            mensaje: 'Registro elimniado exitosamente',
+            valor: true
+        }
+
+
+    } catch (error) {
+        console.log("Ocurrio un error al eliminar el registro: ", error)
         return {
             statusCode: 500,
             valor: false,
