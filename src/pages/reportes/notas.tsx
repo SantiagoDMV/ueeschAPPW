@@ -14,13 +14,11 @@ export default function ReporteNotas({
   moodle,
   cursosUser,
 }: any) {
+  
   const [tareas, setTareas] = useState<any>();
   const [cursoFullname, setCursoFullName] = useState<string>("");
   const [moduloInf, setModuloInf] = useState<any>();
-  const [usuario, setUsuario] = useState({
-    nombre: usuarioCookie && usuarioCookie.nombre_usuario,
-    apellido: usuarioCookie && usuarioCookie.apellido_usuario,
-  });
+  
   const [promedio, setPromedio] = useState<any>();
   const [notaMasBaja, setNotaMasBaja] = useState<any>();
   const [notaMasAlta, setNotaMasAlta] = useState<any>();
@@ -212,7 +210,7 @@ export default function ReporteNotas({
             >
               <Document>
                 <Page size={"A4"} style={{ padding: "25px" }}>
-                  <Cabecera usuario={usuario} />
+                <Cabecera usuario={{ nombre: usuarioCookie.nombre, apellido: usuarioCookie.apellido}} />
                   <View style={{ marginTop: 20, marginBottom: 20 }}>
                   <Text style={{ fontSize: 16, marginBottom: 10 }}>
                       Información del estudiante

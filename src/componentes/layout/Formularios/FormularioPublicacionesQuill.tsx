@@ -37,7 +37,8 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
         }
       );
 
-      await axios.post("/api/publicacioness", {
+      
+      await axios.post("/api/publicaciones", {
         contenido: content,
         datosPublicacion: contenido,
       });
@@ -154,19 +155,19 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
       title: "Título de Previsualización",
 
     },
-    {
-      title: "Fecha de expiración",
-      content: (
-        <span className={styles.spanMensajesInformacion}>
-          Para establecer una duración específica para la publicación,
-          selecciona la fecha de expiración. La publicación se eliminará
-          automáticamente después de ese período.
-          <b> (Opcional)</b>
-        </span>
-      ),
-      target: `.contenedorFechaExpiracion`,
-      placement: "auto",
-    },
+    // {
+    //   title: "Fecha de expiración",
+    //   content: (
+    //     <span className={styles.spanMensajesInformacion}>
+    //       Para establecer una duración específica para la publicación,
+    //       selecciona la fecha de expiración. La publicación se eliminará
+    //       automáticamente después de ese período.
+    //       <b> (Opcional)</b>
+    //     </span>
+    //   ),
+    //   target: `.contenedorFechaExpiracion`,
+    //   placement: "auto",
+    // },
   ];
 
   const [estadoTour, setEstadoTour] = useState(false);
@@ -257,7 +258,7 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
           </div>
         
 
-        {usuarioCookie && (usuarioCookie.rol === 1 || usuarioCookie.rol === 2) && (
+        {/* {usuarioCookie && (usuarioCookie.rol === 1 || usuarioCookie.rol === 2) && (
           <div
             className={`${styles.contenedorMasOpciones} contenedorFechaExpiracion`}
             id="masOpcionesPublicacion"
@@ -278,7 +279,7 @@ export default function FormulaioPublicaciones({ usuarioCookie }: any) {
               />
             </div>
           </div>
-        )}
+        )} */}
 
         <button
           onClick={() => creacionPublicacion()}

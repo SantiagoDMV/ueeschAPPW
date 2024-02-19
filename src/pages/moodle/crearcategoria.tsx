@@ -4,7 +4,7 @@ import estilos from "../../styles/pestañas/Moodle/CrearCurso.module.css";
 import axios from 'axios'
 import { Toaster, toast } from "sonner";
 
-export default function CrearPublicacion({
+export default function CrearCategoria({
   usuarioCookie,
   setUsuarioCookie,
   moodle

@@ -35,9 +35,26 @@ export async function middleware(request) {
       
       default:
         
-        if (  (userRole !== 1 && userRole !== 2) && !path.startsWith(`/seguimiento/${idMoodle}`) ) {
-          return NextResponse.redirect(new URL(`/seguimiento/${idMoodle}`, request.url));
+      if(path.startsWith(`/moodle/`)){
+      if ( userRole === 3 || userRole === 2 || userRole === 1) 
+        return NextResponse.next();
+        else
+        return NextResponse.redirect(new URL(`/`, request.url));
+      }
+
+      if(path.startsWith(`/seguimiento/${idMoodle}`)){
+          return NextResponse.next();
         }
+
+        if ( !path.startsWith(`/seguimiento/${idMoodle}`) ) {
+          if(userRole !== 1 && userRole !== 2 ) {
+          return NextResponse.redirect(new URL(`/`, request.url));
+          }else{
+            return NextResponse.next();
+          }
+        }
+        
+      
     }
   } catch (error) {
     console.error(error);
@@ -53,5 +70,6 @@ export const config = {
     "/seguimiento",
     "/reportes",
     "/seguimiento/:path*",
+    "/moodle/:path*"
   ],
 };

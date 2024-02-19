@@ -49,22 +49,40 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
                 )}
 
                 {/* BOTONES PARA GESTIONAR DE LA PAGINA */}
+                {
+                usuario && (usuario.rol === 1 || usuario.rol === 2 )&&
+                <>
                     <h3>LOCAL</h3>
                 <Link href={'/gestionusuarios'} className={style.link}><span>Gestión de usuarios</span></Link>
                 <Link href={'/publicaciones-servicios'} className={style.link}><span>Publicaciones y servicios</span></Link>
-
+                </>
+                }
                 {/* BOTONES DE ACCIONES RAPIDAS */}
+                {
+                usuario && (usuario.rol === 1 || usuario.rol === 2 )&&
+                <>
                 <h3>ACCIONES RAPIDAS</h3>
                 <Link href={'/gestionusuarios/crearusuarios'} className={style.link}><span>Agregar usuario</span></Link>
                 <Link href={'/publicaciones/crearpublicacion'} className={style.link}><span>Crear publicacion</span></Link>
-
+                </>
+              }
 
                 {/* BOTONES DE FUNCIONALIDADES DE MOODLE */}
                 <h3>MOODLE</h3>
+                {usuario && usuario.rol ===1 
+                ?
                 <Link href={'/seguimiento'} className={style.link}><span>Mi moodle</span></Link>
+                :
+                <Link href={`/seguimiento/${usuario.id_moodle}`} className={style.link}><span>Mi moodle</span></Link>
+                }
+                
+                {
+                usuario && (usuario.rol === 1 || usuario.rol === 2 )&&
+                <>
                 <Link href={'/cursos-moodle'} className={style.link}><span>Cursos y Categorías</span></Link>
+                </>
+                }
                 <Link href={'/moodle/agregar-usuario-curso'} className={style.link}><span>Agregar usuario a un curso</span></Link>
-                <Link href={'/publicaciones/crearpublicacion'} className={style.link}><span>Actualizar DB local</span></Link>
 
                 {/* OPCIONES DE COMPARTIR EN REDES SOCIALES */}
                 

@@ -120,6 +120,15 @@
     background-color: rgb(208, 208, 208);
 }
 
+.reporteNotasSpan{
+    background-color: rgb(239, 239, 239);
+    padding: 10px;
+    color: rgb(157, 64, 171);
+    cursor: pointer;
+    user-select: none;
+}
+
+
 @media screen and (max-width:800px){
     .contenedorPrincipalEstudiantes{
         flex-direction: column;

@@ -59,6 +59,19 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 10px;
+    outline: none; 
+  }
+
+  .formularioCrearCurso .botonQuitar {
+    background-color: rgb(192, 60, 48);
+        padding: 10px 20px;
+   outline: none; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
   
   .formGroup button:hover {
