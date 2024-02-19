@@ -16,12 +16,15 @@
 .contenedorBotonesCompartir {
   position: fixed;
   top: 4rem;
-  height: 100%;
+  /* height: 100%; */
+  min-height: calc(100vh-4rem);
+  max-height: calc(100vh-4rem);
   z-index: 1;
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: row;
-  backdrop-filter: blur(3px);
 }
 
 .contenedorAbrirOpciones {
@@ -33,25 +36,50 @@
 }
 
 .botonAbrirOpcionesDeCompartir {
-  background-color: white;
-  padding: 4px;
-  font-size: 1.8rem;
+  
+ color: white;
+ background-color: #429db2;
   border-radius: 0 10px 10px 0;
+  font-size: 30px;
   user-select: none;
   cursor: pointer;
   margin-top: 2rem;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 .botonesCompartir {
-
+  position: absolute;
   transform: translateX(-100%);
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   transition: transform 0.3s ease;
   background-color: white;
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.081);
-  height: 100%;
-  padding: 0 1px;
+  min-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 4rem);
+  padding: 2rem 1px;
+  padding-top: 0;
+  overflow-y: auto;
+  
+}
+
+.botonesCompartir::-webkit-scrollbar{
+  width: 10px;
+}
+.botonesCompartir::-webkit-scrollbar-thumb{
+  background-color: #4267b2;
+  background-color: gray;
+}
+
+.botonesCompartir h3{
+  background-color: rgb(22, 97, 107);
+  width: 100%;
+  padding: 10px;
+  color: white;
+  margin-bottom: 1px;
 }
 
 .botonesCompartir .link {
@@ -71,6 +99,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
+  width: 100%;
 }
 
 .cotonCompartirFacebook {
@@ -84,6 +113,7 @@
   gap: 0.5rem;
   border: none;
   outline: none;
+  
 }
 
 .cotonCompartirFacebook:hover {
@@ -92,6 +122,7 @@
 
 .iconoFacebook {
   font-size: 25px;
+  
 }
 
 .cotonCompartirX {

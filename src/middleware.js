@@ -21,7 +21,7 @@ export async function middleware(request) {
     switch (path) {
       case "/perfil":
         return NextResponse.next();
-      case "/gestionmoodle":
+      
       case "/publicaciones-servicios":
       case "/gestionusuarios":
       case "/regitromiembros":
@@ -48,7 +48,6 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     "/perfil",
-    "/gestionmoodle",
     "/publicaciones-servicios",
     "/gestionusuarios",
     "/seguimiento",

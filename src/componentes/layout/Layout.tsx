@@ -27,26 +27,48 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
           <div className={style.hijos}>
 
             {
-            usuario && (usuario.rol === 1 || usuario.rol === 2) && mostrarOpcionesCompartir &&
+            usuario && (usuario.rol === 1 || usuario.rol === 2  || usuario.rol === 3) && mostrarOpcionesCompartir &&
             <div className={style.contenedorBotonesCompartir}>
+
               <div
                 className={`${style.botonesCompartir} ${
                   mostrarOpcionesCompartir ? style.mostrar : ""
                 }`}
               >
+
+                {/* BOTON PARA CERRAR LAS OPCIONES */}
                 {mostrarOpcionesCompartir && (
+                  <span>
                   <AiOutlineLeft
                     className={style.botonAbrirOpcionesDeCompartir}
                     onClick={() =>
                       setMostrarOpcionesCompartir(!mostrarOpcionesCompartir)
                     }
                   />
+                  </span>
                 )}
 
+                {/* BOTONES PARA GESTIONAR DE LA PAGINA */}
+                    <h3>LOCAL</h3>
                 <Link href={'/gestionusuarios'} className={style.link}><span>Gestión de usuarios</span></Link>
                 <Link href={'/publicaciones-servicios'} className={style.link}><span>Publicaciones y servicios</span></Link>
-                <Link href={'/seguimiento'} className={style.link}><span>Miembros de moodle</span></Link>
+
+                {/* BOTONES DE ACCIONES RAPIDAS */}
+                <h3>ACCIONES RAPIDAS</h3>
+                <Link href={'/gestionusuarios/crearusuarios'} className={style.link}><span>Agregar usuario</span></Link>
+                <Link href={'/publicaciones/crearpublicacion'} className={style.link}><span>Crear publicacion</span></Link>
+
+
+                {/* BOTONES DE FUNCIONALIDADES DE MOODLE */}
+                <h3>MOODLE</h3>
+                <Link href={'/seguimiento'} className={style.link}><span>Mi moodle</span></Link>
+                <Link href={'/cursos-moodle'} className={style.link}><span>Cursos y Categorías</span></Link>
+                <Link href={'/moodle/agregar-usuario-curso'} className={style.link}><span>Agregar usuario a un curso</span></Link>
+                <Link href={'/publicaciones/crearpublicacion'} className={style.link}><span>Actualizar DB local</span></Link>
+
+                {/* OPCIONES DE COMPARTIR EN REDES SOCIALES */}
                 
+                <h3>SOCIAL</h3>
                 <div className={style.compartirRedesSociales}>
                   <button className={style.cotonCompartirFacebook}>
                     <AiOutlineFacebook
@@ -100,8 +122,9 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
             </div>
             }
 
+{/* BOTON PARA ABRIR LAS OPCIONES */}
 {
-            usuario && (usuario.rol === 1 || usuario.rol === 2) && !mostrarOpcionesCompartir &&
+            usuario && (usuario.rol === 1 || usuario.rol === 2 || usuario.rol === 3) && !mostrarOpcionesCompartir &&
               <div className={style.contenedorAbrirOpciones}>
                 <AiOutlineRight
                   className={style.botonAbrirOpcionesDeCompartir}

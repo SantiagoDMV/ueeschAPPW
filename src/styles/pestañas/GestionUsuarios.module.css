@@ -8,6 +8,11 @@
     min-width: 400px;
     color: black;
 }
+.contenedorInfUsuarios{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 .seccionPublicacionesCarga{
     font-size: 2rem;
@@ -36,6 +41,7 @@ padding: 1rem;
     animation: spin 1s infinite linear;
   }
 
+  
   @keyframes spin {
     to {
       transform: rotate(360deg);
@@ -53,6 +59,7 @@ padding: 1rem;
     gap: 10px;
     background-color: rgb(205, 208, 210);
   }
+
   .contenedorBotonMoodle span{
     color: rgb(179, 80, 78);
   }

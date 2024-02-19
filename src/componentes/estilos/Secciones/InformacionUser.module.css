@@ -117,10 +117,19 @@ padding: 1rem;
     background-color: red;
 }
 
+.contenedorTablaCategoria{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
 .contenedorTabla{
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
 }
 
@@ -133,6 +142,7 @@ padding: 1rem;
     table-layout: fixed;
     min-width: 100%;
     max-width: 100%;
+    
 }
 
 .filaHead{
