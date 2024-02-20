@@ -354,6 +354,7 @@ try {
     host : process.env.MOODLE_HOST,
     token : process.env.TOKEN_MOODLE,
   }  
+  console.log(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`)
   const respuesta = await axios.get(
         `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`
       )
