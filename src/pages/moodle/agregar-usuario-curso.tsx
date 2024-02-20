@@ -9,13 +9,42 @@ export default function AgregarUsuarioCurso({
   usuarioCookie,
   setUsuarioCookie,
   moodle,
-  usuariosInformacion
 }: any) {
 
 
   useEffect(() => {
     obtenerDatosCursos();
   }, [usuarioCookie]);
+
+
+  useEffect(() => {
+    obtenerUsuariosInformacion();
+  }, []);
+
+  const [usuariosInformacion, setUsuariosInformacion] = useState<any>();
+
+  const obtenerUsuariosInformacion = async () => {
+    try {
+      const respuesta = await fetch(
+        `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`
+      );
+
+      const datos = await respuesta.json();
+  
+      if (datos.errorcode) {
+        setUsuariosInformacion([]);
+      } else {
+        setUsuariosInformacion(datos.users);
+      }  
+    } catch (error) {
+      console.log(error)
+      //window.location.href = '/error?server=moodle';
+    }
+    
+  };
+
+
+
 
   const [datosCursos, setDatosCursos] = useState<any>();
   const [informacionCursoUsuario,setInformacionCursoUsuario] = useState<any>()
@@ -348,38 +377,25 @@ cursoSeleccionado ?
 
 export const getServerSideProps = async (context: any) => {
   //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
-try {
-    
-  const moodle={
-    host : process.env.MOODLE_HOST,
-    token : process.env.TOKEN_MOODLE,
-  }  
-  console.log(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`)
-  const respuesta = await axios.get(
-        `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`
-      )
-    console.log(respuesta.data.users)
-  if (respuesta.data.errorcode) {
+
+  try {
+    const moodle = {
+      host: process.env.MOODLE_HOST,
+      token: process.env.TOKEN_MOODLE,
+    };
+
     return {
       props: {
-        usuariosInformacion: [],
+        moodle: moodle,
       },
     };
-  } else {
-    return {
-      props: {
-        usuariosInformacion: respuesta.data.users,
-        moodle: moodle
-      },
-    };
-  }
-} catch (error) {
-  console.error('Error en getServerSideProps /agregar-usuario-curso:');
+  } catch (error) {
+    console.error("Error en getServerSideProps /seguimiento:");
     return {
       redirect: {
-        destination: '/error?server=moodle',
+        destination: "/error?server=moodle",
         permanent: false,
       },
     };
-    }
-}
+  }
+};

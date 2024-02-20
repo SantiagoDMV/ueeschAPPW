@@ -86,22 +86,24 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
 
                 {/* OPCIONES DE COMPARTIR EN REDES SOCIALES */}
                 
-                <h3>SOCIAL</h3>
+                {/* <h3>REDES SOCIALES</h3>
                 <div className={style.compartirRedesSociales}>
-                  <button className={style.cotonCompartirFacebook}>
+                  <button className={style.cotonCompartirFacebook} 
+                  onClick={()=> window.location.href='https://www.facebook.com/UEESCH/'}>
                     <AiOutlineFacebook
                       className={style.iconoFacebook}
                       onClick={() =>
                         window.open(
                           `http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
                             window.location.href
-                          )}`,
+                          )
+                        }`,
                           "Compartir en Facebook",
                           "width=800,height=800"
                         )
                       }
                     />
-                    <p>Compartir en Facebook</p>
+                    <p>Facebook</p>
                   </button>
 
                   <button className={style.cotonCompartirX}>
@@ -135,7 +137,7 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
                     />
                     <p>Compartir en Whatsapp</p>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
             }
