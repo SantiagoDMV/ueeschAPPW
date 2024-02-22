@@ -1,7 +1,7 @@
 .carruselImagen{
   min-width: 100%;
-  object-fit: fill;
-  
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .left{

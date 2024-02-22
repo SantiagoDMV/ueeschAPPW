@@ -53,27 +53,23 @@
     gap: 4rem;
     text-align: justify;
     flex-direction: column;
-    margin: 5rem 0;
+    padding: 2rem;
     width: 70%;
     color: rgb(13, 60, 94);
     font-size: 16px;
 }
 
-.contenedorPresentacion p{
-    margin-right: 1rem;
-}
-
 
 .contenedorAvances{
     width: 70%;
- padding: 1rem;
- text-align: justify;   
+    padding: 1rem;
+    text-align: justify;   
 }
 
 .contenedorImagenesImpacto{
     background-color: rgb(227, 228, 228);
-    /* width: 100%;
-    display: flex;
+    width: 100%;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     position: relative;

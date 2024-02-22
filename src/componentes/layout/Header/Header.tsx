@@ -1,14 +1,26 @@
+import Image from "next/image";
 import style from "./Header.module.css";
-//import RedesSociales from "./RedesSociales";
+import { useEffect } from "react";
 
-export default function Header() {
+export default function Header({ informacion }: any) {
+  
+
   return (
     <div className={style.contenedorHeader}>
       <div className={style.contenedorSuperior}>
-        <div className={style.contenidoPrincipalHeader}>
-          <h3>Unidad Educativa Especializada Sordos de Chimborazo</h3>
-          <p>La educación es el arma más poderosa que puedes usar</p>
-          <p>para cambiar el mundo</p>  
+        <div className={style.imagenHeaderContainer}>
+          <Image
+            src={informacion.imagen_header.data[0].attributes.url}
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            alt="imagen_header"
+          />
+          <div className={style.textoSuperpuesto}>
+            <h1>{informacion.titulo}</h1>
+            <p>{informacion.descripcion_titulo}</p>
+            
+          </div>
         </div>
       </div>
     </div>

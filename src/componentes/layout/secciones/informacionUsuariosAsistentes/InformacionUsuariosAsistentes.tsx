@@ -318,11 +318,14 @@ id='botonAgregar'>Agregar</button>
         <tbody>
           {!usuarios? (
             <tr>
+              <td></td>
               <td colSpan={2}>Obteniendo participantes</td>
             </tr>
           ): usuarios.length === 0? 
           <tr>
+            <td></td>
               <td colSpan={2}>No existen participantes</td>
+              
             </tr>
           :(
             usuarios && usuarios.length > 0 && usuarios.map((e: any, index: number) => (

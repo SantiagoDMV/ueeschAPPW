@@ -15,7 +15,7 @@ import Publicaciones from "../componentes/layout/secciones/PublicacionesIndex";
 import Anuncios from "@/componentes/layout/secciones/AnunciosPublicaciones/Anuncio";
 import imagen from '../../public/imagenes/index/header/header.jpg'
 
-export default function Home({ usuarioCookie, setUsuarioCookie }: any) {
+export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: any) {
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>();
   const [datosAnuncios, setDatosAnuncios] = useState<any>();
   const [mostrarCarga, setMostrarCarga] = useState(true);
@@ -68,7 +68,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie }: any) {
       <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
         <div className={style.contenedorInicio}>
           <div className={style.contenedorSuperior}>
-            <Header />
+            <Header informacion={informacion}/>
           </div>
           <div className={style.contenedorInferior}>
             <div className={style.contenedorInformacionPresentacion}>
@@ -129,3 +129,20 @@ export default function Home({ usuarioCookie, setUsuarioCookie }: any) {
     </>
   );
 }
+
+
+export const getServerSideProps = async (context: any) => {
+  //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
+  const respuesta= await axios.get('https://ueeschstrapi.onrender.com/api/paginas/3?populate[imagen_header][fields][0]=url');
+  const {data} =respuesta.data
+  const {attributes} = data;
+
+  try {
+    return {
+      props: {
+        informacion: attributes
+      },
+    };
+  } catch (error) {
+  }
+};

@@ -1,7 +1,6 @@
 import estilos from "../styles/pestañas/Historia.module.css";
 import imagenDocentes from "../../public/imagenes/pageHistoria/imagenDocecntes.jpg";
 import Image from "next/image";
-import {AiOutlineBook,AiFillCaretRight,AiFillCaretLeft} from 'react-icons/ai'
 import { useState } from "react";
 import Layout from "@/componentes/layout/Layout";
 import Carrusel from "@/componentes/Carrrusel/CarruselImagenesLinks/Carrusel";

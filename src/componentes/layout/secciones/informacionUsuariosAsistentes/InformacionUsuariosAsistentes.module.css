@@ -13,6 +13,7 @@
   gap: 2rem;
   min-height: calc(100vh - 7rem);
   max-height: calc(100vh - 7rem);
+  text-align: center;
 }
 
 .contenedorOpcionesVentana{

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['drive.google.com', 'ueesch.eduinclusivaec.com'],
+    domains: ['drive.google.com', 'ueesch.eduinclusivaec.com','res.cloudinary.com'],
   },
 };
 
