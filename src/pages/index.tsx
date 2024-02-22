@@ -133,7 +133,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: an
 
 export const getServerSideProps = async (context: any) => {
   //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
-  const respuesta= await axios.get('https://ueeschstrapi.onrender.com/api/paginas/3?populate[imagen_header][fields][0]=url');
+  const respuesta= await axios.get('https://ueeschstrapi.onrender.com/api/paginas/1?populate[imagen_header][fields][0]=url');
   const {data} =respuesta.data
   const {attributes} = data;
 
