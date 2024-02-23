@@ -6,8 +6,7 @@
     /* background-position: center;
     background-size: cover;
     background-repeat: no-repeat;  */
-    min-height: calc(100vh - 4rem);
-    max-height: calc(100vh - 4rem);
+    min-height: 50vh;
     overflow: hidden;
     /* background-image: url("../../../../public/imagenes/index/header/header.jpg");  */
 }
@@ -17,9 +16,16 @@
     display: flex;
     width: 100%;
     margin: auto;
+    
 }
 
-.videoHeader{
+.imagenHeaderContainer {
+    position: relative;
+    min-width: 100%;
+    min-height: 50vh;
+  }
+  
+  .videoHeader{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -29,13 +35,7 @@
     
 }
 
-.imagenHeaderContainer {
-    position: relative;
-    min-width: 100%;
-    min-height: calc(100vh - 4rem);
-    max-height: calc(100vh - 4rem);
-  }
-  
+
   .textoSuperpuesto {
     position: absolute;
     top: 0%;
@@ -52,7 +52,7 @@
     padding: 2rem;
     min-width: 100%;
     background-color: rgba(22, 97, 107, 0.176);
-    min-height: calc(100vh - 4rem);
+    min-height: 50vh;
     font-size: 1.7rem;
   }
 
@@ -66,23 +66,20 @@
     font-size: 20px;
 }
 
-
-
-
 @media only screen and (max-width:1000px){
 
     .contenedorHeader{
         height: 100%;
     }
     .contenedorSuperior{
-        min-height: calc(100vh - 4rem);
+        min-height: 50vh;
         flex-direction: column;
         text-align: center;
         background-position: 65%;
     }
     .contenidoPrincipalHeader{
         background-color: rgba(22, 97, 107, 0.176);
-        min-height: calc(100vh - 4rem);
+        min-height: 50vh;
         padding-top: 2rem;
         justify-content: flex-start;
         

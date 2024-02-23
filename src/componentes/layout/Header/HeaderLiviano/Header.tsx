@@ -16,7 +16,6 @@ export default function Header({ informacion }: any) {
   useEffect(() => {
     if (autoplay && videoRef.current) {
       videoRef.current.play().catch((error) => {
-        
       });
     }
   }, [autoplay]);
