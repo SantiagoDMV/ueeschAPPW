@@ -3,7 +3,10 @@ import { AiFillMail,AiOutlineWhatsApp, AiFillPhone } from "react-icons/ai";
 import ContactForm from "@/componentes/layout/Formularios/FormularioEmail/FormularioEmail";
 import Link from "next/link";
 import Layout from "@/componentes/layout/Layout";
-export default function About({usuarioCookie,setUsuarioCookie}:any) {
+import axios from 'axios'
+import mdtoTML from '../../util/snarkdown'
+
+export default function About({usuarioCookie,setUsuarioCookie, email, telefono,direccion,horario}:any) {
   return (
 
 <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}> 
@@ -16,23 +19,23 @@ export default function About({usuarioCookie,setUsuarioCookie}:any) {
         <div className={style.contenedordatosInformativos}>
           <div className={style.datosInformativos}>
             <div className={style.lineaInformativa}>
-              <AiFillMail className={style.icono} /> <b> Email:</b>
-              <Link className={style.correoEnlace} href="mailto:ueesch2023@gmail.com">ueesch2023@gmail.com</Link>
+              <AiFillMail className={style.icono} /> <b> {email.nombre}</b>
+                <p dangerouslySetInnerHTML={{__html:mdtoTML(email.contenido)}}/>
             </div>
             <div className={style.lineaInformativa}>
               <AiFillPhone className={style.iconoTelefono} />
-              <b>Teléfono:</b> 09876543321
+              <b>{telefono.nombre}</b> 
+              <p dangerouslySetInnerHTML={{__html:mdtoTML(telefono.contenido)}}/>
             </div>
             <div className={style.lineaInformativa}>
               <AiFillPhone className={style.iconoTelefono} />
-              <b>Dirección:</b> C. Loja &, Riobamba
+              <b>{direccion.nombre}</b> 
+              <p dangerouslySetInnerHTML={{__html:mdtoTML(direccion.contenido)}}/>
             </div>
             <div className={style.lineaInformativa}>
               <AiFillPhone className={style.iconoTelefono} />
-              <b>Horario de atención:</b>
-              <p>Lun - vie: 8:00 - 20:00​ </p>
-              <p>Sábado: 9:00 - 19:00</p>
-              <p>​Domingo: 9:00 - 20:00</p>
+              <b>{horario.nombre}</b>
+              <p dangerouslySetInnerHTML={{__html:mdtoTML(horario.contenido)}}/>
             </div>
           </div>
           <div className={style.contenedorFormulario}>
@@ -56,3 +59,24 @@ export default function About({usuarioCookie,setUsuarioCookie}:any) {
       
   );
 }
+
+
+export const getServerSideProps = async (context: any) => {
+  //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
+  const respuestaEmail= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/3?[fields][0]=nombre&[fields][1]=contenido');
+  const respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
+  const respuestaDireccion= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/5?[fields][0]=nombre&[fields][1]=contenido');
+  const respuestaHorario= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/6?[fields][0]=nombre&[fields][1]=contenido');
+
+  try {
+    return {
+      props: {
+        email: respuestaEmail.data.data.attributes,
+        telefono: respuestaTelefono.data.data.attributes,
+        direccion: respuestaDireccion.data.data.attributes,
+        horario: respuestaHorario.data.data.attributes
+      },
+    };
+  } catch (error) {
+  }
+};

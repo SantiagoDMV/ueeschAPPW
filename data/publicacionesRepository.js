@@ -44,7 +44,7 @@ export default class PublicacionRepository{
               id_usuario : id,
               eliminado_en: null,                
             },
-              take:6,
+              // take:6,
               orderBy:{
                   id_publicacion: 'desc',
               }
@@ -140,7 +140,7 @@ export default class PublicacionRepository{
     const prisma = this.getInstance();
     try {
         const respuesta = await prisma.publicacion.findMany({
-            take:6,
+            // take:6,
             orderBy:{
                 id_tipo_publicacion: 'asc',
             },

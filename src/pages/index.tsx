@@ -24,6 +24,8 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: an
     obtenerInformacionPublicaciones();
   }, []);
 
+  
+
   const obtenerInformacionPublicaciones = async () => {
     try {
       const respuesta = await axios.post(`/api/publicaciones`, {
@@ -68,7 +70,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: an
       <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
         <div className={style.contenedorInicio}>
           <div className={style.contenedorSuperior}>
-            <Header informacion={informacion}/>
+            {informacion && <Header informacion={informacion}/>}
           </div>
           <div className={style.contenedorInferior}>
             <div className={style.contenedorInformacionPresentacion}>

@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 import Layout from "@/componentes/layout/Layout";
 import Anuncios from "@/componentes/layout/secciones/AnunciosPublicaciones/Anuncio";
+import Header from "../componentes/layout/Header/HeaderLiviano/Header";
+import Footer from "@/componentes/layout/Footer/Footer";
 
-export default function Publicaciones({usuarioCookie,setUsuarioCookie}:any) {
+export default function Publicaciones({usuarioCookie,setUsuarioCookie, informacion}:any) {
 
   useEffect(()=>{
     obtenerDatosPublicaciones()
@@ -37,13 +39,11 @@ export default function Publicaciones({usuarioCookie,setUsuarioCookie}:any) {
 
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+      {informacion && <Header informacion={informacion} />}
       <div className={estilos.contenedorPrincipalMomentos}>
-        <div className={estilos.contenedorImagen}>
-          <span></span>
-        </div>
         <div className={estilos.contenedorPrincipalPublicacionesFijo}>
           <div className={estilos.contenedorPrincipalPublicaciones}>
-            <div className={estilos.mensajePrincipal}>
+            {/* <div className={estilos.mensajePrincipal}>
               <span className={estilos.mensajePrincipalTitulo}>
                 Publicaciones
               </span>
@@ -52,7 +52,7 @@ export default function Publicaciones({usuarioCookie,setUsuarioCookie}:any) {
                 compromiso de nuestra comunidad educativa. ¡No te pierdas
                 ninguna historia!
               </p>
-            </div>
+            </div> */}
 
 
   {(datosAnuncios && datosAnuncios.length !==0) &&
@@ -88,6 +88,22 @@ export default function Publicaciones({usuarioCookie,setUsuarioCookie}:any) {
           </div>
         </div>
       </div>
+      <Footer/>
     </Layout>
   );
 }
+
+
+export const getServerSideProps = async (context:any) => {
+  const respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/6?populate[imagen_header][fields][0]=url');
+  const { data } = respuesta.data;
+  const { attributes } = data;
+  try {
+      return {
+          props: {
+              informacion: attributes
+          },
+      };
+  } catch (error) {
+  }
+};

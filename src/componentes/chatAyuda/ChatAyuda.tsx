@@ -3,10 +3,22 @@ import estilos from "./ChatAyuda.module.css";
 import { AiOutlineMessage, AiOutlineSend } from "react-icons/ai";
 import imagenContacto from '../../../public/imagenes/logoUnidadColor.png'
 import Image from "next/image";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function ChatAyuda() {
   const [estado, setEstado] = useState<boolean>(false);
   const [mensaje, setMensaje] = useState<string>('');
+  const [numero, setNumero] = useState<string>();
+
+useEffect(()=>{
+  obtenernumero()
+},[])
+
+const obtenernumero = async () =>{
+  const respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
+  setNumero(respuestaTelefono.data.data.attributes)
+}
 
   const abrirCajaChatAyuda = () => {
     if (estado === false) {
@@ -18,7 +30,7 @@ export default function ChatAyuda() {
   };
 
   const enviarMensajeWhatsApp = () => {
-    const numeroWhatsApp = "+593992515443";
+    const numeroWhatsApp = `+593${numero}`;
     const mensajeWhatsApp = encodeURIComponent(mensaje);    
 
      window.open(`whatsapp://send?phone=${numeroWhatsApp}&text=${mensajeWhatsApp}`, '_blank');

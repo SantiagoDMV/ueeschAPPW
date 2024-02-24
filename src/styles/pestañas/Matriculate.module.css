@@ -1,5 +1,5 @@
 .contenedorMatriculacion{
-    min-height: calc(100vh - 4rem);
+    /* min-height: calc(100vh - 4rem); */
     background-color: transparent;
     display: flex;
     justify-content: flex-start;
@@ -15,12 +15,11 @@
     color: #0f4b6d;
     font-size: 0.95rem;
     gap: 1rem;
-    min-height: calc(100vh - 4rem);
+    padding: 2rem;
+    /* min-height: calc(100vh - 4rem); */
 }
 
 .contenedorRequisitos p{
-    font-size: 1.3rem;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,5 +87,6 @@
 @media only screen and (max-width:525px) {
     .contenedorRequisitos{
         flex-direction: column;
+        padding: 1rem;
     }
 }
