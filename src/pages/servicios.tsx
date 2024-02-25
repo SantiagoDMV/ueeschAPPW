@@ -231,10 +231,20 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
                         </div>
                       )}
                       <div className={estilos.contenedorBotonUnete}>
-                        {
+
+                        { 
                           e.encontrado === false?
+                          usuarioCookie ?
                           <button
                           onClick={() => enviarAsistencia(e.id_publicacion)}
+                          className={estilos.botonRegistro}
+                          id="botonRegistro"
+                        >
+                          Registrarme
+                        </button>
+                        :
+                        <button
+                          onClick={() => window.location.href ='/login'}
                           className={estilos.botonRegistro}
                           id="botonRegistro"
                         >

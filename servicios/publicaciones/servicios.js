@@ -82,9 +82,16 @@ export async function agregarUsuariosNuevosServicio(idsUsuariosAgregar,idPublica
 export async function mostrarServicios(req) {
     try {
         const { UserCookie } = req.cookies;
-        const user = verify(UserCookie, process.env.TOKEN_SECRET);
 
-        const verificacion = await repo.buscarUsuarioIdRegistrado(user.id);
+        let user= null
+        let verificacion= null
+        if(UserCookie)
+        user = verify(UserCookie, process.env.TOKEN_SECRET);
+       
+
+        if(user){
+        verificacion = await repo.buscarUsuarioIdRegistrado(user.id);
+        }
 
         const datos = await repo.mostrarServicios(); 
         const datosMultimedia = await repoMultimedia.obtenerImagenes(datos);
@@ -96,14 +103,22 @@ export async function mostrarServicios(req) {
                 mensaje: "Error interno en el servidor"
             };
 
-
+            
+            if(!verificacion){
         return {
             datos: datos,
             datosMultimedia: datosMultimedia,
-            verificacion: verificacion,
+            verificacion: [],
             valor: true
         }
+    }
 
+    return {
+        datos: datos,
+        datosMultimedia: datosMultimedia,
+        verificacion: verificacion,
+        valor: true
+    }
 
     } catch (error) {
         console.log("Ocurrio un error al mostrar las publicaciones: ", error)

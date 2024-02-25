@@ -1,4 +1,4 @@
-import Formulario from "@/componentes/layout/Formularios/FormularioRegistroMiembros";
+
 import estilos from "../styles/pestañas/RegistroMiembros.module.css";
 import { useState,useRef } from "react";
 import axios from "axios";
@@ -6,12 +6,12 @@ import MensajeError from "@/componentes/mensajes/MensajeError/MensajeError";
 import MensajeCargando from "@/componentes/mensajes/MensajeCargando/MensajeCargando";
 import { useRouter } from "next/router";
 import Layout from "@/componentes/layout/Layout";
+import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 
-export default function Registro({usuarioCookie,setUsuarioCookie}:any) {
+export default function Registro({usuarioCookie,setUsuarioCookie, informacion}:any) {
   const [input, setInput] = useState<any>({
     email_usuario:''
   });
-  const [estado, setEstado] = useState<any>(null);
 
 ////////////////////////////////////////////////////////////////////////
 const [mensajeErrorEstado, setMensajeErrorEstado] = useState({
@@ -120,13 +120,8 @@ const router = useRouter()
     <MensajeError estado={mensajeErrorEstado.estado} titulo={mensajeErrorEstado.titulo} informacion={mensajeErrorEstado.informacion}/>
     
       <div className={estilos.contenedorRegistroMiembros}>
-      {/* {
-    !estado ?
-    ( */}
+      <Header informacion={informacion} />
       <>
-        <div className={estilos.contenedorImagen}>
-          <span> Únete a Nuestra Comunidad Educativa</span>
-        </div>
 
         <div className={estilos.contenedorPrincipalUsernameMoodle}>
           <div className={estilos.contenedorUsernameMoodle}>
@@ -158,3 +153,17 @@ const router = useRouter()
     </Layout>
   );
 }
+
+export const getServerSideProps = async (context:any) => {
+  const respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/7?populate[imagen_header][fields][0]=url');
+  const { data } = respuesta.data;
+  const { attributes } = data;
+  try {
+      return {
+          props: {
+              informacion: attributes
+          },
+      };
+  } catch (error) {
+  }
+};

@@ -5,8 +5,9 @@ import axios from "axios";
 import MensajeError from "@/componentes/mensajes/MensajeError/MensajeError";
 import MensajeCargando from "@/componentes/mensajes/MensajeCargando/MensajeCargando";
 import Layout from "@/componentes/layout/Layout";
+import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 
-export default function Registro({usuarioCookie,setUsuarioCookie}:any) {
+export default function Registro({usuarioCookie,setUsuarioCookie, informacion}:any) {
   const [input, setInput] = useState<any>(null);
   const [estado, setEstado] = useState<any>(null);
 
@@ -93,9 +94,7 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
     !estado ?
     (
       <>
-        <div className={estilos.contenedorImagen}>
-          <span> Únete a Nuestra Comunidad Educativa</span>
-        </div>
+        {informacion && <Header informacion={informacion}/>}
 
         <div className={estilos.contenedorPrincipalUsernameMoodle}>
           <div className={estilos.contenedorUsernameMoodle}>
@@ -128,3 +127,18 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
     </Layout>
   );
 }
+
+
+export const getServerSideProps = async (context:any) => {
+  const respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/8?populate[imagen_header][fields][0]=url');
+  const { data } = respuesta.data;
+  const { attributes } = data;
+  try {
+      return {
+          props: {
+              informacion: attributes
+          },
+      };
+  } catch (error) {
+  }
+};

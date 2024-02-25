@@ -1,5 +1,5 @@
 .contenedorPrincipalMomentos{
-    min-height: calc(100vh - 4rem);
+    
     background-color: transparent;
     display: flex;
     justify-content: flex-start;

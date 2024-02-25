@@ -1,8 +1,4 @@
 .contenedorRegistroMiembros{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
   color: black;
   min-height: calc(100vh - 4rem);
   background-color: #f4f6f8;
@@ -37,7 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 100%;
 }
 
 .contenedorUsernameMoodle{
@@ -48,7 +44,7 @@
   flex-direction: column;
   gap: 1.5rem;
   color: rgb(44, 102, 147);
-  text-align: center;
+  text-align: justify;
 }
 
 .contenedorUsernameMoodle input{
@@ -62,6 +58,7 @@
 .contenedorUsernameMoodle button{
   margin-top: 10px;
   padding: 10px;
+
   border: none;
   background-color: rgb(67, 127, 179);
   border-radius: 5px;
@@ -86,6 +83,12 @@
 
 .contenedorRegistro{
   font-size: 0.9rem;
+}
+.contenedorFormEmail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .contenedorFormEmail input{
