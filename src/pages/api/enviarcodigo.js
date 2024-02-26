@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import UsuariosRepository from "../../../data/usuariosRepository";
 
 // Configuración del transporte del correo
 const transporter = nodemailer.createTransport({
@@ -55,27 +56,37 @@ export default async function correo(req, res) {
       const { email} = req.body;
       console.log(email)
 
-      const contrasenaGenerada= generarContrasena(8);
-console.log(contrasenaGenerada)
-
       if(!email || email === '')
       return res.status(400).json({mensaje: `Ingrese un email para continuar.`});
         
-
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email))
       return res.status(400).json({mensaje: `Debe ingresar un formato válido para el email`});  
 
-      // Contenido del correo
-    //   const mailOptions = {
-    //     from: `${process.env.EMAIL_UE}`,
-    //     to: "ueesch2023@gmail.com",
-    //     subject: "Nuevo mensaje de contacto",
-    //     text: `Nombre: ${name}\nCorreo Electrónico: ${email}\nMensaje: ${message}`,
-    //   };
+      const repo = new UsuariosRepository(); 
 
-    //   // Enviar el correo
-    //   const info = await transporter.sendMail(mailOptions);
+      const respuesta = await repo.buscarUsuarioEmail(email);
+      
+      if(!respuesta)
+      return res.status(400).json({mensaje: `El email ingresado no se está registrado.`});  
+
+      // return{
+
+      // }
+      
+      const contrasenaGenerada= generarContrasena(8);
+console.log(contrasenaGenerada)
+      //Contenido del correo
+      // const mailOptions = {
+      //   from: `${process.env.EMAIL_UE}`,
+      //   to: email,
+      //   subject: "Código de verificación para cambiar la contraseña",
+      //   text: `Hola,\n\nHas solicitado cambiar tu contraseña. Utiliza el siguiente código de verificación para proceder con el cambio:\n\nCódigo de Verificación: ${contrasenaGenerada}\n\nSi no has solicitado este cambio, puedes ignorar este correo electrónico.\n\nGracias,\n${process.env.NOMBRE_EMPRESA}`,
+      // };
+      
+
+      // // Enviar el correo
+      // const info = await transporter.sendMail(mailOptions);
 
       //console.log("Correo enviado: ", info.response);
 

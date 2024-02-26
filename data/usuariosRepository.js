@@ -554,12 +554,17 @@ async actualizarIdMoodle(id_moodle, email) {
   async cambiarContraseña(email, passw) {
     const prisma = this.getInstance();
     try {
+      const fechaActual = new Date();
+      const fechaActualLocal = new Date(
+        fechaActual.getTime() - fechaActual.getTimezoneOffset() * 60000
+      );
       await prisma.usuario.updateMany({
         where: {
           email_usuario: email,
         },
         data: {
           password_usuario: passw,
+          actualizado_en: fechaActualLocal
         },
       });
       prisma.$disconnect();

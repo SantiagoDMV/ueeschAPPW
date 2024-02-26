@@ -1,18 +1,20 @@
 import style from "../estilos/CambiarContraseña.module.css"
 import axios, { AxiosError } from "axios";
 import { useState } from 'react'
-import ProgresoProceso from "../mensajes/ProgresoProceso/ProgresoProceso";
+import {toast } from "sonner";
+import { AiOutlineKey } from "react-icons/ai";
 
 export default function AlertaActualizacion({
   actualizacionEstado,
   mensaje,
+  email
 }: any) {
-
 
   const [passw, setpassw] = useState({
     passwActual: '',
     passwNueva: '',
     passwNuevaConfirmacion: '',
+    email: email
   }
   )
 
@@ -33,36 +35,43 @@ export default function AlertaActualizacion({
     actualizacionEstado(false);
   };
 
-  const [mostrarMensaje, setMostrarMensaje] = useState(false);
 
-
+  let loadingToastId:any = null; 
   const actualizarContraseña = async (e: any) => {
     e.preventDefault()
     try {
-      setMostrarMensaje(true);
+      toast.dismiss(loadingToastId);
+      loadingToastId = toast.info('Actualizando contraseña, esto puede llevar un momento...', {
+        style: {
+          border: 'none'
+        },
+      });
+        
       await axios.put('/api/sesiones', passw)
+      toast.dismiss(loadingToastId);
+      toast.success("La contraseña fue actualizada exitosamente", {
+        style: {
+          backgroundColor: "rgb(90,203,154)",
+          border: "none",
+        },
+        duration: 3000
+      });
       actualizacionEstado(false);
     } catch (error) {
-      const errorMensaje:any = (error as AxiosError).response?.data;
-      console.log(errorMensaje.mensaje)
-      mensajeError(errorMensaje.mensaje)
-    }finally{
-      setMostrarMensaje(false);
-    }
+      ////////////////////////////////////////////////////////////////////////
+          const errorMensaje:any = (error as AxiosError).response?.data;    
+          
+          toast.dismiss(loadingToastId);
+        
+          loadingToastId =toast.error(errorMensaje.mensaje, {
+              style: {
+                backgroundColor: 'rgb(203,90,90)',
+                border: 'none'  
+              },
+            });
+        }
   };
-   
-   const mensajeError = (error:any)=>{
-    let input= document.getElementById("contenedor");
-    
-    if(document.getElementById("mError"))
-    document.getElementById("mError")?.remove();
-    
-    const mensaje = document.createElement("div");
-    mensaje.innerHTML=`${error}`;
-    mensaje.id="mError";
-    mensaje.className=`${style.mensajeError}`;
-    input?.appendChild(mensaje);
-  }
+
 
 
   return (
@@ -70,6 +79,7 @@ export default function AlertaActualizacion({
     <div className={style.contenedorAlertaActualizacion}>
       <div className={style.contenedorMensajeInformacion} id="contenedor">
         <p className={style.mensaje}>{mensaje}</p>
+        <AiOutlineKey className={style.iconollave}/>
       </div>
 
       <div className={style.campos}>
@@ -99,7 +109,6 @@ export default function AlertaActualizacion({
 
       </div>
     </div>
-    <ProgresoProceso titulo={"Procesando solicitud"} informacion={"Por favor, espere un momento"} estado={mostrarMensaje}/>
     </>
   );
 }

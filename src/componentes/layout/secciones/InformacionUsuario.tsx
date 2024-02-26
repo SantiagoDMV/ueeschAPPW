@@ -177,6 +177,7 @@ export default function FormualrioPerfil({ usuario }: any) {
                 mensaje="Tu seguridad es nuestra prioridad. No compartas tu contraseña"
                 actualizacionEstado={setEstado}
                 id="contenedorAlerta"
+                email= {usuario.email}
               />
             </div>
           ) : (

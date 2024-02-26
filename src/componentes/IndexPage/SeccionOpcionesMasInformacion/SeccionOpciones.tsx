@@ -1,6 +1,5 @@
 import style from "./SeccionOpciones.module.css";
 import {
-  AiOutlineRead,
   AiOutlineHistory,
   AiFillInfoCircle,
   AiOutlineApi,

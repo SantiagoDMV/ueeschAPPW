@@ -83,6 +83,7 @@ export default function Layout({ children, usuario, setUsuarioCookie }: any) {
                 </>
                 }
                 <Link href={'/moodle/agregar-usuario-curso'} className={style.link}><span>Agregar usuario a un curso</span></Link>
+                <Link href={'/moodle/creartarea'} className={style.link}><span>Crear una tarea</span></Link>
 
                 {/* OPCIONES DE COMPARTIR EN REDES SOCIALES */}
                 

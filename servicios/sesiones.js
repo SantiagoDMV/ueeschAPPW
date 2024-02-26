@@ -83,11 +83,10 @@ export async function login_usuarios(req, res) {
 export async function cambiarContraseña(req) {
   try {
 
-    const { passwActual, passwNueva, passwNuevaConfirmacion } = req.body;
+    const { passwActual, passwNueva, passwNuevaConfirmacion,email } = req.body;
     const validacionDatos = nuevaContraseñaValidacion(passwActual, passwNueva, passwNuevaConfirmacion);
     if (!validacionDatos.valor) return validacionDatos;
 
-    const { email } = ObtenerInformacionCookie(req);
     const usuariosRepo = new UsuariosRepository();
     const respuesta = await usuariosRepo.buscarUsuarioEmail(email);
     if (!respuesta)
@@ -96,6 +95,7 @@ export async function cambiarContraseña(req) {
         valor: false,
         mensaje: "Error interno en el servidor"
       }
+    
     const hashingPassw = await comparar(
       passwActual,
       respuesta.password_usuario
@@ -115,7 +115,9 @@ export async function cambiarContraseña(req) {
         mensaje: "La nueva contraseña debe ser distinta a la actual"
       }
 
+
     const nuevaContraseñaHashing = await hashing(passwNueva);
+
     const cambio = await usuariosRepo.cambiarContraseña(email, nuevaContraseñaHashing);
 
     if (!cambio)
@@ -125,7 +127,10 @@ export async function cambiarContraseña(req) {
         mensaje: "Error interno en el servidor"
       }
 
-    return cambio
+    return {
+      statusCode: 500,
+      valor: true,
+    }
 
   } catch (error) {
     return {

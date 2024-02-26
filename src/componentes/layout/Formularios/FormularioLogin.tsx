@@ -7,6 +7,7 @@ import logo from "/public/imagenes/nav/logoUnidad.png";
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
 import Ventana from "@/componentes/ventanas/Ventana";
+import CambiarContraseña from "../../ventanas/CambiarContraseña";
 
 
 export default function FormularioLogin({ styles,setUsuario }: any) {
@@ -18,6 +19,10 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
 
   const [email,setEmail] = useState('');
   const [estadoRecuperar, setEstadoRecuperar] = useState(false);
+  const [codigoEnviado,setCodigoEnviado] = useState(false);
+  const [cambiarContrasenaAprobado,setCambiarContrasenaAprobado] = useState(false);
+  const [codigo,setCodigo] = useState<any>();
+  const [codigoRecibido, setCodigoRecibido] = useState<any>();
 
   const router = useRouter();
   
@@ -27,14 +32,13 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
       [e.target.name]: e.target.value,
     });
   };
-
+  let loadingToastId:any = null; 
 
   const envioDatos = async (e: any) => {
-    e.preventDefault();
-    let loadingToastId:any = null; 
+    e.preventDefault(); 
   
     try {
-  
+      toast.dismiss(loadingToastId);
       loadingToastId = toast.info('Autenticando, esto puede llevar un momento...', {
         style: {
           border: 'none'
@@ -45,7 +49,8 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
       "/api/sesiones",
       credenciales
     ) 
-    
+
+    toast.dismiss(loadingToastId);
     setUsuario(respuesta.data)
     if (respuesta.data.redirectTo) {
       try{
@@ -65,10 +70,10 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
     
     toast.dismiss(loadingToastId);
   
-      toast.error(errorMensaje.mensaje, {
+    loadingToastId =toast.error(errorMensaje.mensaje, {
         style: {
           backgroundColor: 'rgb(203,90,90)',
-          border: 'none'
+          border: 'none'  
         },
       });
   }
@@ -78,9 +83,10 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
 
   const enviarcorreorecuperar = async(e:any) =>{
     e.preventDefault();
-    let loadingToastId:any = null; 
+    const botonGenerarCodigo = document.getElementById('botonGenerarCodigo') as HTMLButtonElement;
     try {
-  
+      botonGenerarCodigo.disabled =true;
+      toast.dismiss(loadingToastId);
       loadingToastId = toast.info('Enviando email, esto puede llevar un momento...', {
         style: {
           border: 'none'
@@ -88,7 +94,9 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
       });
 
     const respuesta = await axios.post('/api/enviarcodigo',{email: email});
-    console.log(respuesta.data)
+    setCodigoEnviado(!codigoEnviado)
+    setCodigoRecibido(respuesta.data.contrasenaGenerada)
+    toast.dismiss(loadingToastId);
     //console.log(respuesta.data.contrasenaGenerada)
   } catch (error) {
     ////////////////////////////////////////////////////////////////////////
@@ -96,24 +104,88 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
         
         toast.dismiss(loadingToastId);
       
-          toast.error(errorMensaje.mensaje, {
+        loadingToastId =toast.error(errorMensaje.mensaje, {
             style: {
               backgroundColor: 'rgb(203,90,90)',
               border: 'none'
             },
           });
       }
+      finally{
+        botonGenerarCodigo.disabled =false;
+      }
     ////////////////////////////////////////////////////////////////////////
       };
       
+      const comprobacion = (e:any) =>{  
+        e.preventDefault();
+        const boton = document.getElementById('botonComprobacion') as HTMLButtonElement;
+        boton.disabled =true;
+        if(codigo !== codigoRecibido){
+          toast.dismiss(loadingToastId);
+          loadingToastId =toast.error('El código ingresado no coincide con el enviado al correo electrónico. Por favor, revisa y vuelve a intentarlo.', {
+            style: {
+              backgroundColor: 'rgb(203,90,90)',
+              border: 'none'
+            },
+          });
+          boton.disabled =false;
+          return
+        }
+        toast.dismiss(loadingToastId);
+        setCambiarContrasenaAprobado(!cambiarContrasenaAprobado)
+      }
     
   return (
     <>
     <Ventana estado={estadoRecuperar}>
+      {
+      cambiarContrasenaAprobado ?
+      <CambiarContraseña
+                mensaje="Tu seguridad es nuestra prioridad. No compartas tu contraseña"
+                actualizacionEstado={setEstadoRecuperar}
+                id="contenedorAlerta"
+                email={email}
+              />
+      :
+      codigoEnviado ?
       <div className={styles.contenedorRecuperarContrasena}>
+      <h1>Cuenta verificada</h1>
+      <p>Pronto recibirás un código de verificación en tu correo electrónico. Por favor, introduce el código en el campo a continuación para restablecer tu contraseña.</p>
+      
+      {/* <form class="login-form" action="http://localhost/login/index.php" method="post" id="login"> */}
+    
+      <form onSubmit={comprobacion} className={styles.contenedorFormularioRecuperarContrasena}>
+        <div className={styles.inputsRecuperar}>
+          <input
+            onChange={(e) => setCodigo(e.target.value)}
+            type="text"
+            id="codigo"
+            name="codigo"
+            placeholder="Introduce el código de verificación aquí"
+          />
+        </div>
+        
+        <div className={styles.botonesRecuperar}>
+          <button type="submit" className={styles.btnRecuperar} id="botonComprobacion">
+            Enviar
+          </button>
+          <button type="submit" className={styles.btnRecuperar} onClick={()=>{setEstadoRecuperar(false)
+          setCodigoEnviado(false)
+          //setCambiarContrasenaAprobado(false)
+          }}>
+            Cancelar
+          </button>
+          </div>
+          </form>
+        </div>
+        :
+        <div className={styles.contenedorRecuperarContrasena}>
   <h1>Recupera tu cuenta</h1>
   <p>Ingresa tu email para recuperar tu contraseña</p>
   
+  {/* <form class="login-form" action="http://localhost/login/index.php" method="post" id="login"> */}
+
   <form onSubmit={enviarcorreorecuperar} className={styles.contenedorFormularioRecuperarContrasena}>
     <div className={styles.inputsRecuperar}>
       <input
@@ -126,20 +198,24 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
     </div>
     
     <div className={styles.botonesRecuperar}>
-      <button type="submit" className={styles.btnRecuperar}>
+    <button type="submit" className={styles.btnRecuperar} id="botonGenerarCodigo">
         Enviar
       </button>
-      <button type="submit" className={styles.btnRecuperar} onClick={()=>setEstadoRecuperar(!estadoRecuperar)}>
-        Cancelar
-      </button>
+      <button type="submit" className={styles.btnRecuperar} onClick={()=>{setEstadoRecuperar(false)
+          setCodigoEnviado(false)}}>
+            Cancelar
+          </button>
       </div>
       </form>
     </div>
+      }
+      
 </Ventana>
 
-      <form className={styles.formulario} 
+{/* <form class="login-form" action="http://localhost/login/index.php" method="post" id="login"> */}
+      <form className={`login-form ${styles.formulario}`} 
       onSubmit={envioDatos} 
-      //action="http://localhost/login/index.php" 
+      action="http://localhost/login/index.php" 
       method="post" 
       id="login"
       >
@@ -194,7 +270,11 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
           </div>
 
           <div className={styles.opciones}>
-            <label onClick={()=>setEstadoRecuperar(!estadoRecuperar)} > ¿Olvidaste tu contraseña?</label>
+            <label onClick={()=>{
+              setEstadoRecuperar(false)
+              setCodigoEnviado(false)
+              setCambiarContrasenaAprobado(false)
+              setEstadoRecuperar(!estadoRecuperar)}} > ¿Olvidaste tu contraseña?</label>
             <div className={styles.contenedorbtn}>
               <button type="submit" className={styles.btn}>
                 Login
@@ -208,7 +288,7 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
       theme="dark"
       position='top-center'
       visibleToasts={3}
-      duration={3000}
+      duration={8000}
       />
     </>
   );
