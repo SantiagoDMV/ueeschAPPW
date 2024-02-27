@@ -85,8 +85,6 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion, mood
           </div>
         </div>
 
-<h1>H1 PUBLICADO</h1>
-
         <div
           className={style.contenedorSeccionPublicaciones}
           id="contenedorSeccionPublicaciones"
