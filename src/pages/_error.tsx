@@ -3,7 +3,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import styles from "../styles/pestañas/ErrorPage.module.css";
 import Layout from "@/componentes/layout/Layout";
 
-const Error = ({ statusCode, usuarioCookie, setUsuarioCookie }: any) => {
+const Error = ({ statusCode, usuarioCookie, setUsuarioCookie, error }: any) => {
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
       <div className={styles.contenedorError}>
@@ -22,6 +22,13 @@ const Error = ({ statusCode, usuarioCookie, setUsuarioCookie }: any) => {
             ponte en contacto con el administrador del sitio para obtener
             asistencia.
           </p>
+          {error && (
+            <div className={styles.errorDetails}>
+              <h3>Detalles del error:</h3>
+              <p>{error.message}</p>
+              <pre>{error.stack}</pre>
+            </div>
+          )}
         </div>
       </div>
     </Layout>
@@ -30,7 +37,7 @@ const Error = ({ statusCode, usuarioCookie, setUsuarioCookie }: any) => {
 
 Error.getInitialProps = ({ res, err }: any) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+  return { statusCode, error: err };
 };
 
 export default Error;
