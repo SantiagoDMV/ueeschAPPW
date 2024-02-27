@@ -107,15 +107,15 @@ export async function mostrarPublicacionesInformacion() {
   try {
     const datos = await repo.mostrarPublicaciones();
 
-    if (!datos)
+    if (!datos.valor)
       return {
         statusCode: 500,
         valor: false,
-        mensaje: "Error interno en el servidor",
+        mensaje: `Error interno en el servidor, ${datos.mensaje}`,
       };
 
     return {
-      datos: datos,
+      datos: datos.mensaje,
       valor: true,
     };
   } catch (error) {

@@ -27,11 +27,17 @@ export default class PublicacionRepository{
                 }
             });    
             prisma.$disconnect();
-            return respuesta
+            return{
+            valor: true,
+            mensaje: respuesta
+          }
         } catch (error) {
-            console.log(error)
+            //console.log(error)
             prisma.$disconnect();
-            return false
+            return {
+              valor: false,
+              mensaje: error
+            }
         }
     }
 

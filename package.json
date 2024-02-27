@@ -5,6 +5,7 @@
   "homepage": "http://ueesch.eduinclusivaec.com",
   "scripts": {
     "dev": "next dev",
+    "prestart": "prisma generate",
     "build": "rimraf .next && next build",
     "start": "set NODE_ENV=production node server.js",
     "lint": "next lint",
