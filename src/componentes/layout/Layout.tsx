@@ -25,7 +25,7 @@ export default function Layout({ children, usuario, setUsuarioCookie, moodle }: 
   const [cursos, setCursos] = useState<any>();
 
   const obtenerInformacionCursos = async () => {
-    console.log(usuario)
+  
     if (usuario) {
       const respuesta = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,

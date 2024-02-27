@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "rimraf .next && next build",
-    "start": "next start",
+    "start": "set NODE_ENV=production next start",
     "lint": "next lint",
     "deploy": "set NODE_ENV=production next build && set NODE_ENV=production next start && gh-pages -d out -b gh-pages"
   },
