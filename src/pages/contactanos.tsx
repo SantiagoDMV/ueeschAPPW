@@ -1,5 +1,5 @@
 import style from "../styles/pestañas/Contactanos.module.css";
-import { AiFillMail,AiOutlineWhatsApp, AiFillPhone } from "react-icons/ai";
+import { AiFillMail, AiFillPhone } from "react-icons/ai";
 import ContactForm from "@/componentes/layout/Formularios/FormularioEmail/FormularioEmail";
 import Link from "next/link";
 import Layout from "@/componentes/layout/Layout";
