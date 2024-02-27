@@ -140,7 +140,6 @@ export default function CrearTarea({
 
   const handleSubmitMoodle = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(tarea.sectionid);
     const nuevaPestana = window.open(
       `${moodle.host}/course/modedit.php?add=assign&type&course=${tarea.course}&section=${tarea.sectionid}&return=0&sr=0&beforemod=0`,
       "_blank"

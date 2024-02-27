@@ -1,3 +1,61 @@
+/* INICIO DE LA VENTANA CALENDARIO */
+.fondoPrincipalCalendario{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.fondoPrincipalCalendario select{
+  padding: 10px;
+}
+
+.formGroup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contenedorTareaCalendario{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.237);
+  padding: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  gap: 10px;
+  text-align: center;
+}
+.contenedorTareaCalendario:hover{
+  color: #4267b2;
+}
+
+.fechaCreacionTareaCalendario{
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #4267b2;
+}
+
+.botonAnadir{
+ display: flex;
+ justify-content: flex-end;
+ background-color: rgb(230, 184, 72);
+ border-radius: 5px;
+ padding: 7px;
+ color: white;
+}
+.btnCerrar{
+  color: rgb(246, 8, 8);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+/* FIN DE LA VENTANA CALENDARIO */
+
 .nav {
   z-index: 100;
   background-color: white;

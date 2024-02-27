@@ -69,6 +69,7 @@
   font-size: 0.85rem;
   cursor: pointer;
   flex-direction: row-reverse;
+  user-select: none;
 }
 .navContenido {
   display: flex;

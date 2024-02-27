@@ -15,7 +15,7 @@ import Publicaciones from "../componentes/layout/secciones/PublicacionesIndex";
 import Anuncios from "@/componentes/layout/secciones/AnunciosPublicaciones/Anuncio";
 import imagen from '../../public/imagenes/index/header/header.jpg'
 
-export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: any) {
+export default function Home({ usuarioCookie, setUsuarioCookie,informacion, moodle }: any) {
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>();
   const [datosAnuncios, setDatosAnuncios] = useState<any>();
   const [mostrarCarga, setMostrarCarga] = useState(true);
@@ -67,7 +67,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion }: an
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+      <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         <div className={style.contenedorInicio}>
           <div className={style.contenedorSuperior}>
             {informacion && <Header informacion={informacion}/>}
@@ -139,10 +139,18 @@ export const getServerSideProps = async (context: any) => {
   const {data} =respuesta.data
   const {attributes} = data;
 
+
+  const moodle = {
+    host: process.env.MOODLE_HOST,
+    token: process.env.TOKEN_MOODLE,
+  };
+
+
   try {
     return {
       props: {
-        informacion: attributes
+        informacion: attributes,
+        moodle: moodle
       },
     };
   } catch (error) {
