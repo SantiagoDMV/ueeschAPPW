@@ -2,10 +2,11 @@
   "name": "appwebt",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ueesch.eduinclusivaec.com",
   "scripts": {
     "dev": "next dev",
     "build": "rimraf .next && next build",
-    "start": "set NODE_ENV=production next start",
+    "start": "set NODE_ENV=production node server.js",
     "lint": "next lint",
     "deploy": "set NODE_ENV=production next build && set NODE_ENV=production next start && gh-pages -d out -b gh-pages"
   },
