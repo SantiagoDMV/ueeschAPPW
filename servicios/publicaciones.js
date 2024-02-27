@@ -123,7 +123,7 @@ export async function mostrarPublicacionesInformacion() {
     return {
       statusCode: 500,
       valor: false,
-      mensaje: "Error interno del servidor",
+      mensaje: `Error interno del servidor, ${error}`,
     };
   }
 }

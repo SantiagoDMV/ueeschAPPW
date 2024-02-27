@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import style from "../styles/pestañas/Index.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -47,7 +47,10 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion, mood
       setDatosAnuncios(datosAnuncios);
       setDatosPublicaciones(datosNoticias);
     } catch (error) {
+      const errorMensaje: any = (error as AxiosError).response?.data;
       console.error("Error al obtener las publicaciones:", error);
+      console.error("Error del servidor al obtener las publicaciones:", errorMensaje);
+      
       document.getElementById("contenedorSeccionPublicaciones")?.remove();
     } finally {
       // Ocultar el mensaje de carga después de 5 segundos (5000 milisegundos)
