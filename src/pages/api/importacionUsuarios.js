@@ -1,3 +1,4 @@
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { mostrarUltimaImportacion,crearUltimaImportacion } from "../../../servicios/importacionUsuarios"
 
 export default async function usuarios(req,res) {
@@ -11,9 +12,10 @@ export default async function usuarios(req,res) {
                    })    
             } 
     
+            
             if(respuesta.datosImportacion){
                 const opcionesDeFormato = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                const fecha_formateada = respuesta.datosImportacion.update_at.toLocaleString('es-ES', opcionesDeFormato);
+                const fecha_formateada = respuesta.datosImportacion.creado_en.toLocaleString('es-ES', opcionesDeFormato);
             return res.status(200).json({
                 mensaje: fecha_formateada,
                })        

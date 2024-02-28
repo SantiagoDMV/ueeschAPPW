@@ -135,10 +135,14 @@ urlsFiltradas = extraerIds(respuestaTareas);
       img.alt = `iconoActividad`;
       img.style.paddingRight = "1rem";
 
-      a.href = `${moduloInf[id].modules[i].url}`;
-      a.target = "_blank";
-
+      
       a.innerText = `${moduloInf[id].modules[i].name}`;
+      if(moduloInf[id].modules[i].url){
+        a.href = `${moduloInf[id].modules[i].url}`;
+        a.target = "_blank";
+      }else{
+        a.removeAttribute('href'); // Elimina el atributo href
+      }
       a.appendChild(img);
       a.style.width = "100%";
       a.style.height = "100%";

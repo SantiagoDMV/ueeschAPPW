@@ -16,11 +16,10 @@ function obtenerCursoPorId(cursos, idBuscado) {
 export default async function usuario_cursos(req, res) {
   try {
     const { cursoId, id_moodle_estudiante } = req.body;
-    console.log(req.body)
+    
 
     const cookieUser = ObtenerInformacionCookie(req);
 
-    console.log(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=${cursoId}`)
     const cursosUSer = await axios.get(
       `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=${cursoId}`
     );
@@ -34,15 +33,21 @@ export default async function usuario_cursos(req, res) {
 
     const profesorEncontrado = verificarRoles(cursosUSer.data, cookieUser.id_moodle, 3);
     const estudianteEncontrado = verificarRoles(cursosUSer.data, id_moodle_estudiante, 5);
-    //console.log(informacionCurso)
-    //console.log(informacionEstudiante)
-
+  
+    if(cookieUser.rol !== 1 && cookieUser.rol !== 2){
     if(profesorEncontrado && estudianteEncontrado)
     return res.status(200).json({
       valor:true,
       informacionCurso: informacionCurso,
       informacionEstudiante: informacionEstudiante
     });
+  }else{
+      return res.status(200).json({
+        valor:true,
+        informacionCurso: informacionCurso,
+        informacionEstudiante: informacionEstudiante
+      });
+    }
 
     return res.status(200).json({
         valor:false
