@@ -2,7 +2,6 @@
   "name": "appwebt",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ueesch.eduinclusivaec.com",
   "scripts": {
     "dev": "next dev",
     "build": "rimraf .next && next build",
