@@ -29,7 +29,7 @@ export default function Publicaciones({ publicacion, multimedia,informacionUsuar
           <Image
             key={index}
             src={imgSrc}
-            
+            quality={100}
             alt="Image"
             className={style.imagenPublicacion}
             width={500}

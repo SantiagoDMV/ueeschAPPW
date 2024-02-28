@@ -391,6 +391,8 @@ export const registrarUsuarios = async (req) => {
 ////////////////////SERVICIO ACTUALIZAR USUARIO////////////////////////
 export const actualizarUsuariosImportados = async (req) => {
   try {
+
+    const userRepo = new UsuariosRepository();
     const validaciones = validacionActualizacionDatos(req);
 
     const {
@@ -401,6 +403,18 @@ export const actualizarUsuariosImportados = async (req) => {
       email,
     } = req.body;
 
+    
+    const respuesta = await userRepo.buscarUsuarioCedula(cedula_usuario)
+
+  
+    if(respuesta)
+    return {
+      statusCode: 401,
+      valor: false,
+      mensaje: "La cédula ingresada ya se encuentra registrada",
+    };
+
+    
     if (password_usuario_confirmar !== password_usuario) {
       return {
         statusCode: 401,

@@ -15,9 +15,11 @@ export default async function usuario_cursos(req,res) {
         //const respuesta = await axios.get(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=username&criteria[0][value]=ueeschapp`)    
         
         const {cursoId,id_moodle} = req.body
+        
         const id_moodle_number =parseInt(id_moodle)
         
         const cookieUser = ObtenerInformacionCookie(req);
+        
         
         const cursosUSer = await axios.get(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=${cursoId}`);
         

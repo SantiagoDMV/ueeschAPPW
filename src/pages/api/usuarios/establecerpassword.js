@@ -11,6 +11,7 @@ export default async function usuarios(req,res) {
         return res.status(200).json({mensaje: "Usuario registrado con exito"})
     }else if(req.method === "PUT"){
         const peticion = await actualizarUsuariosImportados(req,res);
+        
         if(!peticion.valor)
           return res.status(peticion.statusCode).json(peticion);
  

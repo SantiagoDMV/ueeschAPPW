@@ -139,6 +139,7 @@ class UsuariosRepository {
     } catch (error) {
       console.log(error);
       prisma.$disconnect();
+      return false
     }
   }
 
@@ -347,6 +348,8 @@ class UsuariosRepository {
             email_usuario: usuarioMoodle.email,
             imagen_usuario: imagen_usuario,
             ultimo_acceso: fecha_actual,
+            cedula_usuario: '',
+            password_usuario: ''
           });
         }
       }

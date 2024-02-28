@@ -71,7 +71,7 @@ export default function FormularioActualizacionImportados({
       const errorMensaje: any = (error as AxiosError).response?.data;
       toast.dismiss(loadingToastId);
   
-      toast.error(errorMensaje, {
+      toast.error(errorMensaje.mensaje, {
         style: {
           backgroundColor: 'rgb(203,90,90)',
           border: 'none'

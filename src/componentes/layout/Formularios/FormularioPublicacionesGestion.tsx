@@ -11,6 +11,7 @@ import { useState,useRef } from "react";
 import MensajeExito from "@/componentes/mensajes/MensajeExito/MensajeExito";
 import MensajeError from "@/componentes/mensajes/MensajeError/MensajeError";
 import MensajeCargando from "@/componentes/mensajes/MensajeCargando/MensajeCargando";
+import  ReactImageFileResizer  from 'react-image-file-resizer';
 
 
 
@@ -76,7 +77,71 @@ const escucharCambio = (e: any) => {
         mensaje: 'Creando publicación, esto puede llevar un momento...'
       })
       
-      await axios.post("/api/publicaciones",{contenido: content, datosPublicacion: contenido})
+      let contentToSend:string[] = [content]; // Copia del contenido original del editor
+
+        // Redimensionar imágenes si superan el límite de 1 MB
+        const images = content.match(/<img[^>]+>/g); // Extraer todas las etiquetas de imagen del contenido
+        if (images) {
+            const promises = images.map(async imgTag => {
+                const src = imgTag.match(/src="([^"]+)"/); // Extraer el atributo src de la etiqueta de imagen
+                if (src && src[1]) {
+                    const imgSrc = src[1];
+                    try {
+                        const response = await fetch(imgSrc); // Obtener la imagen
+                        if (!response.ok) {
+                            // Si la solicitud no fue exitosa, saltar al siguiente bucle
+                            return imgTag;
+                        }
+                        const blob = await response.blob();
+                        //console.log("Tamaño inicial de la imagen:", blob.size);
+
+                        if (blob.size > 307200) {
+                            // Redimensionar la imagen
+                            const resizedImageBlob = await new Promise<Blob>((resolve, reject) => {
+                                ReactImageFileResizer.imageFileResizer(
+                                  blob, // file: Blob
+                                  700, // maxWidth: number
+                                  700, // maxHeight: number
+                                  'PNG', // compressFormat: string
+                                  1, // quality: number
+                                  0, // rotation: number
+                                  (value: string | Blob | File | ProgressEvent<FileReader>) => { // responseUriFunc: (value: string | Blob | File | ProgressEvent<FileReader>) => void
+                                      if (value instanceof Blob) {
+                                          // Si el valor es una Blob, es la imagen redimensionada
+                                          resolve(value);
+                                      } else {
+                                          // Si el valor no es una Blob, puedes manejar otros tipos de respuestas aquí
+                                          console.error("Se recibió un tipo de respuesta inesperado:", value);
+                                          reject(new Error("Respuesta inesperada al redimensionar la imagen"));
+                                      }
+                                  },
+                                  'blob' // outputType: string (opcional, puedes omitirlo si deseas el valor predeterminado)
+                                );
+                            });
+                            //console.log("Tamaño después de redimensionar:", resizedImageBlob.size);
+                            // Convertir la imagen redimensionada a formato de datos URL
+                            const resizedImageDataUrl = await blobToDataURL(resizedImageBlob);
+                            // Reemplazar la imagen original con la redimensionada en el contenido
+                            return imgTag.replace(imgSrc, resizedImageDataUrl);
+                        }
+                        return imgTag;
+                    } catch (error) {
+                        console.error("Error al cargar la imagen:", error);
+                        return imgTag;
+                    }
+                }
+                return imgTag;
+            });
+            contentToSend = await Promise.all(promises);
+        }
+        
+        // Aquí deberías esperar a que se redimensionen todas las imágenes antes de continuar con el envío de la publicación
+
+        await axios.post("/api/publicaciones", {
+            contenido: contentToSend.join(''), // Usar el contenido redimensionado
+            datosPublicacion: contenido,
+        });
+
       
       // await axios.post("/api/publicaciones",{contenido: contenido})
       // .then(async (respuesta:any)=>{
@@ -149,17 +214,24 @@ const escucharCambio = (e: any) => {
 
   /* */
 
-  const mostrarMasOpciones = () => {
-    const div: HTMLDivElement | null = document.getElementById('masOpcionesPublicacion') as HTMLDivElement;
-  
-    if (div && div.style.display === 'flex') {
-      div.style.display = 'none';
-      return;
-    }
-    
-      div.style.display = 'flex';
-    
+
+  const blobToDataURL = (blob: Blob): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            if (typeof reader.result === "string") {
+                resolve(reader.result);
+            } else {
+                reject(new Error("Error al leer el archivo como URL de datos."));
+            }
+        };
+        reader.onerror = () => {
+            reject(new Error("Error al leer el archivo como URL de datos."));
+        };
+        reader.readAsDataURL(blob);
+    });
   };
+
   
   function getFechaActual() {
     const ahora = new Date();

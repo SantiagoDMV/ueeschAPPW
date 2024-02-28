@@ -148,7 +148,7 @@ export default class PublicacionRepository{
         const respuesta = await prisma.publicacion.findMany({
             // take:6,
             orderBy:{
-                id_tipo_publicacion: 'asc',
+                creado_en: 'desc',
             },
             where:{
               id_tipo_publicacion: 3,

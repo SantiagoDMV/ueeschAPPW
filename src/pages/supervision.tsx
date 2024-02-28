@@ -49,11 +49,12 @@ export default function Supervision({
   
   const obtenerInformacionCurso = async () => {
     try {
+      console.log(curso_id_number, id_estudiante_number)
       const respuesta = await axios.post(
         `/api/moodle/profesores/core_enrol_get_enrolled_users`,
         { cursoId: curso_id_number, id_moodle_estudiante: id_estudiante_number }
       );
-
+console.log(respuesta.data)
       setEstadoMensaje(false)
       console.log(respuesta.data)
       if(!respuesta.data.valor){
