@@ -158,7 +158,8 @@ const datosGrafico = {
     <Layout
       usuario={usuarioCookie}
       setUsuarioCookie={setUsuarioCookie}
-    >
+      moodle={moodle}
+      >
 
 {
   estadoMensaje ? 
@@ -259,11 +260,6 @@ color={"#558"} loading={true} size={70}/>
 export const getServerSideProps = async (context: any) => {
 
   try{
-  const moodle = {
-    host: process.env.MOODLE_HOST,
-    token: process.env.TOKEN_MOODLE,
-  };
-
   const cursoId = context.query.curso;
   const id_estudiante = context.query.estudiante;
 
@@ -275,7 +271,6 @@ export const getServerSideProps = async (context: any) => {
     props: {
       curso_id_number: curso_id_number,
       id_estudiante_number: id_estudiante_number,
-      moodle: moodle,
     },
   };
 } catch (error) {

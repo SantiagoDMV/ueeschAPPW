@@ -12,7 +12,7 @@ import ReactDOMServer from "react-dom/server";
 import Link from "next/link";
 import { Toaster, toast } from "sonner";
 
-export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
+export default function Servicios({ usuarioCookie, setUsuarioCookie, moodle }: any) {
   useEffect(() => {
     obtenerDatosPublicaciones();
   }, []);
@@ -159,7 +159,7 @@ export default function Servicios({ usuarioCookie, setUsuarioCookie }: any) {
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <Ventana estado={estado}>
         <InformacionUsuariosAsistentes
           idPublicacion={idPublicacion}

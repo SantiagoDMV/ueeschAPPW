@@ -4,9 +4,9 @@ import Layout from '@/componentes/layout/Layout';
 import estilos from '../styles/pestañas/ErroresPages.module.css'
 import { AiOutlineWarning } from 'react-icons/ai';
 
-export default function errorservermoodle({error,usuarioCookie,setUsuarioCookie}:any) {
+export default function errorservermoodle({error,usuarioCookie,setUsuarioCookie, moodle}:any) {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
     <div className={estilos.contendorErrorPage}>
     {error === 'moodle' &&
     (

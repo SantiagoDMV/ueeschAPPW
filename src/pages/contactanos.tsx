@@ -6,10 +6,10 @@ import Layout from "@/componentes/layout/Layout";
 import axios from 'axios'
 import mdtoTML from '../../util/snarkdown'
 
-export default function About({usuarioCookie,setUsuarioCookie, email, telefono,direccion,horario}:any) {
+export default function About({usuarioCookie,setUsuarioCookie, email, telefono,direccion,horario, moodle}:any) {
   return (
 
-<Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}> 
+<Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}> 
 
 
       <div className={style.contenedorContactanos}>

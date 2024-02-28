@@ -72,7 +72,7 @@ axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsf
 
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorCrearCurso}>
         <h2>Crear Categoría</h2>
         <form className={estilos.formularioCrearCurso} onSubmit={handleSubmit}>
@@ -122,28 +122,3 @@ axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsf
     </Layout>
   );
 }
-export const getServerSideProps = async (context: any) => {
-    try{
-  
-    const moodle={
-      host : process.env.MOODLE_HOST,
-      token : process.env.TOKEN_MOODLE,
-    }
-  
-      return {
-        props: {      
-          moodle:moodle
-        },
-      };
-    
-  } catch (error) {
-    console.error('Error en getServerSideProps /crearcategoria');
-      return {
-        redirect: {
-          destination: '/error?server=moodle',
-          permanent: false,
-        },
-      };
-      }
-  };
-  

@@ -19,7 +19,7 @@ import Layout from "@/componentes/layout/Layout";
 let cacheUsuario: any = null;
 
 //export default function Reporte({ informacionUsuario,usuarioCookie,setUsuarioCookie }: any) {
-export default function Reporte({ usuarioCookie, setUsuarioCookie }: any) {
+export default function Reporte({ usuarioCookie, setUsuarioCookie, moodle }: any) {
   const [reporte, setReporte] = useState(null);
   const [tipoReporte, setTipoReporte] = useState();
   const [estado, setEstado] = useState(false);
@@ -64,7 +64,7 @@ export default function Reporte({ usuarioCookie, setUsuarioCookie }: any) {
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contendorReportes}>
         <div className={estilos.seccionIzquierda}>
           <div className={estilos.modulos}>

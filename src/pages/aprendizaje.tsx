@@ -5,9 +5,9 @@ import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import axios from "axios";
 import Footer from "@/componentes/layout/Footer/Footer";
 
-export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informacion }: any) {
+export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informacion, moodle }: any) {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         <Header informacion={informacion} />
         <div className={estilos.contendorHistoria}>
         <Contenido informacion={informacion}/>

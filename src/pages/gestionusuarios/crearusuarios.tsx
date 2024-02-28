@@ -10,6 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 export default function CrearUsuarios({
   usuarioCookie,
   setUsuarioCookie,
+  moodle
 }: any) {
   //  const [createpassword, setCreatepassword] = useState(false);
   const [indexU, setIndex] = useState(1);
@@ -157,7 +158,7 @@ export default function CrearUsuarios({
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={styles.contenedorPrincipalCrearUsuario}>
         <MensajeCargando
           informacion={mensajeCargando.mensaje}

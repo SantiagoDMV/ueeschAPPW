@@ -9,6 +9,7 @@ import Layout from "@/componentes/layout/Layout";
 export default function GestionUsuarios({
   usuarioCookie,
   setUsuarioCookie,
+  moodle
 }: any) {
   useEffect(() => {
     obtenerDatosPublicaciones();
@@ -32,7 +33,7 @@ export default function GestionUsuarios({
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contendorUsuarios}>
         <div className={estilos.contenedorInfUsuarios}>
           <div className={estilos.contendorPrincipalInformacionRoles}>

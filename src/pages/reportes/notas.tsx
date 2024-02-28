@@ -203,7 +203,7 @@ export default function ReporteNotas({
   return (
     <>
       {usuarioCookie && (
-        <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+        <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
           <div className={estilos.contendorPrincipalReporte}>
             <PDFViewer
               style={{ minWidth: "100%", minHeight: "calc(100vh - 4rem)" }}
@@ -391,16 +391,12 @@ export const getServerSideProps = async (context: any) => {
       },
     };
 
-  const moodle = {
-    host: process.env.MOODLE_HOST,
-    token: process.env.TOKEN_MOODLE,
-  };
 
   return {
     props: {
       id: id,
       curso: curso,
-      moodle: moodle,
+
       cursosUser: respuesta.data,
     },
   };

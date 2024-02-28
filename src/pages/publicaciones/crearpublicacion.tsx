@@ -5,9 +5,10 @@ import estilos from "../../styles/pestañas/Publicaciones/CrearPublicacion.modul
 export default function CrearPublicacion({
   usuarioCookie,
   setUsuarioCookie,
+  moodle
 }: any) {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         <div className={estilos.contenedorCrearPublicacion}>
           <FormularioPublicaciones usuarioCookie={usuarioCookie} />
         </div>

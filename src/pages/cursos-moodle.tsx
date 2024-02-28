@@ -47,7 +47,7 @@ export default function GestionUsuarios({
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contendorUsuarios}>
         <div className={estilos.contenedorInfUsuarios}>
 
@@ -111,30 +111,6 @@ export default function GestionUsuarios({
     </Layout>
   );
 }
-export const getServerSideProps = async (context: any) => {
-  try{
-
-  const moodle={
-    host : process.env.MOODLE_HOST,
-    token : process.env.TOKEN_MOODLE,
-  }
-
-    return {
-      props: {      
-        moodle:moodle
-      },
-    };
-  
-} catch (error) {
-  console.error('Error en getServerSideProps /seguimiento/id :');
-    return {
-      redirect: {
-        destination: '/error?server=moodle',
-        permanent: false,
-      },
-    };
-    }
-};
 
 //http://localhost/webservice/rest/server.php?wstoken=74a43c7eab5aaf63cb95b13c32950f08&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=
 //http://localhost/webservice/rest/server.php?wstoken=74a43c7eab5aaf63cb95b13c32950f08&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=email&criteria[0][value]=santyago0325@outlook.com

@@ -1,9 +1,9 @@
 import estilos from "../styles/pestañas/Registro.module.css";
 import Link from "next/link";
 import Layout from "@/componentes/layout/Layout";
-export default function registro({usuarioCookie,setUsuarioCookie}:any) {
+export default function registro({usuarioCookie,setUsuarioCookie, moodle}:any) {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorRegistro}>
         <div className={estilos.contenedorPanelRegistro}>
         

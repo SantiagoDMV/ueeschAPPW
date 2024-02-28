@@ -7,7 +7,7 @@ import MensajeCargando from "@/componentes/mensajes/MensajeCargando/MensajeCarga
 import Layout from "@/componentes/layout/Layout";
 import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 
-export default function Registro({usuarioCookie,setUsuarioCookie, informacion}:any) {
+export default function Registro({usuarioCookie,setUsuarioCookie, informacion, moodle}:any) {
   const [input, setInput] = useState<any>(null);
   const [estado, setEstado] = useState<any>(null);
 
@@ -84,7 +84,7 @@ const timeoutId = useRef<NodeJS.Timeout | null>(null);
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
     
     <MensajeCargando informacion={mensajeCargando.mensaje} estado={mensajeCargando.estado}/>
     <MensajeError estado={mensajeErrorEstado.estado} titulo={mensajeErrorEstado.titulo} informacion={mensajeErrorEstado.informacion}/>

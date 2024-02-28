@@ -143,17 +143,10 @@ export const getServerSideProps = async (context: any) => {
   const {attributes} = data;
 
 
-  const moodle = {
-    host: process.env.MOODLE_HOST,
-    token: process.env.TOKEN_MOODLE,
-  };
-
-
   try {
     return {
       props: {
         informacion: attributes,
-        moodle: moodle
       },
     };
   } catch (error) {

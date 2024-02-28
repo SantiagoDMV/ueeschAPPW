@@ -3,9 +3,9 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import styles from "../styles/pestañas/ErrorPage.module.css";
 import Layout from "@/componentes/layout/Layout";
 
-const Error = ({ statusCode, usuarioCookie, setUsuarioCookie, error }: any) => {
+const Error = ({ statusCode, usuarioCookie, setUsuarioCookie, error, moodle }: any) => {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={styles.contenedorError}>
         <div className={styles.contenedorInformacionEstado}>
           <h1>Error {statusCode}</h1>

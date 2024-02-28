@@ -10,6 +10,7 @@ import Anuncios from "@/componentes/layout/secciones/AnunciosPublicaciones/Anunc
 export default function MomentosId({
   usuarioCookie,
   setUsuarioCookie,
+  moodle
 }: any) {
   const [datosPublicaciones, setDatosPublicaciones] = useState(null);
   const [datosMultimedia, setDatosMultimedia] = useState(null);
@@ -75,7 +76,7 @@ export default function MomentosId({
   return (
     <>
   
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       
       <div className={estilos.contenedorPrincipalMomentos}>
         <div className={estilos.contenedorPrincipalPublicacionesFijo}>

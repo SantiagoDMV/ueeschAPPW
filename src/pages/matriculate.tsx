@@ -5,9 +5,9 @@ import axios from "axios";
 import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import Footer from "@/componentes/layout/Footer/Footer";
 
-export default function Matriculate({usuarioCookie,setUsuarioCookie, informacion}:any) {
+export default function Matriculate({usuarioCookie,setUsuarioCookie, informacion, moodle}:any) {
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         {informacion && <Header informacion={informacion}/>}
     <div className={estilos.contenedorMatriculacion}>
         

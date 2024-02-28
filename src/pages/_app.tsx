@@ -8,6 +8,12 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   const [usuario, setUsuario] = useState<any>(null);
 
+
+  const moodle = {
+    host: process.env.NEXT_PUBLIC_MOODLE_HOST,
+    token: process.env.NEXT_PUBLIC_TOKEN_MOODLE,
+  };
+
   const obtenerCookie = async () => {
     try {
       const respuesta = await axios.post(
@@ -29,6 +35,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
     <>
     <Component {...pageProps} setUsuario={setUsuario} />
     </>
-  ):<Component {...pageProps} usuarioCookie={usuario} setUsuarioCookie={setUsuario}/>  
+  ):<Component {...pageProps} usuarioCookie={usuario} setUsuarioCookie={setUsuario} moodle={moodle}/>  
   
 }

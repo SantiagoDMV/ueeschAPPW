@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import {PacmanLoader,BeatLoader} from "react-spinners";
 import Layout from '@/componentes/layout/Layout';
 
-const ActualizarDatosPage = ({email,fullname,usuarioCookie,setUsuarioCookie}:any) => {
+const ActualizarDatosPage = ({email,fullname,usuarioCookie,setUsuarioCookie, moodle}:any) => {
 
   useEffect(()=>{
     verificarEmail()
@@ -31,7 +31,7 @@ const ActualizarDatosPage = ({email,fullname,usuarioCookie,setUsuarioCookie}:any
   }
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
     <div className={estilos.contenerPrincipalActualizarDatos}>
 
     {!mensaje?

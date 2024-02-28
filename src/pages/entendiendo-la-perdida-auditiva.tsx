@@ -5,10 +5,10 @@ import Contenido from "@/componentes/ContenidoStrapi/Contenido";
 import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import Footer from "@/componentes/layout/Footer/Footer";
 
-export default function Entendiendo({ usuarioCookie, setUsuarioCookie, informacion  }: any) {
+export default function Entendiendo({ usuarioCookie, setUsuarioCookie, informacion , moodle }: any) {
   
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       
         <Header informacion={informacion}/>
         

@@ -5,10 +5,10 @@ import Contenido from "@/componentes/ContenidoStrapi/Contenido";
 import estilos from '../styles/pestañas/Historia.module.css'
 import Footer from "@/componentes/layout/Footer/Footer";
 
-export default function Historia({ usuarioCookie, setUsuarioCookie, informacion }) {
+export default function Historia({ usuarioCookie, setUsuarioCookie, informacion, moodle }) {
 
     return (
-        <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+        <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
             <Header informacion={informacion} />
             <div className={estilos.contendorHistoria}>
             <Contenido informacion={informacion}/>

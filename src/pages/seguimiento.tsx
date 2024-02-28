@@ -1,4 +1,3 @@
-import axios from "axios";
 import estilos from "../styles/pestañas/SeguimientoMoodle.module.css";
 import InformacionUsuarios from "../componentes/layout/secciones/Moodle/InformacionUsuariosMoodleAdmin";
 import Layout from "@/componentes/layout/Layout";
@@ -37,7 +36,7 @@ export default function Seguimientoacademico({
   };
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorPrincipalSeguimiento}>
         <div className={estilos.contenedorPagina}>
           <h2>Usuarios registrados en moodle</h2>
@@ -73,27 +72,3 @@ export default function Seguimientoacademico({
 }
 
 //<Bar data={data} options={options}/>
-export const getServerSideProps = async (context: any) => {
-  //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
-
-  try {
-    const moodle = {
-      host: process.env.MOODLE_HOST,
-      token: process.env.TOKEN_MOODLE,
-    };
-
-    return {
-      props: {
-        moodle: moodle,
-      },
-    };
-  } catch (error) {
-    console.error("Error en getServerSideProps /seguimiento:");
-    return {
-      redirect: {
-        destination: "/error?server=moodle",
-        permanent: false,
-      },
-    };
-  }
-};

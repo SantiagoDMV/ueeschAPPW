@@ -373,29 +373,3 @@ cursoSeleccionado ?
     </Layout>
   );
 }
-
-
-export const getServerSideProps = async (context: any) => {
-  //const respuesta = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookieSession`, { UserCookie: UserCookie });
-
-  try {
-    const moodle = {
-      host: process.env.MOODLE_HOST,
-      token: process.env.TOKEN_MOODLE,
-    };
-
-    return {
-      props: {
-        moodle: moodle,
-      },
-    };
-  } catch (error) {
-    console.error("Error en getServerSideProps /seguimiento:");
-    return {
-      redirect: {
-        destination: "/error?server=moodle",
-        permanent: false,
-      },
-    };
-  }
-};

@@ -7,7 +7,7 @@ import axios,{AxiosError} from "axios";
 import Layout from "@/componentes/layout/Layout";
 import Link from "next/link";
 
-export default function Perfil({usuarioCookie,setUsuarioCookie}:any) {
+export default function Perfil({usuarioCookie,setUsuarioCookie, moodle}:any) {
   const [usuario, setUsuario] = useState<any>();
 
   const obtenerCookie = async () => {
@@ -29,7 +29,7 @@ export default function Perfil({usuarioCookie,setUsuarioCookie}:any) {
 
   
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={styles.contenedorPerfil}>
         <div className={styles.contenedorSuperior}>
           {usuario ? (

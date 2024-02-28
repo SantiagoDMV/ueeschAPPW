@@ -12,7 +12,7 @@ import Link from "next/link";
 
 import Layout from "@/componentes/layout/Layout";
 
-export default function Seguimientoacademico({ cursosUser,userId, moodle,usuarioCookie,setUsuarioCookie}: any) {
+export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,setUsuarioCookie, moodle}: any) {
 
   
   ChartJS.defaults.plugins.legend.display = false;
@@ -160,7 +160,7 @@ export default function Seguimientoacademico({ cursosUser,userId, moodle,usuario
 
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorPagina}>
         <div className={estilos.contenedorInformacionCuros}>
       <div className={estilos.contenedorCursos}>
@@ -245,10 +245,6 @@ export const getServerSideProps = async (context: any) => {
 
   const {params} = context
   const id = params.id
-  const moodle={
-    host : process.env.MOODLE_HOST,
-    token : process.env.TOKEN_MOODLE,
-  }
 
   const respuesta = await axios.post(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
@@ -259,7 +255,7 @@ export const getServerSideProps = async (context: any) => {
       props: {
         cursosUser: [],
         userId: null,
-        moodle: null
+
       },
     };
   } else {
@@ -267,7 +263,7 @@ export const getServerSideProps = async (context: any) => {
       props: {
         cursosUser: respuesta.data,
         userId: id,
-        moodle:moodle
+
       },
     };
   }
