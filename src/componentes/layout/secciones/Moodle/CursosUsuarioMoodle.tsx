@@ -36,7 +36,9 @@ export default function CursosUsuarioMoodle({mostrarTareas,cursos}:any) {
     }
     </div>
     :
-    "El usuario no esta matriculado en ningún curso"
+    <div className={estilos.contenedorCursos}>
+    El usuario no esta matriculado en ningún curso
+    </div>
     }
     </>
   )
