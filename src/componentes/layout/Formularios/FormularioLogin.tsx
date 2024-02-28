@@ -215,7 +215,7 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
 {/* <form class="login-form" action="http://localhost/login/index.php" method="post" id="login"> */}
       <form className={`login-form ${styles.formulario}`} 
       onSubmit={envioDatos} 
-      action="http://localhost/login/index.php" 
+      // action="http://localhost/login/index.php" 
       method="post" 
       id="login"
       >
