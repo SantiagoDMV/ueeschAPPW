@@ -63,7 +63,6 @@ export default function Layout({ children, usuario, setUsuarioCookie, moodle }: 
     try {
       
         //const respuesta = await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_calendar_get_action_events_by_course&moodlewsrestformat=json&events[courseids][0]=${id}&options[timestart]=${fechaActualSec}&options[timeend]=${fechaUnMesDespuesSec}`);
-        console.log(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_calendar_get_action_events_by_course&moodlewsrestformat=json&courseid=${id}`)
         const respuesta = await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_calendar_get_action_events_by_course&moodlewsrestformat=json&courseid=${id}`);
         
         const eventosFiltrados = respuesta.data.events.filter((evento:any) => evento.overdue === false);

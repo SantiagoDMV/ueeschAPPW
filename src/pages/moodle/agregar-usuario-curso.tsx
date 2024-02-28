@@ -244,7 +244,7 @@ toast.dismiss(loadingToastId);
 
 
   return (
-    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie}>
+    <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorCrearCurso}>
         <h2>Agregar un usuario a un curso</h2>
         <form className={estilos.formularioCrearCurso} onSubmit={handleSubmit}>
