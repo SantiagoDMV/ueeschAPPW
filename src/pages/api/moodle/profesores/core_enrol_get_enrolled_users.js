@@ -22,7 +22,7 @@ export default async function usuario_cursos(req, res) {
     const cursosUSer = await axios.get(
       `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=${cursoId}`
     );
-
+  
     const usuario_curso = await axios.get(`${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_enrol_get_users_courses&moodlewsrestformat=json&userid=${id_moodle_estudiante}`)
 
     const informacionCurso = obtenerCursoPorId(usuario_curso.data,cursoId)
@@ -45,6 +45,7 @@ export default async function usuario_cursos(req, res) {
 
 
   } catch (error) {
+    //console.log("Error en api/moodle/profesores: ",error)
     return res.status(200).json({
       valor:false,
     });

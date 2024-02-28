@@ -55,7 +55,7 @@ export default function Supervision({
       );
 
       setEstadoMensaje(false)
-
+      console.log(respuesta.data)
       if(!respuesta.data.valor){
         setEstudianteEncontrado(respuesta.data.valor);
       }else{
