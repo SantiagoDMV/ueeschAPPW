@@ -17,7 +17,7 @@ useEffect(()=>{
 
 const obtenernumero = async () =>{
   const respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
-  setNumero(respuestaTelefono.data.data.attributes)
+  setNumero(respuestaTelefono.data.data.attributes.contenido)
 }
 
   const abrirCajaChatAyuda = () => {
@@ -30,6 +30,7 @@ const obtenernumero = async () =>{
   };
 
   const enviarMensajeWhatsApp = () => {
+    console.log(numero)
     const numeroWhatsApp = `+593${numero}`;
     const mensajeWhatsApp = encodeURIComponent(mensaje);    
 
