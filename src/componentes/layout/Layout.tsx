@@ -65,8 +65,13 @@ export default function Layout({ children, usuario, setUsuarioCookie, moodle }: 
         //const respuesta = await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_calendar_get_action_events_by_course&moodlewsrestformat=json&events[courseids][0]=${id}&options[timestart]=${fechaActualSec}&options[timeend]=${fechaUnMesDespuesSec}`);
         const respuesta = await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_calendar_get_action_events_by_course&moodlewsrestformat=json&courseid=${id}`);
         
+        //if(!respuesta.data.message && respuesta.data.message === 'Detectado valor de respuesta no válido')
+        if(!respuesta.data.message){
         const eventosFiltrados = respuesta.data.events.filter((evento:any) => evento.overdue === false);
+        
         setCursoSeleccionado(eventosFiltrados);
+        }else
+        setCursoSeleccionado(null)
         //console.log(respuesta.data.events)
         
         //console.log(respuesta.data.events);

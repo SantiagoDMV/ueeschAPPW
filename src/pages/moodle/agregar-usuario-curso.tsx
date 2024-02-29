@@ -3,6 +3,7 @@ import Layout from "@/componentes/layout/Layout";
 import estilos from "../../styles/pestañas/Moodle/CrearCurso.module.css";
 import axios from 'axios'
 import { SyncLoader } from "react-spinners";
+
 import { Toaster, toast } from "sonner";
 
 export default function AgregarUsuarioCurso({
@@ -24,10 +25,31 @@ export default function AgregarUsuarioCurso({
   const [usuariosInformacion, setUsuariosInformacion] = useState<any>();
 
   const obtenerUsuariosInformacion = async () => {
+    let loadingToastId:any = null;
     try {
+        
+        loadingToastId = toast.info(
+            "Obteniendo cursos de moodle, esto puede llevar un momento...",
+            {
+                style: {
+                    border: "none",
+                },
+            }
+        );
+
       const respuesta = await fetch(
         `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=&criteria[0][value]=`
       );
+      
+      if(respuesta.type && respuesta.type === 'cors'){
+      toast.dismiss(loadingToastId);
+      toast.error('Moodle bloqueo el acceso a la aplicación', {
+        style: {
+            backgroundColor: "rgb(203,90,90)",
+            border: "none",
+        },
+    });
+  }
 
       const datos = await respuesta.json();
   
@@ -37,6 +59,13 @@ export default function AgregarUsuarioCurso({
         setUsuariosInformacion(datos.users);
       }  
     } catch (error) {
+      toast.dismiss(loadingToastId);
+      toast.error('Ocurrio un erro al intentar obtener los datos de moodle', {
+        style: {
+            backgroundColor: "rgb(203,90,90)",
+            border: "none",
+        },
+    });
       console.log(error)
       //window.location.href = '/error?server=moodle';
     }
@@ -54,20 +83,26 @@ export default function AgregarUsuarioCurso({
 
     
   const obtenerDatosCursos = async () => {
-    if(!usuarioCookie) return
-    if(usuarioCookie.rol === 1 || usuarioCookie.rol===2){
-      const respuesta = await axios.get(
-        `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_get_courses&moodlewsrestformat=json`
+    try{
+      if(!usuarioCookie) return
+      if(usuarioCookie.rol === 1 || usuarioCookie.rol===2){
+        const respuesta = await axios.get(
+          `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_get_courses&moodlewsrestformat=json`
+          );
+  
+        setDatosCursos(respuesta.data.slice(1));
+        return
+      }
+      const respuesta = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
+        { idUsuario: usuarioCookie.id_moodle}
       );
-      setDatosCursos(respuesta.data.slice(1));
-      return
+      
+      setDatosCursos(respuesta.data);
+    }catch(error){
+
     }
-    const respuesta = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
-      { idUsuario: usuarioCookie.id_moodle}
-    );
     
-    setDatosCursos(respuesta.data);
     
   };
 
@@ -88,7 +123,14 @@ export default function AgregarUsuarioCurso({
       setInformacionCursoUsuario(null)
       //const user = ObtenerInformacionCookie(req)
       const respuesta = await axios.post(
-        `/api/moodle/core_enrol_get_enrolled_users`,{cursoId: id, id_moodle: usuarioCookie.id_moodle}
+        `/api/moodle/core_enrol_get_enrolled_users`,{cursoId: id, id_moodle: usuarioCookie.id_moodle,
+            headers: {
+              'Content-Type': 'application/json', // Tipo de contenido que estás enviando
+              'Access-Control-Allow-Origin': '*', // O la URL específica de origen permitida
+              // Agrega otras cabeceras según sea necesario
+            },
+          
+        }
       );
       
       if(!respuesta.data.informacionUsuario){ setInformacionCursoUsuario('vacio') 
@@ -147,7 +189,14 @@ toast.dismiss(loadingToastId);
         }
       );
 
-      axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json&enrolments[0][userid]=${curso.usuario}&enrolments[0][courseid]=${curso.curso}&enrolments[0][roleid]=${curso.rol}`);
+      axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json&enrolments[0][userid]=${curso.usuario}&enrolments[0][courseid]=${curso.curso}&enrolments[0][roleid]=${curso.rol}`
+      ,{
+        headers: {
+          'Content-Type': 'application/json', // Tipo de contenido que estás enviando
+          'Access-Control-Allow-Origin': '*', // O la URL específica de origen permitida
+          // Agrega otras cabeceras según sea necesario
+        },
+      });
 
     toast.dismiss(loadingToastId);
 
@@ -208,7 +257,15 @@ toast.dismiss(loadingToastId);
       }
     );
 
-    axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json&enrolments[0][userid]=${curso.usuario}&enrolments[0][courseid]=${curso.curso}&enrolments[0][roleid]=1`);      
+    axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json&enrolments[0][userid]=${curso.usuario}&enrolments[0][courseid]=${curso.curso}&enrolments[0][roleid]=1`,
+    
+    {
+      headers: {
+        'Content-Type': 'application/json', // Tipo de contenido que estás enviando
+        'Access-Control-Allow-Origin': '*', // O la URL específica de origen permitida
+        // Agrega otras cabeceras según sea necesario
+      },
+    });
 
 
   toast.dismiss(loadingToastId);

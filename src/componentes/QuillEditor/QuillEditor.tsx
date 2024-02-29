@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.bubble.css';
 const modules = {
   toolbar: [
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    ['link', 'image', 'video'],
+    ['link', 'image', 'video', ],
     [{ 'color': [] }, { 'background': [] }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
