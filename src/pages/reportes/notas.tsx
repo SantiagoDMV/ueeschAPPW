@@ -12,7 +12,7 @@ export default function ReporteNotas({
   id,
   curso,
   moodle,
-  cursosUser,
+//  cursosUser,
 }: any) {
   
   const [tareas, setTareas] = useState<any>();
@@ -23,7 +23,16 @@ export default function ReporteNotas({
   const [notaMasBaja, setNotaMasBaja] = useState<any>();
   const [notaMasAlta, setNotaMasAlta] = useState<any>();
   const [numeroTareas, setNumeroTareas] = useState<any>();
+  const [cursosUser,setCursosUser]= useState<any>();
   
+
+  useEffect(() => {
+    async function fetchData() {
+      await obtenerInformacionCursosUser();
+    }
+    fetchData();
+  }, []);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +40,17 @@ export default function ReporteNotas({
     }
     fetchData();
   }, []);
+
+
+const obtenerInformacionCursosUser = async() => {
+  const respuesta = await axios.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
+    { idUsuario: id }
+  );
+  
+  setCursosUser(respuesta.data)
+}
+
 
   useEffect(() => {
     async function fetchData() {
@@ -83,7 +103,6 @@ export default function ReporteNotas({
       const respuesta = await axios.get(
         `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=gradereport_user_get_grades_table&moodlewsrestformat=json&courseid=${curso}&userid=${id}`
       );
-
     //   const respuestaItems = await axios.get(
     //     `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=gradereport_user_get_grade_items&moodlewsrestformat=json&courseid=${curso}&userid=${id}`
     //   );
@@ -108,6 +127,7 @@ export default function ReporteNotas({
       const respuesta = await axios.get(
         `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_get_contents&moodlewsrestformat=json&courseid=${curso}`
       );
+      
       if (!respuesta.data.errorcode) {
         setModuloInf(respuesta.data);
         //console.log(respuesta.data);
@@ -132,7 +152,7 @@ export default function ReporteNotas({
     datos.forEach((item: any) => {
       const { itemname } = item;
       if (itemname && itemname.content) {
-        const matches = itemname.content.match(/href="(http:\/\/[^"]+)"/);
+        const matches = itemname.content.match(/href="(https:\/\/[^"]+)"/);
         if (matches && matches[1]) {
           urls.push(matches[1]);
           const { grade } = item;
@@ -174,13 +194,13 @@ export default function ReporteNotas({
 
   const mostrarTareas = async () => {
     const urlsFiltradas = extraerIds(tareas);
+    
     if (!moduloInf) {
       await obtenerModulosMoodle();
     }
 
     //console.log(urlsFiltradas)
     //console.log(tareas)
-
     const vectorTareasConNombres = vectorTareas.map((tarea: any) => {
       let nombreTarea = "";
       moduloInf &&
@@ -378,26 +398,25 @@ export const getServerSideProps = async (context: any) => {
       },
     };
 
-  const respuesta = await axios.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
-    { idUsuario: id }
-  );
+  // const respuesta = await axios.post(
+  //   `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
+  //   { idUsuario: id }
+  // );
 
-  if (respuesta.data.errorcode)
-    return {
-      redirect: {
-        destination: "/error?server=moodle",
-        permanent: false,
-      },
-    };
+  // if (respuesta.data.errorcode)
+  //   return {
+  //     redirect: {
+  //       destination: "/error?server=moodle",
+  //       permanent: false,
+  //     },
+  //   };
 
 
   return {
     props: {
       id: id,
       curso: curso,
-
-      cursosUser: respuesta.data,
+      //cursosUser: respuesta.data,
     },
   };
 };
