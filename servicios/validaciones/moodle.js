@@ -94,7 +94,7 @@ export async function validarEmail(req,res){
         if(respuesta.data.users.length === 0) 
         return {
         status: 200,
-         mensaje: 'El email ingresado no existe en nuestro sistema.',
+         mensaje: 'El email ingresado no existe en moodle.',
          datos: [],
          valor:false
         }
@@ -106,10 +106,13 @@ export async function validarEmail(req,res){
            return {
              valor: false,
            }
-     if(consulta.password_usuario)
-       return {
-         valor: false,
-       }
+     if(consulta.id_rol !== 4)
+     return {
+        status: 200,
+         mensaje: 'El email ingresado no pertenece a un estudiante.',
+         datos: respuesta.data.users[0].id,
+         valor:false
+    }        
      
      
         

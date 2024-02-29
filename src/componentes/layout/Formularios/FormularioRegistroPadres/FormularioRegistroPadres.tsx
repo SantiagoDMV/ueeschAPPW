@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function FormularioRegistroMiembros({idMoodle}:any) {
   const [credenciales, setCredenciales] = useState({
     id_moodle: idMoodle,
-    id_rol: "4",
+    id_rol: "5",
     cedula_usuario: "",
     nombre_usuario: "",
     apellido_usuario: "",
