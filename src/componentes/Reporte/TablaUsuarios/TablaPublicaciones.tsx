@@ -108,7 +108,7 @@ export default function Publicaciones({usuariosR, columnasUsuarios}: any) {
 																											</Text>
 																											:
 																											c === 'Fecha de creación' ?
-																												<Text> {formatearFecha(e.create_at)}</Text>
+																												<Text> {formatearFecha(e.creado_en)}</Text>
 																												:
 																												""
 																							}
@@ -146,7 +146,7 @@ export default function Publicaciones({usuariosR, columnasUsuarios}: any) {
 																											</Text>
 																											:
 																											c === 'Fecha de creación' ?
-																												<Text> {formatearFecha(e.create_at)}</Text>
+																												<Text> {formatearFecha(e.creado_en)}</Text>
 																												:
 																												""
 																							}

@@ -113,7 +113,7 @@ export default function Usuarios({usuariosR, columnasUsuarios}: any) {
 																											</Text>
 																											:
 																											c === 'Fecha de registro' ?
-																												<Text> {formatearFecha(e.create_at)}</Text>
+																												<Text> {formatearFecha(e.creado_en)}</Text>
 																												:
 																												""
 																							}
@@ -156,7 +156,7 @@ export default function Usuarios({usuariosR, columnasUsuarios}: any) {
 																										</Text>
 																										:
 																										c === 'Fecha de registro' ?
-																											<Text> {formatearFecha(e.create_at)}</Text>
+																											<Text> {formatearFecha(e.creado_en)}</Text>
 																											:
 																											""
 																							}

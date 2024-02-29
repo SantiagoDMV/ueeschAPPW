@@ -135,7 +135,7 @@ export default function ReporteUsuarioRegistrados({filtroRoles,columnas, usuario
 																											:
 																											c === "Fecha de registro"
 																												?
-																												<Text> {formatearFecha(e.create_at)}</Text>
+																												<Text> {formatearFecha(e.creado_en)}</Text>
 																												:
 																												""
 																							}
@@ -179,7 +179,7 @@ export default function ReporteUsuarioRegistrados({filtroRoles,columnas, usuario
 																											:
 																											c === "Fecha de registro"
 																												?
-																												<Text> {formatearFecha(e.create_at)}</Text>
+																												<Text> {formatearFecha(e.creado_en)}</Text>
 																												:
 																												""
 																							}

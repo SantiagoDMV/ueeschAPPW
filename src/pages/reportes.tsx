@@ -5,7 +5,7 @@ import ModuloFiltros from "@/componentes/Reporte/Modulos/ModuloFiltros/ModuloFIl
 import ModulosFiltrosPublicaciones from "../componentes/Reporte/Modulos/ModuloFiltros/ModuloFIltrosPublicaciones";
 import ModuloEleccion from "@/componentes/Reporte/Modulos/ModuloEleccionTipo/ModuloEleccion";
 import estilos from "../styles/pestañas/Reportes.module.css";
-import { useState } from "react";
+import { use, useState } from "react";
 import axios from "axios";
 import { AiOutlineFileUnknown, AiOutlineWarning } from "react-icons/ai";
 import {
@@ -48,9 +48,13 @@ export default function Reporte({ usuarioCookie, setUsuarioCookie, moodle }: any
     if (publicacionesR) return;
 
     try {
-      await axios.get("/api/publicaciones").then((respuesta) => {
-        setPublicacionesR(respuesta.data.datos);
-      });
+      const respuesta = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones`,
+        { mostrar_tipos_publicaciones: "todo" }
+      );
+
+
+      setPublicacionesR(respuesta.data.datos);
     } catch (error) {
       console.log(error);
     }
