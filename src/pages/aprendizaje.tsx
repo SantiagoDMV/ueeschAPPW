@@ -4,11 +4,27 @@ import Contenido from "@/componentes/ContenidoStrapi/Contenido";
 import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import axios from "axios";
 import Footer from "@/componentes/layout/Footer/Footer";
+import { useState } from "react";
 
 export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informacion, moodle }: any) {
+    const [palabra,setPalabra] = useState<string>();
+
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         <Header informacion={informacion} />
+        <form onSubmit={(e) => {
+    e.preventDefault();
+    window.open(`http://www.plataformaconadis.gob.ec/~platafor/diccionario/?s=${palabra}&post_type%5B%5D=st_kb`, '_blank');
+}}>
+    <div className={estilos.contenedorLenguajeSenas}>
+        <h3>Diccionario de Lengua de Señas Ecuatoriana</h3>
+        <input type="text" placeholder="Ingrese aquí una palabra" onChange={(e) =>
+            setPalabra(e.target.value)
+        } />
+        <button type="submit">Buscar</button>
+    </div>
+</form>
+
         <div className={estilos.contendorHistoria}>
         <Contenido informacion={informacion}/>
         </div>

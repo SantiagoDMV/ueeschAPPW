@@ -125,7 +125,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie,informacion, mood
             </div>
           ) : null}
         </div>
-        
+
         <div className={style.contenedorMisionVision}>
           <SeccionMisionVision />
         </div>
