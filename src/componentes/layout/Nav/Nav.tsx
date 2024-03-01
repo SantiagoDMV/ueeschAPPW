@@ -98,7 +98,7 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
                     }
                   </div>
                   <ul className={styles.ulCompuestoUser} id="ulCompuestoUser">
-                    <li>
+                    <li className={styles.ulCompuestoUserLi}>
                       <Link className={styles.linksIconos} href={"/login"}>
                         Login
                       </Link>
