@@ -68,7 +68,18 @@
   flex-direction: column;
   margin: 30px 0;
   gap: 1rem;
+  min-height: calc(100vh - 4rem);
 }
+
+.contenidoPublicacion iframe{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 .contenidoPublicacion h1 {
   text-align: center;

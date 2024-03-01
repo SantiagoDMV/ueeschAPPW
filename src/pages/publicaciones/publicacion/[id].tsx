@@ -85,7 +85,6 @@ export default function MomentosId({
 
               <div className={estilos.contenedorPrincipalPublicaciones}>
               <div className={estilos.contenedorPublicaciones}>
-                
                 <Publicaciones
                   informacionUsuarioCreador = {informacionUsuarioCreador} 
                   datosPublicaciones={datosPublicaciones}

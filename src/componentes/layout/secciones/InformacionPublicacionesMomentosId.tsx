@@ -75,10 +75,12 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
                     <span>Publicación creada el {convertirFechaHora(publicacion.creado_en)}</span>
                   </div>
                 </div>
+                
+
                 {processedContent ? (
-                  <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+                  <div dangerouslySetInnerHTML={{ __html: processedContent }}/>
                 ) : (
-                  <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
+                  <ReactMarkdown >{publicacion.contenido_publicacion}</ReactMarkdown>
                 )}
               </div>
             </div>
