@@ -6,6 +6,7 @@
     /* background-position: center;
     background-size: cover;
     background-repeat: no-repeat;  */
+    padding-top:5px ;
     min-height: calc(100vh - 4rem);
     max-height: calc(100vh - 4rem);
     overflow: hidden;
@@ -35,7 +36,11 @@
     min-height: calc(100vh - 4rem);
     max-height: calc(100vh - 4rem);
   }
-  
+ 
+  .imagenHeader{
+    object-position: center top;
+  }
+
   .textoSuperpuesto {
     position: absolute;
     top: 0%;
@@ -87,4 +92,7 @@
         justify-content: flex-start;
         
     }
+    /* .imagenHeader{
+        object-position:center;
+      } */
 }
