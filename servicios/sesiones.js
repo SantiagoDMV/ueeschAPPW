@@ -12,12 +12,13 @@ export async function login_usuarios(req, res) {
   try {
     const validacionDatos = loginValidaciones(req.body.username, req.body.password);
     
+    
     if (!validacionDatos.valor)
       return { status: 400,valor:false ,mensaje: validacionDatos.mensaje }
     const usuariosRepo = new UsuariosRepository();
 
     const respuesta = await usuariosRepo.buscarUsuarioEmailNoEliminados(req.body.username);
-
+    
     if (!respuesta) return {status:401, valor: false, mensaje: "El usuario o contraseña es incorrrecto" }
 
     const validacionRepresentantes = await usuariosRepo.buscarUsuarioIdMoodleEstudiante(respuesta.id_moodle)    

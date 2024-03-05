@@ -129,97 +129,97 @@ function generarContrasena(longitud) {
   return contrasena;
 }
 
-const enviarCorreoConRetries = async (usuario) => {
-  try {
-    let hashingPassw;
-    let idMoodle;
+// const enviarCorreoConRetries = async (usuario) => {
+//   try {
+//     let hashingPassw;
+//     let idMoodle;
 
-    if (parseInt(usuario.id_rol) === 3 || parseInt(usuario.id_rol) === 4) {
-      const passw = generarContrasena(8);
-      hashingPassw = await hashing(passw);
-      const mensajeCorreo = {
-        from: process.env.EMAIL_UE,
-        to: usuario.email_usuario,
-        subject:
-          "¡Bienvenido a la Unidad Educativa Especializada Sordos de Chimborazo!",
-        text:
-          `¡Hola ${usuario.nombre_usuario} ${usuario.apellido_usuario}!\n\n` +
-          "Te damos la bienvenida a nuestra comunidad. Hemos generado una contraseña para tu cuenta. Por favor, sigue las instrucciones a continuación para iniciar sesión:\n\n" +
-          `Contraseña: ${passw}\n\n` +
-          "Gracias por ser parte de nuestra unidad educativa.\n\n" +
-          "Atentamente,\n" +
-          "El equipo de la Unidad Educativa Especializada Sordos de Chimborazo",
-      };
+//     if (parseInt(usuario.id_rol) === 3 || parseInt(usuario.id_rol) === 4) {
+//       const passw = generarContrasena(8);
+//       hashingPassw = await hashing(passw);
+//       const mensajeCorreo = {
+//         from: process.env.EMAIL_UE,
+//         to: usuario.email_usuario,
+//         subject:
+//           "¡Bienvenido a la Unidad Educativa Especializada Sordos de Chimborazo!",
+//         text:
+//           `¡Hola ${usuario.nombre_usuario} ${usuario.apellido_usuario}!\n\n` +
+//           "Te damos la bienvenida a nuestra comunidad. Hemos generado una contraseña para tu cuenta. Por favor, sigue las instrucciones a continuación para iniciar sesión:\n\n" +
+//           `Contraseña: ${passw}\n\n` +
+//           "Gracias por ser parte de nuestra unidad educativa.\n\n" +
+//           "Atentamente,\n" +
+//           "El equipo de la Unidad Educativa Especializada Sordos de Chimborazo",
+//       };
 
-      // Lógica de reintentos y backoff para el envío de correos electrónicos
-      for (let intento = 0; intento < 3; intento++) {
-        try {
-          await transporter.sendMail(mensajeCorreo);
-          //console.log('Correo enviado con éxito:', usuario.email_usuario);
-          break; // Sale del bucle si el envío es exitoso
-        } catch (error) {
-          console.log(error.message);
-          if (error.message.includes("554 5.2.0")) {
-            return {
-              valor: false,
-              mensaje: `Error al enviar el correo para el usuario ${usuario.index_usuario}: hubo un problema con el envío del mensaje debido a restricciones anti-spam.`,
-            };
-          }
-          console.error(
-            `Error al enviar el correo para el usuario ${usuario.index_usuario}:`,
-            error.message
-          );
-          if (intento < 2) {
-            const espera = Math.pow(2, intento) * 1000; // Backoff exponencial
-            console.log(
-              `Esperando ${espera / 1000} segundos antes de reintentar...`
-            );
-            await new Promise((resolve) => setTimeout(resolve, espera));
-          } else {
-            throw new Error(
-              "No se pudo enviar el correo después de varios intentos"
-            );
-          }
-        }
-      }
+//       // Lógica de reintentos y backoff para el envío de correos electrónicos
+//       for (let intento = 0; intento < 3; intento++) {
+//         try {
+//           await transporter.sendMail(mensajeCorreo);
+//           //console.log('Correo enviado con éxito:', usuario.email_usuario);
+//           break; // Sale del bucle si el envío es exitoso
+//         } catch (error) {
+//           console.log(error.message);
+//           if (error.message.includes("554 5.2.0")) {
+//             return {
+//               valor: false,
+//               mensaje: `Error al enviar el correo para el usuario ${usuario.index_usuario}: hubo un problema con el envío del mensaje debido a restricciones anti-spam.`,
+//             };
+//           }
+//           console.error(
+//             `Error al enviar el correo para el usuario ${usuario.index_usuario}:`,
+//             error.message
+//           );
+//           if (intento < 2) {
+//             const espera = Math.pow(2, intento) * 1000; // Backoff exponencial
+//             console.log(
+//               `Esperando ${espera / 1000} segundos antes de reintentar...`
+//             );
+//             await new Promise((resolve) => setTimeout(resolve, espera));
+//           } else {
+//             throw new Error(
+//               "No se pudo enviar el correo después de varios intentos"
+//             );
+//           }
+//         }
+//       }
 
-      const respuestaCreacionMoodle = await axios.get(
-        `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_create_users&moodlewsrestformat=json&users[0][username]=${usuario.cedula_usuario}&users[0][password]=${passw}&users[0][firstname]=${usuario.nombre_usuario}&users[0][lastname]=${usuario.apellido_usuario}&users[0][email]=${usuario.email_usuario}`
-      );
-      idMoodle = respuestaCreacionMoodle.data[0].id;
-      // {
-      //   exception: 'invalid_parameter_exception',
-      //   errorcode: 'invalidparameter',
-      //   message: 'Invalid parameter value detected'
-      // }
-    } else {
-      hashingPassw = await hashing(usuario.cedula_usuario);
-    }
+//       const respuestaCreacionMoodle = await axios.get(
+//         `${process.env.MOODLE_HOST}/webservice/rest/server.php?wstoken=${process.env.TOKEN_MOODLE}&wsfunction=core_user_create_users&moodlewsrestformat=json&users[0][username]=${usuario.cedula_usuario}&users[0][password]=${passw}&users[0][firstname]=${usuario.nombre_usuario}&users[0][lastname]=${usuario.apellido_usuario}&users[0][email]=${usuario.email_usuario}`
+//       );
+//       idMoodle = respuestaCreacionMoodle.data[0].id;
+//       // {
+//       //   exception: 'invalid_parameter_exception',
+//       //   errorcode: 'invalidparameter',
+//       //   message: 'Invalid parameter value detected'
+//       // }
+//     } else {
+//       hashingPassw = await hashing(usuario.cedula_usuario);
+//     }
 
-    // Llamada a la función para crear usuario en tu base de datos
-    const usuarioRepo = new UsuariosRepository();
-    await usuarioRepo.crearUsuarioAmbos(
-      idMoodle,
-      hashingPassw,
-      usuario.id_rol,
-      usuario.nombre_usuario,
-      usuario.apellido_usuario,
-      usuario.cedula_usuario,
-      usuario.email_usuario
-    );
+//     // Llamada a la función para crear usuario en tu base de datos
+//     const usuarioRepo = new UsuariosRepository();
+//     await usuarioRepo.crearUsuarioAmbos(
+//       idMoodle,
+//       hashingPassw,
+//       usuario.id_rol,
+//       usuario.nombre_usuario,
+//       usuario.apellido_usuario,
+//       usuario.cedula_usuario,
+//       usuario.email_usuario
+//     );
 
-    return {
-      valor: true,
-      mensaje: "usuario creado exitosamente",
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      valor: false,
-      mensaje: "error",
-    };
-  }
-};
+//     return {
+//       valor: true,
+//       mensaje: "usuario creado exitosamente",
+//     };
+//   } catch (error) {
+//     console.log(error);
+//     return {
+//       valor: false,
+//       mensaje: "error",
+//     };
+//   }
+// };
 
 export const registrarUsuariosAmbosSistemas = async (usuariosAmbosSistemas) => {
   try {

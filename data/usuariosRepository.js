@@ -263,8 +263,9 @@ class UsuariosRepository {
             email_usuario: email_usuario,
             imagen_usuario: imagen_usuario,
             password_usuario: hashingPassw,
-            //ultimo_acceso: fecha_actual,
-            //actualizado_en: fecha_actual,
+            ultimo_acceso: null,
+            actualizado_en: null,
+            eliminado_en: null,
             id_moodle: idMoodle === -1 ? null : idMoodle,
           },
         }),
@@ -292,8 +293,9 @@ class UsuariosRepository {
             id_rol: idRol,
             imagen_usuario: imagen_usuario,
             password_usuario: hashingPassw,
-            ultimo_acceso: fecha_actual,
-            //actualizado_en: fecha_actual,
+            ultimo_acceso: null,
+            actualizado_en: null,
+            eliminado_en: null,
           },
         }),
       ]);
@@ -339,7 +341,7 @@ class UsuariosRepository {
             });
           }
         } else {
-          console.log("Dentro de crear");
+          //console.log("Dentro de crear");
           creates.push({
             id_moodle: usuarioMoodle.id,
             id_rol: 4,
@@ -347,9 +349,11 @@ class UsuariosRepository {
             apellido_usuario: usuarioMoodle.lastname,
             email_usuario: usuarioMoodle.email,
             imagen_usuario: imagen_usuario,
-            ultimo_acceso: fecha_actual,
+            ultimo_acceso: null,
             cedula_usuario: '',
-            password_usuario: ''
+            password_usuario: '',
+            actualizado_en: null,
+            eliminado_en:null,
           });
         }
       }
