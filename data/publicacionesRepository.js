@@ -242,7 +242,8 @@ async mostrarServiciosUsuarioRegistrado(ids){
             id_tipo_publicacion: idTipoPublicacionInt,
             titulo_publicacion: titulo, 
             contenido_publicacion: contenido, 
-            eliminado_en: !fecha_eliminacion ? null : fechaActualLocal
+            eliminado_en: !fecha_eliminacion ? null : fechaActualLocal,
+            actualizado_en: null
           }
         });
         prisma.$disconnect();
