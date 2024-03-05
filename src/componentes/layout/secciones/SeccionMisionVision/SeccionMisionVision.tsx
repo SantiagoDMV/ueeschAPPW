@@ -25,7 +25,7 @@ export default function SeccionMisionVision() {
       
       {
         informacionMision &&
-        <>
+        <div className={style.contenedorMision}>
       <div>
       <h4>{informacionMision.nombre}</h4>
       <AiFillRocket className={style.iconoMision}/></div>
@@ -36,11 +36,11 @@ export default function SeccionMisionVision() {
 <p dangerouslySetInnerHTML={{__html:mdtoTML(informacionMision.contenido)}}/>
         </div>
       </div>
-      </>
+      </div>
 }
 
 {informacionVision &&
-  <>
+  <div className={style.contenedorVision}>
       <div>
       <h4>{informacionVision.nombre}</h4>
       <AiOutlineSearch className={style.iconoVision}/>
@@ -54,7 +54,7 @@ export default function SeccionMisionVision() {
         
         </div>
       </div>
-      </>
+      </div>
 }
     </div>
   );

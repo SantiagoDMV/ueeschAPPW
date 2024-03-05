@@ -88,6 +88,7 @@ padding: 1rem;
     /* margin-top: -150px; */
     /* position: absolute;
     top: -100px; */
+    min-width: 100%;
 }
 
 .mensajePrincipal{

@@ -1,9 +1,18 @@
 .MisionVision{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 4rem 6rem;
     gap: 6rem;
+    
+}
+.contenedorMision{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.contenedorVision{
+    flex-basis: 0;
+    flex-grow: 1;
 }
 .MisionVision h4{
     text-align: center;
@@ -60,8 +69,8 @@
 
 @media only screen and (max-width: 1042px) {
     .MisionVision{
-        flex-wrap: wrap;
         gap: 4rem;
         padding: 4rem 2rem;
+        flex-direction: column;
     }
 }

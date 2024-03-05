@@ -42,11 +42,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  
 }
 
 .contenedorNoticias{
   width: 70%;
-  background-color: white;
+  
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.056);
 }
 

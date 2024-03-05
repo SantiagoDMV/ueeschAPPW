@@ -108,8 +108,9 @@ const eliminacionConfirmacion = (id:any) => {
                 onClick={() => eliminacionConfirmacion(e.id_publicacion)}>Eliminar</button>
                 </div>
               }
-              <div className={style.h4}>{e.titulo_publicacion}</div>
               <label>{accesoUltimo(e.creado_en)}</label>
+              <div className={style.h4}>{e.titulo_publicacion}</div>
+              
               
             </div>
             <Link className={style.botonLink} href={`/publicaciones/publicacion/${e.id_publicacion}`}>Ver publicación</Link>
