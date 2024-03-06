@@ -2,10 +2,21 @@ import { AiOutlineBars, AiOutlineUser, AiOutlineDown } from "react-icons/ai";
 import Link from "next/link";
 import styles from "./Nav.module.css";
 import axios from "axios";
-import logo from "../../../../public/imagenes/nav/logoUnidad.png";
+//import logo from "../../../../public/imagenes/nav/logoUnidad.png";
 import Image from "next/image";
+import { useEffect,useState } from "react";
 
 export default function Nav({ usuario,setUsuarioCookie }: any) {
+  useEffect(()=>{
+    obtenerLogo();
+  },[])
+
+  const [logo, setLogo] = useState<any>();
+
+  const obtenerLogo = async() =>{
+        const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/8?[fields][0]=nombre&[fields][1]=contenido')
+        setLogo(respuestaMision.data.data.attributes.contenido)
+  }
   const masOpciones = (nombre: any) => {
     if (nombre === "servicios")
       if (
