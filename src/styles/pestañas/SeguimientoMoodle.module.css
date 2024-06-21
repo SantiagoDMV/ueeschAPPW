@@ -1,0 +1,30 @@
+.contenedorPrincipalSeguimiento{
+    width: 100%;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+}
+
+.contenedorPagina{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    
+}
+
+.contenedorUsuarios{
+    overflow: auto;
+}
+
+
+
+@media screen and (max-width:900px){
+    .contenedorPagina{
+        flex-direction: column;
+    }   
+}

@@ -1,0 +1,38 @@
+.contenedorPresentacion{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: justify;
+    color: black;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+}
+.contenedorPresentacion h3{
+    font-size: 48px;
+    text-align: start;
+    color:rgb(22, 97, 107);
+}
+.contenedorPresentacion p{
+    color: black;
+    font-size: 15px;
+}
+
+
+.contenedorPresentacion button{
+    background-color: rgb(230, 184, 72); /* Amarillo Dorado */
+    border: none;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+    .contenedorPresentacion{
+        padding: 2rem 1rem;
+        align-items: center;
+    }
+
+    .contenedorPresentacion h3{text-align: center;}
+}

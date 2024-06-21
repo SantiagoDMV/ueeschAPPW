@@ -1,0 +1,333 @@
+.contenedorPrincipalCrearUsuario{
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.informacionRegistro{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 2rem 0;
+    padding-bottom: 0;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .botonesRadio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: start;
+    padding: 30px;
+    background-color: rgb(190, 221, 228);
+    gap: 5px;
+    /* background-color: rgb(42, 149, 162); */
+    /* background-color: white; */
+    border-bottom: 1px solid black;
+    color: black;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .contenedorInformacionRoles{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+    /* background-color: rgb(230, 184, 72); */
+    
+    border-bottom: 1px solid black;
+  }
+
+
+  .contenedorInformacionRoles ul{
+    list-style: none;
+    font-size: 15px;
+    padding-left: 15px;
+    display: flex;
+    gap:0.5rem;
+    flex-direction: column;
+  }
+
+  .contenedorInformacionRoles ul li{
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+
+  .contenedorInformacionRoles ul li:nth-child(1){
+    background-color: rgb(216, 193, 239);
+  }
+  .contenedorInformacionRoles ul li:nth-child(2){
+    background-color: rgb(193, 206, 239);
+  }
+  .contenedorInformacionRoles ul li:nth-child(3){
+    background-color: rgb(193, 239, 219);
+  }
+  .contenedorInformacionRoles ul li:nth-child(4){
+    background-color: rgb(219, 239, 193);
+  }
+
+  .contenedorPInf{
+    background-color: #edd8d0;
+    padding: 10px;
+  }
+
+  .pInf{
+    font-size: 14px;
+    color: #813010;
+    text-decoration: underline;
+    width: 100%;
+  }
+
+  .contenedorInformacionRoles h4{
+    width: 100%;
+  }
+
+  .informacionRegistro h2{
+    color: black;
+    padding-bottom: 1rem; 
+  }
+  
+  .contendorNumeroEstudiante{
+    padding: 7px;
+  }
+  
+  .formulario {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+    
+    .formulario label {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .formulariocampos {
+      flex-grow: 2;
+      flex-basis: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0 1rem;
+      background-color: white;
+      min-height: calc(100vh - 4rem);
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;      
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      background-color: white;
+    }
+    
+    .opciones label:nth-child(1) {
+      font-size: 0.9rem;
+      color: #1b2727;
+    }
+  
+
+    .formulariocampos table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+      
+
+    .formulariocampos td{
+        border: 1px solid black;
+    }
+
+    .formulariocampos td:last-child{
+      border: none;
+    }
+
+    .formulariocampos td button:last-child{ 
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 5px;
+      background-color: white;
+      color: rgb(206, 61, 61);
+      border-radius: 5px;
+      font-size: 20px;
+    }
+      
+  .formulariocamposMiembros{
+    display: flex;
+    flex-direction: column;
+      
+  }
+    .inputs {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  
+    .inputs input{
+      background-color: white;
+
+    }
+  
+    .inputs label:nth-child(1){
+      margin-bottom: 7px;
+      font-size: 0.9rem;
+      margin-right: 20px;
+    }
+  
+    .inputs select{
+      border-radius: 10px;
+      padding: 5px;
+    }
+  
+    .formulario input {
+      padding: 5px;
+      border: none;
+      
+      color: rgb(87, 84, 84);
+      outline: none;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .contenedorRol{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+  
+    .contenedorSelectorRol{
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+  
+    .labelMensajeRol{
+      flex-grow: 3;
+      flex-basis: 0;
+      background-color: rgba(52, 107, 170, 0.418);
+      color: rgb(43, 78, 124);
+      padding:3px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+    
+    .contenedorbtn {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .btn {
+      background-color: #3492c8;
+      padding: 10px;
+      color: white;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      border: none;
+    }
+    
+    .btn:hover {
+      background-color: #1b2727;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    
+    .iconos:hover {
+      background-color: #1b2727;
+      transition: background-color 0.3s;
+    }
+    
+    
+    .mensajeError{
+      border-radius: 5px;
+      color: rgb(148, 42, 42);
+      font-size: 0.7rem;
+      padding: 0.5rem;
+      background-color: rgb(243, 207, 207);
+      display: flex;
+      justify-content: center;
+      text-align: justify;
+      margin-top: 10px;
+      width: 100%;
+    }
+  
+    @media only screen and (max-width: 980px) {
+      .formulario{
+        flex-direction: column;
+        display: block;
+      }
+      .informacionRegistro{
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow-y: hidden;
+      }
+      .formulariocampos{
+        min-height: auto;
+        padding: 0;
+        padding-bottom: 1rem;
+        
+      }
+    }
+
+
+    @media only screen and (max-width: 890px) {
+      .informacionRegistro{
+        margin-top: 2rem;
+      }
+    }
+
+
+  @media only screen and (max-width: 700px) {
+    .formulario {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .formulariocampos{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .contendorNumeroRoles{
+      min-width: 35px;
+    }
+    
+  }

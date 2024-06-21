@@ -1,0 +1,168 @@
+.contenedorRegistroMiembros{
+  color: black;
+  min-height: calc(100vh - 4rem);
+  background-color: #f4f6f8;
+}
+
+.contenedorImagen{
+  background-image: url('../../../public/imagenes/matriculate/header/header.jpg');
+  min-height: 50vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: white;
+}
+
+.contenedorImagen span{
+  width: 100%;
+  background-color: rgba(13, 49, 121, 0.162);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+
+.contenedorPrincipalUsernameMoodle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contenedorUsernameMoodle{
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: rgb(44, 102, 147);
+  text-align: justify;
+}
+
+.contenedorUsernameMoodle input{
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  border: none;
+  min-width: 100%;
+}
+
+.contenedorUsernameMoodle button{
+  margin-top: 10px;
+  padding: 10px;
+
+  border: none;
+  background-color: rgb(67, 127, 179);
+  border-radius: 5px;
+  color:white;
+  cursor: pointer;
+}
+.contenedorUsernameMoodle button:hover{
+  background-color: rgb(80, 140, 192);
+}
+
+.contenedorRegistro {
+  background-color: white;
+  box-sizing: border-box;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem 0;
+  min-height: calc(100vh - 4rem);
+} 
+
+.contenedorRegistro{
+  font-size: 0.9rem;
+}
+.contenedorFormEmail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contenedorFormEmail input{
+  background-color: white;
+  color: black;
+}
+
+
+  @media only screen and (max-width: 890px) {
+    .contenedorRegistro {
+      flex-direction: row;
+      width: 100%;
+    }
+    .contenedorRegistroMiembros{
+      flex-wrap: wrap-reverse;
+      padding-top: 0;
+    }
+  }
+  
+/*.contenedorRegistroPadres{
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.11);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  color: black;
+  min-height: calc(100vh - 4rem)
+}
+
+.contenedorRegistro {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+} 
+
+.contenedorRegistro{
+  font-size: 0.9rem;
+}
+
+.contenedorImagen{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagenRegistro{
+  width: 100%;
+  object-fit: contain;
+  max-height: 32rem;
+}
+
+  @media only screen and (max-width: 890px) {
+    .contenedorRegistro {
+      flex-direction: row;
+      background-color: rebeccapurple;
+      width: 100%;
+    }
+    .contenedorRegistroPadres{
+      flex-wrap: wrap-reverse;
+      padding-top: 0;
+    }
+    .contenedorImagen{
+      background-color: rgb(182, 180, 180);
+      width: 100%;
+      min-height: calc(100vh - 4rem);;
+    }
+    .contenedorImagen img{
+      min-width: 100%;
+      object-fit: cover;
+      min-height: calc(100vh - 4rem);
+    }
+  }
+  */

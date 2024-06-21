@@ -1,0 +1,125 @@
+.contenedorAdministracion{
+    width: 100%;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedorAdministracionOpciones{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items:normal;
+    flex-direction: column;
+    
+}
+
+.opcionAdministracion{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.opcionAdministracion:nth-child(2){
+    flex-direction: row-reverse;
+}
+
+.opcionAdministracion:nth-child(2)>.opcionAdministracionIzquierda{
+    justify-content: flex-start;
+}
+.opcionAdministracion:nth-child(2)>.opcionAdministracionDerecha{
+    background-color: rgb(170, 229, 229);
+}
+.opcionAdministracion:nth-child(3)>.opcionAdministracionDerecha{
+    background-color: rgb(229, 203, 170);
+}
+
+.opcionAdministracionIzquierda{
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    max-height: calc(100vh - 4rem);
+    min-height: calc(100vh - 4rem);
+}
+
+.opcionAdministracionDerecha{
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 6rem;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: rgb(235, 195, 93);
+}
+
+.opcionAdministracionDerecha h3{
+    font-size: 26px;
+    font-weight: 0;
+    text-align: center;
+}
+
+.opcionAdministracionDerecha p{
+    font-size: 17px;
+    font-weight: 0;
+}
+
+.opcionAdministracionIzquierdaContenedorImagen{
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.32);
+}
+
+.imgGestion{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.opcionAdministracionIzquierda:hover{
+    cursor: pointer;
+}
+.opcionAdministracionDerecha:hover{
+    cursor: pointer;
+}
+
+@media only screen and (max-width:1000px){
+    .contenedorAdministracionOpciones{
+        width: 70%;
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+    .opcionAdministracion{
+        display:block;
+    }    
+    .opcionAdministracion:nth-child(2){
+        flex-direction: column;
+    }
+    .opcionAdministracionIzquierda{
+        display: none;
+    }    
+
+    .opcionAdministracionDerecha{
+        padding: 4rem;
+    }
+}
+
+@media only screen and (max-width:600px){
+    .contenedorAdministracionOpciones{
+        width: 100%;
+        gap: 0rem;
+        padding: 0;
+    }
+}

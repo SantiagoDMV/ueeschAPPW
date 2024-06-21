@@ -1,0 +1,80 @@
+.contenedorCrearCurso {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 5px;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  
+  .formularioCrearCurso {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .formGroup label {
+    font-weight: bold;
+  }
+  
+  .formGroup input{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .formGroup textarea {
+    min-width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 100px; 
+    resize: none; 
+  }
+  .formGroup select{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .formularioCrearCurso button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    outline: none; 
+  }
+
+  .formularioCrearCurso .botonQuitar {
+    background-color: rgb(192, 60, 48);
+        padding: 10px 20px;
+   outline: none; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .formGroup button:hover {
+    background-color: #0056b3;
+  }
+  

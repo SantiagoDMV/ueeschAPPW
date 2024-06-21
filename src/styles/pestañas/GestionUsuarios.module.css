@@ -1,0 +1,172 @@
+.contendorUsuarios{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 2rem;
+    padding-top: 4rem;
+    min-height: calc(100vh - 4rem);
+    min-width: 400px;
+    color: black;
+}
+.contenedorInfUsuarios{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.seccionPublicacionesCarga{
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0px;
+    text-align: center;
+    gap: 1rem;
+}
+
+.seccionPublicacionesCarga{
+padding: 1rem;
+}
+
+.circuloCarga {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px; /* Ajusta el margen según tus necesidades */
+    color: rgb(44, 102, 147);
+  }
+  
+  .iconoCarga {  
+    animation: spin 1s infinite linear;
+  }
+
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .contenedorBotonMoodle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    gap: 10px;
+    background-color: rgb(205, 208, 210);
+  }
+
+  .contenedorBotonMoodle span{
+    color: rgb(179, 80, 78);
+  }
+  .contenedorBotonMoodle button{
+    border: none;
+    background-color: rgb(192, 129, 35);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .contenedorBotonMoodle button:hover{
+    background-color: rgb(200, 144, 61);
+  }
+ 
+  .contendorPrincipalInformacionRoles{
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+  .contendorInformacionRoles{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .contendorInformacionRoles span{
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .usuariosSuperAdmin{
+    background-color: rgb(69, 175, 104);
+  }
+
+  .usuariosAdmin{
+    background-color: rgb(69, 124, 175);
+  }
+  .usuariosMoodle{
+    background-color: rgb(224, 174, 125);
+  }
+  .usuariosMoodleDocente{
+    background-color: rgb(224, 135, 125);
+  }
+  .usuariosPadres{
+    background-color: rgb(64, 182, 182);
+  }
+  .usuarioNoDefinido{
+    background-color: rgb(210, 136, 178);
+  }
+.contendorUsuarios input{
+    background-color: white;
+    color: black;
+}
+
+.contendorUsuarios select{
+    background-color: white;
+    color: black;
+}
+
+
+.contenedorAlerta{
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 1170px) {
+    .contenedorInfUsuarios{
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .contendorUsuarios{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 2rem;
+    }    
+}
+@media only screen and (max-width: 672px) {
+.contendorInformacionRoles{
+  justify-content: space-between;
+}
+}
+
+@media only screen and (max-width: 400px) {
+  .contendorInformacionRoles{
+    flex-direction: column;
+   
+  }
+  .contendorInformacionRoles span{
+    width: 100%;
+  }
+  
+}

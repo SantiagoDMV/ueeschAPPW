@@ -1,0 +1,241 @@
+/* INICIO DE LA VENTANA CALENDARIO */
+.fondoPrincipalCalendario{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.fondoPrincipalCalendario select{
+  padding: 10px;
+}
+
+.formGroup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contenedorTareaCalendario{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.237);
+  padding: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  gap: 10px;
+  text-align: center;
+}
+.contenedorTareaCalendario:hover{
+  color: #4267b2;
+}
+
+.fechaCreacionTareaCalendario{
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #4267b2;
+}
+
+.botonAnadir{
+ display: flex;
+ justify-content: flex-end;
+ background-color: rgb(230, 184, 72);
+ border-radius: 5px;
+ padding: 7px;
+ color: white;
+}
+.btnCerrar{
+  color: rgb(246, 8, 8);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+/* FIN DE LA VENTANA CALENDARIO */
+
+.nav {
+  z-index: 100;
+  background-color: white;
+}
+.layout {
+  z-index: 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.hijos {
+  margin-top: 4rem;
+  background-color: #f4f6f8;
+}
+
+.contenedorBotonesCompartir {
+  position: fixed;
+  top: 4rem;
+  /* height: 100%; */
+  min-height: calc(100vh-4rem);
+  max-height: calc(100vh-4rem);
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.contenedorAbrirOpciones {
+  position: fixed;
+  top: 4rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.botonAbrirOpcionesDeCompartir {
+  
+ color: white;
+ background-color: #429db2;
+  border-radius: 0 10px 10px 0;
+  font-size: 30px;
+  user-select: none;
+  cursor: pointer;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.botonesCompartir {
+  position: absolute;
+  transform: translateX(-100%);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  background-color: white;
+  box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.081);
+  min-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 4rem);
+  padding: 2rem 1px;
+  padding-top: 0;
+  overflow-y: auto;
+  
+}
+
+.botonesCompartir::-webkit-scrollbar{
+  width: 10px;
+}
+.botonesCompartir::-webkit-scrollbar-thumb{
+  background-color: #4267b2;
+  background-color: gray;
+}
+
+.botonesCompartir h3{
+  background-color: rgb(22, 97, 107);
+  width: 100%;
+  padding: 10px;
+  color: white;
+  margin-bottom: 1px;
+}
+
+.botonesCompartir .link {
+  width: 100%;
+  padding: 20px;
+  background-color: #cccccc;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.botonesCompartir .link:hover {
+  background-color: #d8d8d8;
+}
+
+.compartirRedesSociales {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+}
+
+.cotonCompartirFacebook {
+  background-color: #4267b2;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+  
+}
+
+.cotonCompartirFacebook:hover {
+    background-color: #4b74c5;
+}
+
+.iconoFacebook {
+  font-size: 25px;
+  
+}
+
+.cotonCompartirX {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+}
+.cotonCompartirX:hover {
+    background-color: rgb(29, 29, 29);
+}
+
+.iconoX {
+  font-size: 25px;
+}
+
+.cotonCompartirWhatsapp {
+  background-color: rgb(17, 138, 100);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+}
+.cotonCompartirWhatsapp:hover {
+    background-color: rgb(20, 162, 117);
+}
+.iconoWhatsapp {
+  font-size: 25px;
+}
+
+.mostrar {
+  transform: translateX(0);
+}
+
+.chatAyuda {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+@media only screen and (max-width:600px) {
+    .botonesCompartir {
+        position: absolute; 
+        width: 100%;
+    }   
+}

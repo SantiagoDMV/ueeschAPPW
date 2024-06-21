@@ -1,0 +1,323 @@
+.contenedorBuscador {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.seccionPublicacionesCarga{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 0px;
+    text-align: center;
+    gap: 1rem;
+}
+
+.mensajeListaVacia{
+    padding: 1rem;
+}
+
+.seccionPublicacionesCarga{
+padding: 1rem;
+}
+
+
+.circuloCarga {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(44, 102, 147);
+  }
+  
+  .iconoCarga {  
+    animation: spin 1s infinite linear;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+
+.contenedorBuscador h4{
+    width: 100%;
+}
+.contenedorOpciones{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.contenedorInput{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contenedorBuscador input{
+    padding: 10px 10px 0 10px;
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.603);
+    outline: none;
+    width: 60%;
+}
+
+.contenedorBotones{
+    display: flex;
+    gap: 10px;    
+}
+
+.botonOcultos{
+    padding: 6px;
+    font-size: 20px;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btnAgregar{
+    padding: 10px;
+    background-color: rgb(20, 170, 107);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.botonOcultos:hover{
+    background-color: rgba(0, 0, 0, 0.525);
+}
+
+.btnAgregar:hover{
+    background-color: rgb(64, 139, 83);
+}
+.botonEliminar{
+    padding: 10px;
+    background-color: rgb(226, 19, 19);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.botonEliminar:hover{
+    background-color: red;
+}
+
+.contenedorTablaCategoria{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.contenedorTabla{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.tabla{
+    border-collapse:collapse;
+    margin: 5px;
+    box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.116);
+    border-radius: 10px;
+    text-align: start;
+    table-layout: fixed;
+    min-width: 100%;
+    max-width: 100%;
+    
+}
+
+.filaHead{
+    background-color: rgba(85, 99, 99, 0.418);
+    padding: 20px;
+    text-align: justify;
+}
+
+.iconoActualizar{
+    cursor: pointer;
+    padding: 10px;
+    font-size: 2.5rem;
+    border-radius: 50%;
+}
+.iconoActualizar:hover{
+    background-color: rgba(0, 0, 0, 0.144);
+}   
+
+.filaHead:nth-child(1){
+    border-radius: 10px 0 0 0;
+}
+.filaHead:last-child{
+    border-radius: 0 10px 0 0;
+}
+
+.filas{    
+    padding: 10px;
+    padding-right: 50px;
+    padding-left: 15px;
+    
+}
+
+.filastr{    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.185);
+}
+
+.filastr:last-child{    
+    border: none;
+}
+
+.mensajeError{
+    border-radius: 5px;
+    color: rgb(148, 42, 42);
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    background-color: rgb(243, 207, 207);
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+
+
+@media only screen and (max-width:1096px) {
+    .contendorCrudUsuarios{
+        min-width: 300px;
+        overflow: auto;
+    }
+
+}
+
+@media only screen and (max-width:660px) {
+    
+    .contenedorInput input{ 
+        width: 100%;
+    }
+
+    .contenedorOpciones
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .contenedorOpciones button
+    {
+        
+        padding: 10px;
+        margin: 0;
+    }
+    
+    
+}
+
+
+
+
+/*VENTANA CONFIRMACION ELIMINACION*/
+.fondo{
+    position: fixed;
+    top: 5%;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgba(52, 51, 53, 0.568);
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorMensaje{
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+    position: fixed;
+    top:20%;
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: rgb(43, 128, 156);
+    font-size: 15px;
+}
+.iconoMensajeExito{
+  font-size: 40px;
+}
+.contenedorInformacion{
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+.informacion p{
+    font-style: oblique;
+}
+.botonesConfirmacionEliminacion{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botonesConfirmacionEliminacion button{
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(1){
+    background-color: rgb(78, 147, 204);
+    color: white;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(2){
+    background-color: rgb(204, 78, 78);
+    color: white;
+}
+
+  @media only screen and (max-width:580px) {
+    .contenedorMensaje{
+        text-align: justify;
+        flex-direction: column;
+        margin: 0 20px;
+    }
+  }
+
+
+
+
+
+  
+

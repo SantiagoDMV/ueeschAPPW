@@ -1,0 +1,110 @@
+.contenedorRegistroMiembros{
+  color: black;
+  min-height: calc(100vh - 4rem); 
+  background-color: #f4f6f8;
+}
+
+.contenedorImagen{
+  background-image: url('../../../public/imagenes/matriculate/header/header.jpg');
+  min-height: 50vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: white;
+}
+
+.contenedorImagen span{
+  width: 100%;
+  background-color: rgba(13, 49, 121, 0.162);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+
+.contenedorPrincipalUsernameMoodle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contenedorUsernameMoodle{
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: rgb(44, 102, 147);
+  text-align: center;
+}
+
+.contenedorUsernameMoodle input{
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  border: none;
+  min-width: 50%;
+}
+
+.contenedorUsernameMoodle button{
+  padding: 10px;
+  border: none;
+  background-color: rgb(67, 127, 179);
+  border-radius: 5px;
+  color:white;
+  cursor: pointer;
+}
+.contenedorUsernameMoodle button:hover{
+  background-color: rgb(80, 140, 192);
+}
+
+.formularioEmailEnviar{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.formularioEmailEnviar input{
+  background-color: white;
+  color: black;
+}
+
+.contenedorRegistro {
+  background-color: white;
+  box-sizing: border-box;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem 0;
+  min-height: calc(100vh - 4rem);
+} 
+
+.contenedorRegistro{
+  font-size: 0.9rem;
+}
+
+
+  @media only screen and (max-width: 890px) {
+    .contenedorRegistro {
+      flex-direction: row;
+      width: 100%;
+    }
+    .contenedorRegistroMiembros{
+      flex-wrap: wrap-reverse;
+      padding-top: 0;
+    }
+  }
+  

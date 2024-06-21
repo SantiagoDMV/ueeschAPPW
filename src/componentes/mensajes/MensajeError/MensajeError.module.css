@@ -1,0 +1,90 @@
+.contenedorMensaje{
+    background-color: rgb(240, 41, 41);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    font-size: 0.85rem;
+    flex-direction: row;
+    gap: 1rem;
+    color: white;
+    max-width: 70%;
+    z-index: 1;
+}
+
+
+.contenedorInformacion{
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.contenedorInformacion h4{
+    margin-bottom: 0.5rem;
+    text-align: start;
+    width: 100%;
+}
+
+/*.informacion{
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}*/
+
+.informacion p{
+    font-style: oblique;
+}
+
+.iconoError{
+    font-size: 30px;
+}
+
+
+/*ANIMACION DE APARECER */
+
+@keyframes aparecerAnimacion {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .contenedorMensaje {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: aparecerAnimacion 0.3s ease forwards;
+  }
+  
+  .contenedorMensaje.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  @media only screen and (max-width:580px) {
+    .contenedorMensaje{
+        top: 20%;
+        bottom: unset;
+        left: unset;
+        right: unset;
+        text-align: justify;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 20px;
+        max-width: 100%;
+    }
+  }

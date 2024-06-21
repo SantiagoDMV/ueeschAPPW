@@ -1,0 +1,143 @@
+.contenedorContactanos{
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: #f4f6f8;
+    padding-bottom: 2rem;
+}
+
+.contactanos{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contactanos h3{
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: rgb(22, 97, 107);
+}
+
+.correoEnlace{
+    color: rgb(196, 150, 22);
+    border-bottom:1px solid rgb(196, 150, 22);
+}
+
+.contendorMapa{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    min-width: 100%;
+}
+
+.mapa{
+    border: none;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 9px 5px rgb(231, 230, 230);
+}
+
+.contenedorInformacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 4rem);
+}
+
+.contenedordatosInformativos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.datosInformativos{
+    padding: 1rem;
+    width: 100%; 
+    display: flex;
+    flex-grow: 2;
+    flex-basis: 0;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    
+}
+
+.contenedorFormulario{
+    width: 100%;
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    align-items: center;
+}
+
+.lineaInformativa{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 15px;    
+    flex: 1 1 calc(50% - 16px); 
+    max-width: calc(50% - 16px);
+    min-height: 100px;
+}
+
+.lineaInformativa b{
+    color: rgb(22, 97, 107);
+    font-size: 22px;
+}
+
+.icono{
+    margin: 10px;
+    font-size:60px;
+    color: rgb(66, 126, 156);
+    display: none;
+}
+.iconoTelefono{
+    margin: 10px;
+    font-size:60px;
+    color: rgb(36, 202, 111);
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 750px)  {
+    .contenedorContactanos{
+        padding-top: 2rem;
+    }
+    
+    .contenedordatosInformativos{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 500px)  {
+    .contenedordatosInformativos{
+        flex-direction: column;
+        
+    }
+
+    .lineaInformativa{
+        flex:none; 
+        min-width: 100%;
+        
+    }
+
+    .datosInformativos{
+        display: block;
+        gap: 0;
+    }
+}

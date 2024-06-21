@@ -1,0 +1,209 @@
+.seccionIzquierda{
+  flex-basis: 0;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  min-height: calc(100vh - 4rem);
+ 
+  }
+  
+  .seccionIzquierda button{
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: rgb(72, 181, 163);
+    border-radius: 5px;
+    color: white;
+  }
+  .seccionIzquierdaIconoAyuda{
+    font-size: 20px;
+    color: rgb(129, 29, 140);
+    cursor: pointer;
+  }
+  .seccionDerecha{
+    flex-basis: 0;
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 0;
+    min-height: calc(100vh - 4rem);
+    position: relative;
+    background-color: white;
+  }
+  
+  
+  .contenedorFormularioPublicacion {
+    box-sizing: border-box;
+    padding-top: 0;
+  }
+  
+  .formularioPublicacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .formularioPublicacion button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  /*------------------------*/
+  .quillEditorCreacion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 4rem);
+    background-color: rebeccapurple;
+    position: relative;
+  }
+  
+  .contenedorMasOpciones{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+    text-align: center;
+  } 
+  
+  .contenedorMasOpcionesDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  
+  .contenedorMasOpciones input{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  color: black;
+  width: 100%;
+  background-color: white;
+  border: 0;
+  padding: 15px;
+  outline: 2px solid black;
+    border-radius: 5px;
+  
+  } 
+  
+  .contenedorFechaEliminacion{
+  width: 100%;
+  }
+  
+  .contenedorFechaEliminacion input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  color: black;
+  width: 100%;
+  background-color: white;
+  outline: 2px solid black;
+  border-radius: 5px;
+  }
+  
+  
+  .spanMensajes{
+    color: rgb(94, 116, 160);
+    font-style: oblique;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .spanMensajesInformacion{
+    color: black;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .spanMensajesInformacion b{
+    color: rgb(195, 107, 107);
+  }
+  
+  
+  .spanMensajesInformacion ul{
+    padding-left: 5px;
+  }
+  
+  .contenedorSelect{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    
+   color: black;
+    background-color: white;
+    flex-direction: column;
+    
+    outline: 2px solid black;
+    border-radius: 5px;
+  }
+  
+  .contenedorSelect select{
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
+    padding: 5px;
+    font-size: 16px;
+    color: black;
+  }
+  
+  
+  
+  
+  .iconoPublicar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.9rem;
+    background-color: rgb(48, 184, 121);
+    padding: 5px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  
+  .iconoCancelar {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.9rem;
+    background-color: rgb(223, 20, 20);
+    padding: 5px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+  }
+  
+  
+  @media screen and (max-width:470px) {
+    
+    .contenedorMasOpciones{
+      justify-content: center;
+    }
+  
+  }
+  
+  
+  @media only screen and (max-width: 700px){
+    .seccionDerecha{
+      width: 100%;
+    }
+    .seccionIzquierda{
+      width: 100%;
+      min-height: auto;
+    }
+  }

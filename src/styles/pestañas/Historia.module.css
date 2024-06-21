@@ -1,0 +1,13 @@
+.contendorHistoria{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(13, 60, 94);
+    padding: 2rem;
+    text-align: justify;
+}
+
+
+@media only screen and (max-width: 1050px) {
+    
+}

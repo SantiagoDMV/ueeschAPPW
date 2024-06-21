@@ -1,0 +1,245 @@
+.contenedorPrincipalListaAsistentes{
+  min-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 7rem);
+  padding: 2rem;
+  overflow: auto;
+}
+
+.contenedorCargandoUsuarios{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 7rem);
+  text-align: center;
+}
+
+.contenedorOpcionesVentana{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.iconoCerrar{
+  font-size: 30px;
+  color: red;
+  cursor: pointer;
+}
+
+.contenedorInformacionTextoOpciones{
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contenedorInformacionTextoOpciones p:nth-child(1){
+  color: #1a6288;
+}
+
+.contenedorInformacionTextoOpciones p:nth-child(2){
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+.contenedorOpcionesLista{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contenedorOpcionesLista button{
+  padding: 7px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor:pointer;
+}
+
+.contenedorOpcionesLista button:nth-child(1){
+  background-color: #2b8abd;
+}
+
+.contenedorOpcionesLista button:nth-child(2){
+  background-color: #cb3c3c;
+}
+
+/* Estilos para la tabla */
+.tablaInformacionAsistentes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 300px;
+  }
+  
+  .contenedorCheckAsistentes{
+    width: 10px;
+  }
+
+  .tablaInformacionAsistentes th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: #f2f2f2;
+  }
+
+  .tablaInformacionAsistentes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    
+  }
+  
+  
+  /* Estilos para las filas de la tabla */
+  .tablaInformacionAsistentes tr {
+    transition: background-color 0.3s;
+  }
+  
+  .tablaInformacionAsistentes tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+
+  /*VENTANA CONFIRMACION ELIMINACION*/
+.fondo{
+  position: fixed;
+  top: 5%;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  background-color: rgba(52, 51, 53, 0.568);
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedorMensaje{
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.144);
+  position: fixed;
+  top:20%;
+  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: rgb(43, 128, 156);
+  font-size: 15px;
+}
+.iconoMensajeExito{
+font-size: 40px;
+}
+.contenedorInformacion{
+  flex-grow: 2;
+  flex-basis: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+  
+}
+
+.informacion p{
+  font-style: oblique;
+}
+.botonesConfirmacionEliminacion{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.botonesConfirmacionEliminacion button{
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(1){
+  background-color: rgb(78, 147, 204);
+  color: white;
+}
+
+.botonesConfirmacionEliminacion button:nth-child(2){
+  background-color: rgb(204, 78, 78);
+  color: white;
+}
+
+
+/*VENTANA AGREGAR*/
+.tablaAgregar{
+  overflow-x: auto;
+}
+.contenedorMensajeAgregar{
+  min-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 7rem);
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.contenedorTablaUsuariosListaAgregar{
+  min-width: 100%;
+}
+
+.informacionAgregar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.OpcionesAgregar{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.OpcionesAgregar button{
+  padding: 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.OpcionesAgregar button:nth-child(1){
+  background-color: #1a6288;
+}
+
+.OpcionesAgregar button:nth-child(2){
+  background-color: #cb3c3c;
+}
+
+@media only screen and (max-width: 500px) {
+  .contenedorPrincipalListaAsistentes{
+    padding: 1rem;
+  }
+}
+
+

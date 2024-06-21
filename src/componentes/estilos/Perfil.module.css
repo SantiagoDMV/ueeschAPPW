@@ -1,0 +1,221 @@
+.contenedorContenidoInformacion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: black;
+  box-sizing: border-box;
+  min-width: 100%;
+  overflow: auto;
+}
+
+.contenedorImagenNombre{
+  flex-basis: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 20px; 
+}
+
+.contenedorInformacionUsuario {
+  flex-basis: 0;
+  flex-grow: 2;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 2rem;
+  width: 100%;
+}
+
+
+.divCambioImagen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: relative;
+}
+
+
+.labelImagen{
+  font-size: 0.8rem;
+  color: #000000;
+  position: absolute;
+  z-index: 0;
+  background-color: white;
+  margin-top: 1rem;
+  padding: 0.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.inputImagen{
+  margin-top: 1rem;
+  z-index: 10;
+  width: 120px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  outline:none;
+  opacity: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.contenedorInformacion {
+  flex-basis: 0;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: white;
+  width: 100%;
+  min-height: 100%;
+}
+
+.nombreUsuario{
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
+}
+.rol{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #14ae5c;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  color: white;
+  padding: 0.4rem;
+}
+
+.linkEdicionPerfil{
+  padding-top: 7px;
+  color: #188048;
+}
+.linkEdicionContraseña{
+  width: 100%;
+  color: red;
+  cursor: pointer;
+}
+
+
+.imagenUsuario {
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.281);
+}
+
+.contenedorInfPrincipal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 0;
+}
+
+.contenedorImagen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contenedorImagen img{
+  object-fit: contain;
+}
+
+.contenedorImagen a {
+  font-size: 0.9rem;
+  color: rgb(14, 71, 97);
+  cursor: pointer;
+}
+
+.contenedorNombre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/*.contenedorNombre a {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: rgb(14, 71, 97);
+  cursor: pointer;
+  width: 100%;
+}*/
+
+.informacionUsuario input{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight:400;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.mensajeCabioImagen{
+  background-color: white;
+  box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.144);
+  padding: 0.7rem;
+  position: fixed;
+  margin-left: 5px;
+  border-radius: 10px;
+  background-color: #cad9ec;
+  text-align: center;
+  transition: all 0.7s ease-in;
+}
+
+.contenedorCambioContraseña{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  min-width: 100%;
+  margin-top: 4rem;
+  min-height: calc(100vh - 4rem);
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.308);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.email{
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 710px) {
+  .linkEdicionContraseña{
+    text-align: center;
+    width: 100%;
+    
+  }
+  .contenedorInformacion {
+    align-items: center;
+    padding: 1rem;
+  }
+  .contenedorContenidoInformacion{
+    flex-direction: column;
+  }
+  .email{
+    text-align: center;
+  }
+
+ 
+  
+ /* .contenedorNombre a {
+    display: flex;
+    justify-content: center;
+  }
+*/
+}
+

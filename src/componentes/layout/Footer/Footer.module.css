@@ -1,0 +1,82 @@
+.contenedorPrincipalFooter{
+    background-color: rgb(42, 149, 162);
+    padding: 20px;
+    box-shadow: 0px 0px 5x 3px rgba(0, 0, 0, 0.088);
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+.contenedorFooter{
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+}
+.footerIzquierda{
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.footerMedio{
+    flex-basis: 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footerDerecha{
+    flex-basis: 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.unidadEducativa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.subMenu{
+    display: flex;
+    flex-direction: column;
+    margin: 8px 10px;
+    padding: 0.5rem;
+    gap: 0.2rem;
+}
+
+.icono{
+    margin-right: 5px;
+}
+
+.iconosRedes{
+    font-size: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.281);
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 0 5px;
+}
+
+.mapa{
+    width: 100%;
+    border: none;
+    height: 200px;
+}
+
+@media only screen and (max-width:550px){
+    .contenedorFooter{
+        flex-direction: column;
+        gap: 1rem;
+    }   
+    
+    .footerMedio{
+        border: 1px solid white;
+        border-left: none;
+        border-right: none;
+        justify-content: flex-start;
+    }
+}

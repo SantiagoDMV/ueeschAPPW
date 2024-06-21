@@ -1,0 +1,85 @@
+.contenedorPrincipalMomentos{
+
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    font-size: 16px;
+    color: #0f4b6d;
+}
+
+
+.contenedorPrincipalPublicacionesFijo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedorPublicacionesNoEncontradas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 3rem;
+    color: #0f4b6d;
+    gap:2rem;
+}
+
+.mensajePrincipal{
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:1rem;
+    text-align: center;
+}
+
+.mensajePrincipal span{
+    font-size: 50px;
+    margin: 30px 0;
+    color: #2a87bd;
+}
+
+.contenedorPrincipalPublicaciones{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorPublicaciones{
+    
+    padding-top: 1.5rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    color: black; 
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1em;     
+}
+
+.contenidoContenedorDerecho{
+    background-color: white;
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contenedorPrincipalNoticias{
+    padding: 2rem;
+    border: 1px solid black;
+}
+
+@media only screen and (max-width: 750px){
+    .contenedorPrincipalPublicacionesFijo{
+        padding: 0;
+    }
+    .contenedorPrincipalPublicaciones{
+        position:static;
+        width: 100%;
+    }
+
+}

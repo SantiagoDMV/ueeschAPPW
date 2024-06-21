@@ -1,0 +1,49 @@
+
+
+
+.contenerPrincipalActualizarDatos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 4rem);
+
+}
+
+.mostrarCargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mostrarCargando h3 {
+    font-size: 1.5rem;
+    color: #333; /* Cambia según tus preferencias */
+    margin-bottom: 20px;
+  }
+  
+  .mostrarCargandoPacman {
+    margin-top: 20px;
+  }
+
+.contenedorUsuarioRegistrado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    width: 50%;
+    text-align: center;
+}
+
+.contenedorUsuarioRegistrado h2{
+    color:#1d4565;
+}
+
+
+@media screen and (max-width:900px){
+    .contenedorUsuarioRegistrado{        
+        width: 80%;
+    }
+}
+

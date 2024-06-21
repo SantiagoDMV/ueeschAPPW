@@ -1,0 +1,76 @@
+.MisionVision{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 6rem;
+    gap: 6rem;
+    
+}
+.contenedorMision{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.contenedorVision{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.MisionVision h4{
+    text-align: center;
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;    
+    flex-direction: column;
+    font-size: 0.95rem;
+}
+
+.iconoMision{
+    font-size: 3rem;
+    color: rgb(207, 28, 28);
+    margin-top: 20px;
+    width: 100%;
+}
+.iconoVision{
+    font-size: 3rem;
+    color: rgb(28, 126, 207);
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+
+/*.contenedor:nth-child(2){
+    flex-direction: row-reverse;
+}*/
+
+
+.contenido>h4{
+    margin-bottom: 10px;
+}
+
+.contenido>p{
+    line-height: 180%;
+}
+
+.imagen{
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    display: none;
+}
+.contenido{
+    flex-grow: 1;
+    flex-basis: 0;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 1042px) {
+    .MisionVision{
+        gap: 4rem;
+        padding: 4rem 2rem;
+        flex-direction: column;
+    }
+}

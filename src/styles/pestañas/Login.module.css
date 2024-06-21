@@ -1,0 +1,234 @@
+.titulo_login {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.contenedorFormulario {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../../../public/imagenes/Login/fondoLogin.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  
+}
+
+.contenedorRecuperarContrasena{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.contenedorFormularioRecuperarContrasena{
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.formulario {
+  background-image: radial-gradient(circle at 25.82% 116.45%, #771e2e 0, #762028 12.5%, #742321 25%, #72261a 37.5%, #6f2914 50%, #6b2c0d 62.5%, #673006 75%, #633300 87.5%, #5e3600 100%);
+  padding: 20px;
+  padding-bottom: 0;
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.089);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding-bottom: 10px;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+}
+.formulario label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.formulariocampos {
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 10px;
+  margin: 0 20px;
+}
+
+.iconos {
+  color: black;
+  font-size: 37px;
+  padding: 8px;
+  background-color: rgba(5, 5, 5, 0.589);
+  color: white;
+  border-radius: 8px 0 0 8px;
+}
+
+.inputs {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: center;  
+}
+
+.formulario input {
+  padding: 5px;
+  border: 1px solid rgba(5, 5, 5, 0.589);
+  color: black;
+  border-left: none;
+  outline: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #ffffffb0;
+  
+}
+
+.contenedorImg {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.imagen_usuario {
+  display: flex;
+  width: 50%;
+  height: 100%;
+}
+
+.contenedorbtn {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.botonesRecuperar{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  width: 100%;
+  background-image: radial-gradient(circle at 25.82% 116.45%, #fb245e 0, #f92e4f 12.5%, #f53840 25%, #f04231 37.5%, #e94c20 50%, #e15509 62.5%, #d85e00 75%, #ce6600 87.5%, #c36e00 100%);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1b2727;
+  transition: background-color 0.3s;
+}
+
+.btnRecuperar{
+  background-image: radial-gradient(circle at 25.82% 116.45%, #fb245e 0, #f92e4f 12.5%, #f53840 25%, #f04231 37.5%, #e94c20 50%, #e15509 62.5%, #d85e00 75%, #ce6600 87.5%, #c36e00 100%);
+  padding: 10px 2rem;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+}
+.btnRecuperar:hover {
+  background-color: #1b2727;
+  transition: background-color 0.3s;
+}
+
+.inputsRecuperar input{
+ padding: 10px;
+ outline: none;
+ text-align: center;
+}
+
+.iconos:hover {
+  background-color: #1b2727;
+  transition: background-color 0.3s;
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.opcionRegistro{
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+.opcionRegistro span{
+  color: #93842d;
+  font-weight: bolder;
+  cursor:pointer;
+}
+
+.opcionRegistro span:hover{
+  color: #baa83d;
+}
+
+
+.opciones label {
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+}
+
+.opciones label:hover{
+  color: rgb(215, 214, 214);
+}
+
+
+@media only screen and (max-width: 700px) {
+  .formulario{
+    width: 80%;
+  }
+  .contenedorImg {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .imagen_usuario {
+    width: 50%;
+    height: 90%;
+  }
+  .contenedorFormulario {
+    height: 100%;
+  }
+  .opciones {
+    flex-wrap: wrap-reverse;
+    margin-bottom: 20px;
+  }
+  .titulo_login {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+}
