@@ -3,6 +3,7 @@ import { file } from "googleapis/build/src/apis/file";
 import { Stream } from "stream";
 
 const autenticacion = () => {
+  console.log(process.env.GOOGLE_DRIVE_CREDENCIALES)
   const auth = new google.auth.GoogleAuth({
     keyFile: `${process.env.GOOGLE_DRIVE_CREDENCIALES}`,
     scopes: "https://www.googleapis.com/auth/drive",

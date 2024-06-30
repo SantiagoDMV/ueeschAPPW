@@ -191,6 +191,7 @@ export async function crearPublicacion(req) {
     let multimediaArray = [];
 
     const { contenido, datosPublicacion } = req.body;
+    
 
     if (!datosPublicacion.tituloP)
       return {
@@ -273,10 +274,11 @@ export async function crearPublicacion(req) {
         mensaje: "Error interno en el servidor",
       };
 
+      
     const datosMultimedia = await repoMultimedia.crearMultimedia(
       tiposArchivo,
       multimediaArray,
-      datos.id_publicacion
+      datos.insertId
     );
 
     if (!datosMultimedia)

@@ -36,8 +36,8 @@ export async function validarEmailVerificacion(req,res){
          valor:false
         }
 
-        const usuarioRepo = new UsuariosRepository();
-        const consulta = await usuarioRepo.buscarUsuarioEmail(email_usuario);
+        // const usuarioRepo = new UsuariosRepository();
+        const consulta = await UsuariosRepository.buscarUsuarioEmail(email_usuario);
      
          if (!consulta)
          return {
@@ -99,8 +99,8 @@ export async function validarEmail(req,res){
          valor:false
         }
 
-        const usuarioRepo = new UsuariosRepository();
-        const consulta = await usuarioRepo.buscarUsuarioEmail(email);
+        // const usuarioRepo = new UsuariosRepository();
+        const consulta = await UsuariosRepository.buscarUsuarioEmail(email);
      
          if (!consulta)
            return {

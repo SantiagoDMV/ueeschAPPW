@@ -94,17 +94,16 @@ export function actualizacionValidaciones(userData, id_rol, emailActual,password
 export async function actualizacionValidacionesDb(userData,emailActual, cedulaActual) {
     const {cedula_usuario,email_usuario} = userData
     if(emailActual === email_usuario && cedulaActual ===cedula_usuario) return {valor:true} 
-    const prisma = new UsuariosRepository();
     
-    const respuesta = await validacionesDb(email_usuario, cedula_usuario, prisma, emailActual, cedulaActual)
+    const respuesta = await validacionesDb(email_usuario, cedula_usuario, UsuariosRepository, emailActual, cedulaActual)
     return respuesta
   }
 
 
-  export async function validacionesDb(email, cedula, prisma, emailActual) {
+  export async function validacionesDb(email, cedula, UsuariosRepositoryP, emailActual) {
     try {
       
-      const respuestaDB = await prisma.buscarUsuariosEmailCedula(email, cedula);
+      const respuestaDB = await UsuariosRepositoryP.buscarUsuariosEmailCedula(email, cedula);
 
       let [respuesta] = respuestaDB.filter((e) => e.email_usuario === email)
       let respuestaCedulaDb = respuestaDB.filter((e) => e.cedula_usuario === cedula)

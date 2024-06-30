@@ -2,8 +2,6 @@ import {validarCadenas,validarCadenasAmbos} from "./datos/cadenas"
 import {validarCedula,validarCedulaAmbos} from "./datos/cedula"
 import UsuariosRepository from "../../../data/usuariosRepository";
 
-
-
 export function registroValidacionesAmbos(index_usuario,id_rol,cedula_usuario, nombre_usuario,apellido_usuario,email_usuario) {
 
   if (id_rol) {
@@ -122,17 +120,17 @@ export function registroValidaciones(req) {
 }
 
 export async function actualizacionValidacionesDbRegistro(req) {
-  const prisma = new UsuariosRepository();
+  
   const { cedula_usuario} = req.body;
   
   let respuesta;
-  respuesta = await actualizacionesValidacionesDbMiembros(cedula_usuario, prisma)
+  respuesta = await actualizacionesValidacionesDbMiembros(cedula_usuario, UsuariosRepository)
   return respuesta
 }
 
-export async function actualizacionesValidacionesDbMiembros(cedula, prisma) {
+export async function actualizacionesValidacionesDbMiembros(cedula, UsuariosRepositoryP) {
   try {
-    const respuesta = await prisma.buscarUsuarioCedula(cedula);
+    const respuesta = await UsuariosRepositoryP.buscarUsuarioCedula(cedula);
     if (respuesta) {
       if (respuesta.cedula_usuario === cedula)
         return {
@@ -153,14 +151,11 @@ export async function actualizacionesValidacionesDbMiembros(cedula, prisma) {
 
 
 export async function registroValidacionesDb(req) {
-  const prisma = new UsuariosRepository();
   const { email_usuario, cedula_usuario} = req.body;
   
   let respuesta;
-  // if (!id_rol)
-  //respuesta = await validacionesDbPadres(email_usuario, cedula_usuario, prisma)
-  // else
-  respuesta = await validacionesDbMiembros(email_usuario, cedula_usuario, prisma)
+  
+  respuesta = await validacionesDbMiembros(email_usuario, cedula_usuario, UsuariosRepository)
   return respuesta
 }
 
@@ -170,8 +165,7 @@ export async function registroValidacionesDb(req) {
 
 export async function validacionesDbUsuariosAmbos(email, cedula) {
   try {
-    const prisma = new UsuariosRepository();
-    const respuesta = await prisma.buscarUsuariosPorEmailYCedula(email, cedula);
+    const respuesta = await UsuariosRepository.buscarUsuariosPorEmailYCedula(email, cedula);
 
     if (respuesta && Array.isArray(respuesta) && respuesta.length > 0) {
       const emailsRegistrados = respuesta.map(usuario => usuario.email_usuario);
@@ -208,9 +202,9 @@ export async function validacionesDbUsuariosAmbos(email, cedula) {
 
 
 
-export async function validacionesDbMiembros(email, cedula, prisma) {
+export async function validacionesDbMiembros(email, cedula, UsuariosRepositoryP) {
   try {
-    const respuesta = await prisma.buscarUsuarioEmailCedula(email, cedula);
+    const respuesta = await UsuariosRepositoryP.buscarUsuarioEmailCedula(email, cedula);
     if (respuesta) {
       if (respuesta.cedula_usuario === cedula)
         return {
@@ -235,10 +229,10 @@ export async function validacionesDbMiembros(email, cedula, prisma) {
 }
 
 
-export async function validacionesDbPadres(email, cedula, prisma) {
+export async function validacionesDbPadres(email, cedula, UsuariosRepositoryP) {
 
   try {
-    const respuestaDB = await prisma.buscarUsuariosEmailCedula(email, cedula)
+    const respuestaDB = await UsuariosRepositoryP.buscarUsuariosEmailCedula(email, cedula)
 
     let [respuesta] = respuestaDB.filter((e) => e.email_usuario === email)
     let respuestaCedula = respuestaDB.filter((e) => e.cedula_usuario === cedula)

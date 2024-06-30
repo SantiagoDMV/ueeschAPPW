@@ -219,7 +219,9 @@ function generarContrasena(longitud) {
 //   }
 // };
 
-export const registrarUsuariosAmbosSistemas = async (usuariosAmbosSistemas) => {
+export const registrarUsuariosAmbosSistemas = async (usuariosAmbosSistemasP) => {
+  
+  const usuariosAmbosSistemas = usuariosAmbosSistemasP
   try {
     const respuestaValidaciones = usuariosAmbosSistemas.map((e, index) => {
       const respuestaValidacion = registroValidacionesAmbos(
@@ -651,6 +653,7 @@ export const actualizarImagenUsuarios = async (req, res) => {
 };
 
 export const actualizarFechaEliminacion = async (req, res) => {
+  
   try {
     const { id_usuarioRestauracion } = req.body;
 

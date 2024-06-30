@@ -472,6 +472,8 @@ async function actualizarImagenUsuario(idUser, imagen) {
 
 async function actualizarFechaEliminacion(idUser) {
   let connection;
+  console.log("idUser")
+  console.log(idUser)
   try {
     connection = await pool.getConnection();
     await connection.query("UPDATE usuario SET eliminado_en = NULL WHERE id_usuario = ?",
