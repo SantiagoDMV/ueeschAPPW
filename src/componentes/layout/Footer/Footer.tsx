@@ -2,10 +2,24 @@ import style from './Footer.module.css'
 import Image from 'next/image'
 import {AiOutlineWhatsApp,AiFillFacebook} from 'react-icons/ai'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function Footer() {
+////////////////////////LOGO
+useEffect(()=>{
+  obtenerLogo();
+},[])
 
-  const logo = 'https://res.cloudinary.com/dxopgkamj/image/upload/v1716430862/thumbnail_logo_unidad_1a960e2f61.png'
+const [logo, setLogo] = useState<any>();
+
+const obtenerLogo = async() =>{
+      const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+      setLogo(respuestaMision.data.data.attributes.contenido)
+}
+////////////////////////////
+  
+  //const logo = 'https://res.cloudinary.com/dxopgkamj/image/upload/v1716430862/thumbnail_logo_unidad_1a960e2f61.png'
   return (
     <div className={style.contenedorPrincipalFooter}>
     <div className={style.contenedorFooter}>

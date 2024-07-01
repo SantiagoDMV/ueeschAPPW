@@ -1,7 +1,7 @@
 import Layout from "@/componentes/layout/Layout";
 import estilos from "../../styles/pestañas/ReporteNotas.module.css";
 import Cabecera from "../../componentes/Reporte/Cabecera/Cabecera";
-import TablaUsuarios from "../../componentes/Reporte/TablaUsuarios/TablaUsuarios";
+//import TablaUsuarios from "../../componentes/Reporte/TablaUsuarios/TablaUsuarios";
 import { PDFViewer, Document, Page, View, Text } from "@react-pdf/renderer";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,7 +14,7 @@ export default function ReporteNotas({
   moodle,
 //  cursosUser,
 }: any) {
-  
+
   const [tareas, setTareas] = useState<any>();
   const [cursoFullname, setCursoFullName] = useState<string>("");
   const [moduloInf, setModuloInf] = useState<any>();
@@ -86,7 +86,7 @@ const obtenerInformacionCursosUser = async() => {
       setInformacionCursoUsuario(null)
       //const user = ObtenerInformacionCookie(req)
       const respuesta = await axios.post(
-        `/api/moodle/core_enrol_get_enrolled_users`,{cursoId: curso, id_moodle: id}
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/core_enrol_get_enrolled_users`,{cursoId: curso, id_moodle: id}
       );
       
       setUsuariosInformacion(respuesta.data.cursosUSer)
@@ -397,20 +397,6 @@ export const getServerSideProps = async (context: any) => {
         permanent: false,
       },
     };
-
-  // const respuesta = await axios.post(
-  //   `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
-  //   { idUsuario: id }
-  // );
-
-  // if (respuesta.data.errorcode)
-  //   return {
-  //     redirect: {
-  //       destination: "/error?server=moodle",
-  //       permanent: false,
-  //     },
-  //   };
-
 
   return {
     props: {

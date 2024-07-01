@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineUser, AiOutlineKey } from "react-icons/ai";
 import Image from "next/image";
-import logo from "/public/imagenes/nav/logoUnidad.png";
+//import logo from "/public/imagenes/nav/logoUnidad.png";
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
 import Ventana from "@/componentes/ventanas/Ventana";
@@ -11,6 +11,20 @@ import CambiarContraseña from "../../ventanas/CambiarContraseña";
 
 
 export default function FormularioLogin({ styles,setUsuario }: any) {
+
+////////////////////////LOGO
+useEffect(()=>{
+  obtenerLogo();
+},[])
+
+const [logo, setLogo] = useState<any>();
+
+const obtenerLogo = async() =>{
+      const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+      setLogo(respuestaMision.data.data.attributes.contenido)
+}
+////////////////////////////
+
   const [credenciales, setCredenciales] = useState({
     username: "",
     password: "",
@@ -223,7 +237,10 @@ export default function FormularioLogin({ styles,setUsuario }: any) {
         <div className={styles.contenedorImg}>
           <Image
             className={styles.imagen_usuario}
-            alt="imagen_estudiantes"
+            alt="Logo_Unidad"
+            width={65}
+            height={60}
+            quality={100}
             src={logo}
           />
         </div>
