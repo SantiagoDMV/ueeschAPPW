@@ -157,22 +157,43 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 }
 
 export const getServerSideProps = async () => {
-  try {
-    const respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/1?populate[imagen_header][fields][0]=url');
-    const { data } = respuesta.data;
-    const { attributes } = data;
-
+    let respuesta;
+    let data;
+    let attributes
+    try{
+      respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/1?populate[imagen_header][fields][0]=url');
+      data = respuesta.data
+      attributes = data[0].attributes
+    }catch(error){
+      respuesta = {
+        data: {
+            id: 1,
+            attributes: {
+                titulo: "Unidad Educativa Especializada Sordos de Chimborazo",
+                descripcion_titulo: "La Unidad Educativa Especializada Sordos de Chimborazo atiende a niños/as, adolescentes y jóvenes con discapacidad auditiva, en los niveles de Inicial, Preparatoria, Básica y Bachillerato Técnico",
+                createdAt: "2024-05-26T20:36:29.847Z",
+                updatedAt: "2024-05-26T20:45:27.643Z",
+                publishedAt: null,
+                contenido: null,
+                imagen_header: {
+                    data: {
+                        id: 2,
+                        attributes: {
+                            url: "https://res.cloudinary.com/dxopgkamj/image/upload/v1716774136/fondo_inicio_estudiantes_5d404fc0d1.jpg"
+                        }
+                    }
+                }
+            }
+        },
+        meta: {}
+    }
+    data = respuesta.data;
+    attributes = data.attributes;
+    }    
     return {
       props: {
         informacion: attributes,
       },
     };
-  } catch (error) {
-    console.error("Error al obtener la información del servidor:", error);
-    return {
-      props: {
-        informacion: null,
-      },
-    };
-  }
+  
 };

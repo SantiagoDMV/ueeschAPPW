@@ -2,8 +2,8 @@ import axios, { AxiosError } from "axios";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineUser, AiOutlineKey } from "react-icons/ai";
-import Image from "next/image";
-//import logo from "/public/imagenes/nav/logoUnidad.png";
+//import Image from "next/image";
+import logoImagen from "/public/imagenes/nav/logoUnidad.png";
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
 import Ventana from "@/componentes/ventanas/Ventana";
@@ -20,8 +20,12 @@ useEffect(()=>{
 const [logo, setLogo] = useState<any>();
 
 const obtenerLogo = async() =>{
-      const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
-      setLogo(respuestaMision.data.data.attributes.contenido)
+  try {
+    const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+    setLogo(respuestaMision.data.data.attributes.contenido)
+  } catch (error) {
+    setLogo(logoImagen.src)
+  }
 }
 ////////////////////////////
 
@@ -235,15 +239,15 @@ const obtenerLogo = async() =>{
       >
         
         <div className={styles.contenedorImg}>
-          <Image
-            className={styles.imagen_usuario}
-            alt="Logo_Unidad"
-            width={65}
-            height={60}
-            quality={100}
-            src={logo}
-          />
-        </div>
+  <img
+    className={styles.imagen_usuario}
+    alt="Logo_Unidad"
+    width="65"
+    height="60"
+    src={logo}
+  />
+</div>
+
 
 
         <div className={styles.formulariocampos}>

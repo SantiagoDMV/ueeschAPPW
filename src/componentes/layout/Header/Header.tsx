@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+//import Image from 'next/image';
 // import logoUnidad from '../../../../public/imagenes/index/header/headerEstudiantes.jpg'
 import style from "./Header.module.css";
 
@@ -39,13 +39,13 @@ export default function Header({ informacion }: any) {
         <div className={style.imagenHeaderContainer}>
           {
             isImage ? (
-              <Image
+              <img
                 src={informacion.imagen_header.data.attributes.url}
                 // src={logoUnidad}
-               layout="fill"
-                objectFit="cover"
-                quality={100}
-                priority
+              //  layout="fill"
+              //   objectFit="cover"
+              //   quality={100}
+              //   priority
                 className={style.imagenHeader}
                 alt="imagen_header"
               />
