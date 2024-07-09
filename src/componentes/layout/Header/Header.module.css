@@ -39,7 +39,7 @@
  
   .imagenHeader{
     object-fit:cover;
-    
+    min-width: 100%;
     object-position: center;
   }
 

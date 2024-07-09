@@ -15,8 +15,13 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
   const [logo, setLogo] = useState<any>();
 
   const obtenerLogo = async() =>{
-        const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
-        setLogo(respuestaMision.data.data.attributes.contenido)
+    try {
+      const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+      setLogo(respuestaMision.data.data.attributes.contenido)
+    } catch (error) {
+      setLogo("https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png")
+    }
+        
   }
   const masOpciones = (nombre: any) => {
     if (nombre === "servicios")
@@ -55,14 +60,14 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
     <div className={styles.contenedorNav}>
       <nav className={styles.Nav}>
         <div className={styles.contenedorLogo}>
-          <Image
+          <img
             className={styles.logoUnidad}
             src={logo}
             // src={logoUnidad}
             width={65}
             height={60}
-            quality={100}
-            priority
+            //quality={100}
+            //priority
             alt="Logo_Unidad"
           />
 

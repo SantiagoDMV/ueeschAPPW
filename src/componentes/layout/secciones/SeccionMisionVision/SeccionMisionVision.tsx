@@ -13,11 +13,26 @@ export default function SeccionMisionVision() {
   const [informacionVision,setInformacionVision] = useState<any>()
 
   const obtenerinformacion = async() =>{
-    const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/1?[fields][0]=nombre&[fields][1]=contenido')
-    setInformacionMision(respuestaMision.data.data.attributes)
+    let respuestaMision, respuestaVision
+    try {
+      respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/1?[fields][0]=nombre&[fields][1]=contenido')
+      respuestaVision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/2?[fields][0]=nombre&[fields][1]=contenido')
+      setInformacionMision(respuestaMision.data.data.attributes)
+      setInformacionVision(respuestaVision.data.data.attributes)  
+    } catch (error) {
+      const misionC = {
+        nombre: "MISION",
+        contenido: "Brindar educación integral de calidad a niños, niñas y jóvenes con discapacidad auditiva, fomentando su desarrollo personal, intelectual, social y laboral, en un ambiente inclusivo y respetuoso de su diversidad, para que sean ciudadanos autónomos, críticos y comprometidos con la sociedad."
+    } 
+    const visionC = {
+      nombre: "VISION",
+      contenido: "Ser una institución educativa líder en la formación integral de personas con discapacidad auditiva, reconocida por su excelencia académica, innovación educativa y compromiso con la inclusión social, promoviendo su participación activa en el desarrollo del país."
+  }
+      setInformacionMision(misionC)
+      setInformacionVision(visionC)
+      
+    }
     
-    const respuestaVision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/2?[fields][0]=nombre&[fields][1]=contenido')
-    setInformacionVision(respuestaVision.data.data.attributes)
     
   }
   return (

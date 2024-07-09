@@ -16,8 +16,13 @@ useEffect(()=>{
 },[])
 
 const obtenernumero = async () =>{
-  const respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
-  setNumero(respuestaTelefono.data.data.attributes.contenido)
+  let respuestaTelefono
+  try {
+    respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
+    setNumero(respuestaTelefono.data.data.attributes.contenido)  
+  } catch (error) {
+    setNumero('0992515443')
+  }
   
 }
 
@@ -50,8 +55,8 @@ const obtenernumero = async () =>{
       {estado &&
         <div className={estilos.cajaContenedorAyuda}>
           <div className={estilos.contenedorContacto}>
-            <Image
-              src={imagenContacto}
+            <img
+              src={imagenContacto.src}
               height={50}
               width={50}
               alt="imagen_Contacto"
