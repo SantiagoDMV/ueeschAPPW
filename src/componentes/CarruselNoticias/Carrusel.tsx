@@ -29,13 +29,11 @@ function SamplePrevArrow(props:any) {
 
 export default function CarruselImágenes({ datosNoticias }: any) {  
   const settings = {
-    dots: true,
+    focusOnSelect: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
+    speed: 500
   };
 
   const handleLeerMasClick = (id: string) => {

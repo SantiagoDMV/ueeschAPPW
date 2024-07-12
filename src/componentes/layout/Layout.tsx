@@ -2,6 +2,7 @@ import Nav from "./Nav/Nav";
 import Link from "next/link";
 import style from "../estilos/Layout.module.css";
 import ChatAyuda from "../chatAyuda/ChatAyuda";
+import ChatDiccionario from "../chatDiccionario/ChatDiccionario";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Ventana from "../ventanas/Ventana";
@@ -249,9 +250,15 @@ const convertirTimestampAFecha = (timestamp:any) => {
               </div>
             
             }
+
+            <div className={style.chatDiccionario}>
+              <ChatDiccionario />
+            </div>
+
             <div className={style.chatAyuda}>
               <ChatAyuda />
             </div>
+
             {/* VENTANA PARA VER EL CALENDARIO */}
           {
                   estadoVentana &&

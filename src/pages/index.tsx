@@ -25,10 +25,27 @@ interface Props {
 
 export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moodle }: Props) {
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>(null);
+  const [datosMultimedia, setDatosMultimedia] = useState<any>(null);
   const [datosAnuncios, setDatosAnuncios] = useState<any>(null);
+
   const [mostrarCarga, setMostrarCarga] = useState(true);
 
+
+  const obtenerDatosPublicaciones = async () => {
+    try {
+      const respuesta = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/noticiasIndex`
+      );
+      setDatosPublicaciones(respuesta.data.datos);
+      setDatosMultimedia(respuesta.data.datosMultimedia);
+    } catch (error) {
+      console.error("Error al obtener las publicaciones:", error);
+    }
+  }
+
+
   const obtenerInformacionPublicaciones = useCallback(async () => {
+    obtenerDatosPublicaciones()
     try {
       const respuesta = await axios.post(`/api/publicaciones`, { pagina: "index" });
       const { datos } = respuesta.data;
@@ -41,6 +58,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
       const datosAnuncios = datos.filter((e: any) => e.id_tipo_publicacion === 2);
       const datosNoticias = datos.filter((e: any) => e.id_tipo_publicacion === 3);
 
+    
       setDatosAnuncios(datosAnuncios);
       setDatosPublicaciones(datosNoticias);
     } catch (error) {
@@ -112,6 +130,18 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
           </div>
         </div>
 
+
+        {datosAnuncios && datosAnuncios.length !== 0 && (
+                <div className={style.contenedorPrincipalNoticias}>
+                  <h2>
+                <AiOutlineCalendar className={style.iconoPublicacionesRecientes} /> Anuncios
+              </h2>
+                  <div className={style.contenedorNoticias}>
+                    <Anuncios noticias={datosAnuncios} />
+                  </div>
+                </div>
+              )}
+
         <div className={style.contenedorSeccionPublicaciones} id="contenedorSeccionPublicaciones">
           {datosPublicaciones && datosPublicaciones.length > 0 ? (
             <div className={style.seccionPublicaciones}>
@@ -119,16 +149,9 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
                 <AiOutlineCalendar className={style.iconoPublicacionesRecientes} /> Publicaciones recientes
               </h2>
 
-              {datosAnuncios && datosAnuncios.length !== 0 && (
-                <div className={style.contenedorPrincipalNoticias}>
-                  <div className={style.contenedorNoticias}>
-                    <Anuncios noticias={datosAnuncios} />
-                  </div>
-                </div>
-              )}
-
               <div className={style.contenedorPublicaciones}>
-                <Publicaciones datosPublicaciones={datosPublicaciones} obtenerInformacionPublicaciones={obtenerInformacionPublicaciones} />
+                {/* <Publicaciones datosPublicaciones={datosPublicaciones} obtenerInformacionPublicaciones={obtenerInformacionPublicaciones} /> */}
+                <Publicaciones datosPublicaciones={datosPublicaciones} datosMultimedia={datosMultimedia}/>
               </div>
               <div className={style.contenedorBotonVerTodo}>
                 <Link href={"publicaciones"} className={style.botonVerTodo}>

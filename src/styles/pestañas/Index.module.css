@@ -39,15 +39,20 @@
 }
 
 .contenedorPrincipalNoticias{
-  width: 100%;
   display: flex;
   justify-content: center;
-  
+  flex-direction: column;
+  background-color: rgb(244, 34, 34);
+  padding: 50px;
+  gap: 2rem;
+  color: black;
+}
+.contenedorPrincipalNoticias h2{
+  color: white;
 }
 
 .contenedorNoticias{
-  width: 70%;
-  
+  width: 100%;
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.056);
 }
 
@@ -55,7 +60,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
     margin: auto;
     gap: 20px;
     padding: 30px 0;
@@ -77,15 +81,13 @@
   
 .contenedorPublicaciones{
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
     min-height: 100%;
     max-height: 100%;
-    padding-right: 20px;
     gap: 10px;
     max-width: 100%;
+    min-width: 100%;
     background-color: #f4f6f8;
 }
 
@@ -161,6 +163,9 @@ padding: 1rem;
    .seccionPublicaciones{
     width: 100%;
     padding: 25px 20px;
+   }
+   .contenedorPublicaciones{
+    flex-direction: column;
    }
    .contenedorNoticias{
     width: 100%;

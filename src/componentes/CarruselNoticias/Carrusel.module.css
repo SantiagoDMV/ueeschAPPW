@@ -11,15 +11,25 @@
     margin: 20px;
   }
   
-
+  .contenedorPrinpialCarrusel{
+    padding: 30px 0;
+    background-color: white;
+  }
   .contenedorCarruselInformacion{
     width: 100%;
+    min-height: 100%;
+    padding: 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
     text-align: center;
+  }
+
+  .contenedorCarruselInformacion h4{
+    height: auto;
+    word-wrap: break-word; /* Permite que las palabras largas se dividan y ajusten al ancho del contenedor */
+    word-break: break-all; /* Fuerza a las palabras a romperse en cualquier punto si es necesario */
   }
 
   .contenedorCarruselInformacion .LinkButton{

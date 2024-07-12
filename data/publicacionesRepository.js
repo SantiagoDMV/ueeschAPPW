@@ -98,6 +98,22 @@ async function mostrarNoticias() {
     }
 }
 
+async function mostrarNoticiasIndex() {
+    let connection;
+    try {
+        connection = await pool.getConnection();
+        const [rows] = await connection.query(
+            "SELECT * FROM publicacion WHERE id_tipo_publicacion = 3 AND eliminado_en IS NULL ORDER BY creado_en DESC LIMIT 3;"
+        );
+        return rows;
+    } catch (error) {
+        console.error(error);
+        return false;
+    } finally {
+        if (connection) connection.release();
+    }
+}
+
 async function mostrarServicios() {
     let connection;
     try {
@@ -380,6 +396,7 @@ module.exports = {
   obtenerDetallesUsuariosGestion,
   mostrarAnuncios,
   mostrarNoticias,
+  mostrarNoticiasIndex,
   mostrarServicios,
   mostrarServiciosUsuarioRegistrado,
   obtenerPublicacion,

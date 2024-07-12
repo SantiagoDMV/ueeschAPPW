@@ -1,6 +1,7 @@
 .contenedorNoticias{
     padding: 20px;
     width: 100%;
+    margin: auto;
     min-height: 100px;
-    background-color: white;
+    
 }
