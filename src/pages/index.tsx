@@ -201,7 +201,7 @@ export const getServerSideProps = async () => {
                     data: {
                         id: 2,
                         attributes: {
-                            url: "https://res.cloudinary.com/dxopgkamj/image/upload/v1716774136/fondo_inicio_estudiantes_5d404fc0d1.jpg"
+                            url: "https://res.cloudinary.com/dxopgkamj/image/upload/v1720808905/fondo_Escuela_d1fccc85b0.jpg"
                         }
                     }
                 }
