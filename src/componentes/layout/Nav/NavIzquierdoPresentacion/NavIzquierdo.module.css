@@ -5,8 +5,15 @@
   padding: 10px;
   
 }
+.contenedorNav h3{
+  width: 100%;
+  background-color: rgb(9, 93, 158);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
 .contenedorNav p {
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.301);
   cursor: pointer;
   font-weight: bold;

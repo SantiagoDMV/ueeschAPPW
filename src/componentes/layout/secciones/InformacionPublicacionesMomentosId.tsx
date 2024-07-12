@@ -11,14 +11,15 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
 
   useEffect(() => {
     if (publicacion) {
-      const contentWithImages = replaceImgWithNextImage(publicacion.contenido_publicacion);
-      setProcessedContent(contentWithImages);
+      const contentWithMedia = replaceMediaWithNextComponents(publicacion.contenido_publicacion);
+      setProcessedContent(contentWithMedia);
     }
   }, [publicacion]);
 
-  const replaceImgWithNextImage = (htmlContent: string) => {
+  const replaceMediaWithNextComponents = (htmlContent: string) => {
     const $ = cheerio.load(htmlContent);
     
+    // Reemplaza imágenes
     $('img').each((index, element) => {
       const imgSrc = $(element).attr('src');
       if (imgSrc) {
@@ -29,11 +30,32 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
             quality={100}
             alt="Image"
             className={style.imagenPublicacion}
+            objectFit='cover'
+            layout='responsive'
             width={500}
             height={500}
           />
         );
         $(element).replaceWith(ReactDOMServer.renderToStaticMarkup(imgComponent));
+      }
+    });
+
+    // Reemplaza iframes (videos)
+    $('iframe.ql-video').each((index, element) => {
+      const videoSrc = $(element).attr('src');
+      
+      if (videoSrc) {
+        const iframeComponent = (
+          <iframe
+            key={`iframe-${index}`}
+            src={videoSrc}
+            className={style.videoPublicacion}
+            width="500"
+            height="700"
+            allowFullScreen
+          ></iframe>
+        );
+        $(element).replaceWith(ReactDOMServer.renderToStaticMarkup(iframeComponent));
       }
     });
 
@@ -54,7 +76,6 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
         <meta name="description" content={`Unidad Educativa Especializada Sordos de Chimborazo`} />
         <meta property="og:title" content={`${publicacion.titulo_publicacion}`} />
         <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/publicaciones/publicacion/${publicacion.id_publicacion}`} />
-        {/* <meta property="og:image" content={imagen.src} /> */}
       </Head>
       <div className={style.contenedorPrincipalInformacionPublicacion}>
         {publicacion ? (
@@ -76,11 +97,10 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
                   </div>
                 </div>
                 
-
                 {processedContent ? (
                   <div dangerouslySetInnerHTML={{ __html: processedContent }}/>
                 ) : (
-                  <ReactMarkdown >{publicacion.contenido_publicacion}</ReactMarkdown>
+                  <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
                 )}
               </div>
             </div>

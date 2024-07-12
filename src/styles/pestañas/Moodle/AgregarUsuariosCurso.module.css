@@ -1,15 +1,31 @@
 .contenedorCrearCurso {
     margin: auto;
-    padding: 50px;
+    padding: 20px;
+    padding-top: 50px;
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 5px;
     min-height: calc(100vh - 4rem);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem ;
   }
-  
+  .izquierda{
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 10px;
+  }
+  .derecha{
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 10px;
+  }
+  .derecha table th{
+    padding: 0 10px;
+  }
+  .derecha table td{
+    padding: 0 10px;
+  }
   .formularioCrearCurso {
     display: flex;
     flex-direction: column;

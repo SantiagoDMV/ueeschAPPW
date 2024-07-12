@@ -20,6 +20,9 @@ export default function InformacionUserMoodle({
   datosCategorias,
   moodle
 }: any) {
+
+
+
   const [userInf, setUserInf] = useState<any>(infUsers);
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [selectedUserFechaEliminacion, setSelectedUserFechaEliminacion] =
@@ -254,6 +257,7 @@ export default function InformacionUserMoodle({
 
         <div className={estilos.contenedorTabla}>
           <TablaInformacion
+          moodle={moodle}
             datosCategorias={datosCategorias}            
             infUsers={infUsers}
             seleccionUsuarios={seleccionUsuarios}

@@ -47,8 +47,7 @@
 }
 
 .imagenPublicacion {
-  width: 100%;
-  object-fit: contain;
+  min-width: 100%;
   
 }
 
@@ -60,6 +59,7 @@
   justify-content: center;
   height: 100%;
 }
+
 
 .contenidoPublicacion {
   display: flex;
@@ -73,7 +73,7 @@
 
 .contenidoPublicacion iframe{
   width: 100%;
-  height: auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,5 +112,10 @@
     width: 100%;
     margin: 0;
     
+  }
+  .imagenPublicacion{
+    min-width: 100%;
+    min-height: 100%;
+  object-fit: cover;    
   }
 }

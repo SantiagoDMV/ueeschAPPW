@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import Layout from "@/componentes/layout/Layout";
-import estilos from "../../styles/pestañas/Moodle/CrearCurso.module.css";
+import estilos from "../../styles/pestañas/Moodle/AgregarUsuariosCurso.module.css";
 import axios from 'axios'
 import { SyncLoader } from "react-spinners";
 
@@ -23,6 +23,7 @@ export default function AgregarUsuarioCurso({
   }, []);
 
   const [usuariosInformacion, setUsuariosInformacion] = useState<any>();
+  const [usuariosCurso,setUsuariosCurso] = useState<any>()
 
   const obtenerUsuariosInformacion = async () => {
     let loadingToastId:any = null;
@@ -117,6 +118,7 @@ export default function AgregarUsuarioCurso({
       if(cursoSeleccionado === id){
       setInformacionCursoUsuario(null)
       setCursoSeleccionado(null)
+      
       return
       }
 
@@ -149,10 +151,19 @@ export default function AgregarUsuarioCurso({
     rol: "",
   });
 
+  
   // Manejador para cambiar los valores del curso
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    if(name === 'curso'){setCursoSeleccionado(value);
+    if(name === 'curso'){
+      
+      setCursoSeleccionado(value);
+      if(value){
+      const usuariosCursoObtenidos = await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=${value}`); 
+      setUsuariosCurso(usuariosCursoObtenidos.data)
+      }else{
+        setUsuariosCurso(null)
+      }
       obtenerInformacionCurso(value);
     }
     setCurso({ ...curso, [name]: value });
@@ -215,6 +226,7 @@ toast.dismiss(loadingToastId);
       rol: "",
       })
       setCursoSeleccionado(null);
+      setUsuariosCurso(null)
   } catch (error) {
     toast.dismiss(loadingToastId);
     toast.error("Ha ocurrido un error al agregar el usuario al curso.", {
@@ -285,6 +297,7 @@ toast.dismiss(loadingToastId);
     rol: "",
     })
     setCursoSeleccionado(null);
+    setUsuariosCurso(null)
 } catch (error) {
   toast.dismiss(loadingToastId);
   toast.error("Ha ocurrido un error al tratar de quitar el usuario del curso.", {
@@ -303,6 +316,7 @@ toast.dismiss(loadingToastId);
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorCrearCurso}>
+        <div className={estilos.izquierda}>
         <h2>Agregar un usuario a un curso</h2>
         <form className={estilos.formularioCrearCurso} onSubmit={handleSubmit}>
 
@@ -420,6 +434,41 @@ cursoSeleccionado ?
 
 
         </form>
+        </div>
+        <div className={estilos.derecha}>
+        {
+          usuariosCurso && 
+          <>
+            <h3>Usuarios en el curso: {usuariosCurso.length}</h3>
+            <br />
+          <table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Cedula</th>
+            <th>Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+      { usuariosCurso.map((e:any, index:number)=>(
+        <tr key={index}>
+        <td>{e.fullname}</td>
+        <td>{e.username}</td>
+        {
+          e.roles[0].shortname === "student" ?
+<td><p>Estudiante</p></td>
+:
+<td><p>Docente</p></td>
+        }
+        
+    </tr>
+      ))
+}
+    </tbody>
+</table>
+</>
+        }
+        </div>
       </div>
       <Toaster
         theme="dark"

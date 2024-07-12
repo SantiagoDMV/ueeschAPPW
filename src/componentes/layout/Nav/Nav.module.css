@@ -185,6 +185,7 @@
 
 .contenedorLinkCompuesto{
   position: relative;
+  color: black;
 }
 
 .link:hover{
@@ -208,11 +209,12 @@
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  color: black;
 }
 .contenedorLinkCompuesto ul li{
 padding: 10px;
 width: 100%;
-
+color: black;
 }
 
 .contenedorLinkCompuesto:hover > ul {

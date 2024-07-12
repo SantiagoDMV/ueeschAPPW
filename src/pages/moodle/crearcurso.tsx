@@ -23,6 +23,7 @@ export default function CrearCurso({
           `${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_get_categories&moodlewsrestformat=json`
         );
         
+        
         setDatosCategorias(respuestaCategorias.data)
         
       };
@@ -31,6 +32,7 @@ export default function CrearCurso({
     fullname: "",
     shortname: "",
     summary: "",
+    secciones: "",
     categoryid: "",
   });
 
@@ -41,7 +43,7 @@ export default function CrearCurso({
   };
 
   // Manejador para enviar los datos del curso
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     let loadingToastId: any = null;
     e.preventDefault();
     
@@ -77,11 +79,8 @@ if(!curso.categoryid){
       );
 
     
+    await axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_create_courses&moodlewsrestformat=json&courses[0][fullname]=${curso.fullname}&courses[0][shortname]=${curso.shortname}&courses[0][categoryid]=${curso.categoryid}&courses[0][summary]=${curso.summary}&courses[0][numsections]=${curso.secciones}`);
     
-  
-
-
-axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsfunction=core_course_create_courses&moodlewsrestformat=json&courses[0][fullname]=${curso.fullname}&courses[0][shortname]=${curso.shortname}&courses[0][categoryid]=${curso.categoryid}&courses[0][summary]=${curso.summary}`);
 
     toast.dismiss(loadingToastId);
 
@@ -95,6 +94,7 @@ axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsf
     setCurso({fullname: "",
     shortname: "",
     summary: "",
+    secciones: "",
     categoryid: "",})
   } catch (error) {
     toast.dismiss(loadingToastId);
@@ -147,6 +147,19 @@ axios.get(`${moodle.host}/webservice/rest/server.php?wstoken=${moodle.token}&wsf
               onChange={handleChange}
             ></textarea>
           </div>
+ 
+          <div className={estilos.formGroup}>
+            <label htmlFor="secciones">Número de secciones</label>
+            <input
+            type="text"
+              id="secciones"
+              name="secciones"
+              value={curso.secciones}
+              onChange={handleChange}
+            />
+          </div>
+ 
+ 
           <div className={estilos.formGroup}>
             <label htmlFor="categoryid">Categoría del Curso</label>
             <select
