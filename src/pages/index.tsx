@@ -11,7 +11,6 @@ import axios, { AxiosError } from "axios";
 
 // Componentes cargados de manera diferida
 const Header = dynamic(() => import("../componentes/layout/Header/Header"));
-const SeccionMisionVision = dynamic(() => import("../componentes/layout/secciones/SeccionMisionVision/SeccionMisionVision"));
 const SeccionOpcionesMasInformacion = dynamic(() => import("../componentes/IndexPage/SeccionOpcionesMasInformacion/SeccionOpciones"));
 const SeccionInformacionPresentacion = dynamic(() => import("../componentes/IndexPage/SeccionInformacionPresentacion/SeccionInformacionPresentacion"));
 const Publicaciones = dynamic(() => import("../componentes/layout/secciones/PublicacionesIndex"));
@@ -147,9 +146,9 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
           ) : null}
         </div>
 
-        <div className={style.contenedorMisionVision}>
-          <SeccionMisionVision />
-        </div>
+        {/* <div className={style.contenedorMisionVision}>
+        
+        </div>  */}
       </Layout>
       <Footer />
     </>

@@ -1,0 +1,22 @@
+.contenedorNav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  
+}
+.contenedorNav p {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.301);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.contenedorNav p:hover{
+  color: rgb(0, 102, 255);
+}
+
+.contenedorNav p:last-child{
+  border-bottom: none;
+}

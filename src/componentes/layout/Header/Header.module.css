@@ -6,9 +6,9 @@
     /* background-position: center;
     background-size: cover;
     background-repeat: no-repeat;  */
-    padding-top:5px ;
-    min-height: calc(100vh - 4rem);
-    max-height: calc(100vh - 4rem);
+
+    min-height: calc(100vh - 10rem);
+    max-height:calc(100vh - 10rem);
     overflow: hidden;
     /* background-image: url("../../../../public/imagenes/index/header/header.jpg");  */
 }
@@ -33,14 +33,15 @@
 .imagenHeaderContainer {
     position: relative;
     min-width: 100%;
-    min-height: calc(100vh - 4rem);
-    max-height: calc(100vh - 4rem);
+    min-height: calc(100vh - 10rem);
+    max-height: calc(100vh - 10rem);
   }
  
   .imagenHeader{
     object-fit:cover;
     min-width: 100%;
     object-position: center;
+    
   }
 
   .textoSuperpuesto {
@@ -50,16 +51,16 @@
     bottom: 0;
     right: 0;
     margin: auto;
-    text-align: center;
+    text-align: start;
     color: white; /* Color del texto */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 2rem;
     min-width: 100%;
-    background-color: rgba(22, 97, 107, 0.176);
-    min-height: calc(100vh - 4rem);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.794), transparent);
+    min-height: calc(100vh - 10rem);
     font-size: 1.7rem;
   }
 
@@ -82,14 +83,14 @@
         height: 100%;
     }
     .contenedorSuperior{
-        min-height: calc(100vh - 4rem);
+        min-height: calc(100vh - 10rem);
         flex-direction: column;
         text-align: center;
         background-position: 65%;
     }
     .contenidoPrincipalHeader{
         background-color: rgba(22, 97, 107, 0.176);
-        min-height: calc(100vh - 4rem);
+        min-height: calc(100vh - 10rem);
         padding-top: 2rem;
         justify-content: flex-start;
         

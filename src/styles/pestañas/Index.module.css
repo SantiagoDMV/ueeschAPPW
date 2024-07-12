@@ -5,7 +5,7 @@
 .contenedorSuperior{
   flex-basis: 0;
   flex-grow: 1;
-  min-height: calc(100vh - 4rem);
+
 }
 
 .contenedorInferior{

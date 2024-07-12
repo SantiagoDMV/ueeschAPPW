@@ -1,3 +1,4 @@
+
 /* INICIO DE LA VENTANA CALENDARIO */
 .fondoPrincipalCalendario{
   padding: 2rem;
@@ -67,7 +68,7 @@
 }
 
 .hijos {
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   background-color: #f4f6f8;
 }
 

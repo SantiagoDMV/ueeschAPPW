@@ -62,10 +62,10 @@ export default function Header({ informacion }: any) {
             )
           }
           <div className={style.textoSuperpuesto}>
-            <h1>{informacion.titulo && informacion.titulo}</h1>
-            {/* <h1>Unidad Educativa Especializada Sordos De Chimborazo</h1> */}
-            <p>{informacion.descripcion_titulo && informacion.descripcion_titulo}</p>
-            {/* <p>La Unidad Educativa Especializada Sordos de Chimborazo atiende a niños/as, adolescentes y jóvenes con discapacidad auditiva, en los niveles de Inicial, Preparatoria, Básica y Bachillerato Técnico</p> */}
+            {/* <h1>{informacion.titulo && informacion.titulo}</h1> */}
+            <h1>Bienvenidos</h1>
+            {/* <p>{informacion.descripcion_titulo && informacion.descripcion_titulo}</p> */}
+            <p>Somos la Unidad Educativa Especializada Sordos de Chimborazo</p>
           </div>
         </div>
       </div>

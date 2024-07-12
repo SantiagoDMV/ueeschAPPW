@@ -3,7 +3,8 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    color: rgb(13, 60, 94);
+    /* color: rgb(13, 60, 94); */
+    color: black;
     text-align: justify;
 
 }

@@ -1,28 +1,30 @@
-import { AiOutlineBars, AiOutlineUser, AiOutlineDown } from "react-icons/ai";
+import { AiOutlineBars, AiOutlineUser,AiFillPhone, AiFillMail, AiFillBook, AiFillFacebook,AiFillInstagram } from "react-icons/ai";
 import Link from "next/link";
 import styles from "./Nav.module.css";
 import axios from "axios";
 //import logo from "../../../../public/imagenes/nav/logoUnidad.png";
 import Image from "next/image";
-import logoUnidad from '../../../../public/imagenes/logoUnidadColor.png'
-import { useEffect,useState } from "react";
+import logoUnidad from "../../../../public/imagenes/logoUnidadColor.png";
+import { useEffect, useState } from "react";
 
-export default function Nav({ usuario,setUsuarioCookie }: any) {
-  useEffect(()=>{
+export default function Nav({ usuario, setUsuarioCookie }: any) {
+  useEffect(() => {
     obtenerLogo();
-  },[])
+  }, []);
 
   const [logo, setLogo] = useState<any>();
 
-  const obtenerLogo = async() =>{
-    try {
-      const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
-      setLogo(respuestaMision.data.data.attributes.contenido)
-    } catch (error) {
-      setLogo("https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png")
-    }
-        
-  }
+  const obtenerLogo = async () => {
+    // try {
+    //   const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+    //   setLogo(respuestaMision.data.data.attributes.contenido)
+    // } catch (error) {
+    //   setLogo("https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png")
+    // }
+    setLogo(
+      "https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png"
+    );
+  };
   const masOpciones = (nombre: any) => {
     if (nombre === "servicios")
       if (
@@ -49,28 +51,54 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
   const cerrarSesion = async () => {
     try {
       await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sesiones`);
-      setUsuarioCookie(null)
+      setUsuarioCookie(null);
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   return (
     <div className={styles.contenedorNav}>
-      <nav className={styles.Nav}>
+      <nav className={styles.NavPrincipal}>
+        <div className={styles.principalOpciones}>
+          <div className={styles.principalContactos}>
+            <p>Contáctanos</p>
+            
+            <p>
+            <AiFillPhone/>
+              0992515443</p>
+            <p>
+            <AiFillMail/>
+              ueesch2023@gmail.com</p>
+          </div>
+
+          <div className={styles.principalEnlaces}>
+
+            <p><Link href={"/login"}>Sistema Académico</Link></p>
+            
+            <p>
+            <Link href={"https://eduinclusivaec.com/"} className={styles.linksCompartidos}>
+            <AiFillBook/>
+              Educación Virtual</Link></p>
+            <label><AiFillFacebook/></label>
+            <label><AiFillInstagram/></label>
+          </div>
+        </div>
+
+<div className={styles.Nav}>
         <div className={styles.contenedorLogo}>
+        <Link href={"/"}>
           <img
             className={styles.logoUnidad}
             src={logo}
             // src={logoUnidad}
-            width={65}
-            height={60}
+            width={75}
+            height={70}
             //quality={100}
             //priority
             alt="Logo_Unidad"
           />
-
+</Link>
           <AiOutlineBars
             onMouseEnter={() => masOpciones("navBar")}
             onMouseLeave={() => menosOpciones("navBar")}
@@ -79,8 +107,7 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
         </div>
 
         <div className={styles.navContenido}>
-          
-        <div className={styles.iconos}>
+          <div className={styles.iconos}>
             <div
               onClick={() => masOpciones("usuario")}
               className={styles.contenedorLinkCompuesto}
@@ -129,24 +156,22 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
           </div>
 
           <div className={styles.links} id="links">
-            <Link className={styles.link} href={"/"}>
-              Inicio
-            </Link>
-
-            {/* <div
-              onClick={() => masOpciones("servicios")}
+            
+            <div
+              // onClick={() => masOpciones("servicios")}
               className={styles.contenedorLinkCompuesto}
             >
               <div className={styles.link}>
-                Servicios
+                QUIENES SOMOS
               </div>
-              <ul id="ulCompuestoServicios" className={styles.ulServicios}>
-                <li>Servicio 1</li>
-                <li>Servicio 1</li>
+              <ul>
+                <li><Link className={styles.link} href={"/historia"}>Presentación</Link></li>
+                <li><Link className={styles.link} href={"/historia"}>Misión y Visión</Link></li>
               </ul>
-            </div> */}
+            </div>
 
-<Link className={styles.link} href={"/servicios"}>
+
+            <Link className={styles.link} href={"/servicios"}>
               Servicios
             </Link>
 
@@ -165,9 +190,10 @@ export default function Nav({ usuario,setUsuarioCookie }: any) {
               Contáctanos
             </Link>
           </div>
-
-          
         </div>
+        </div>
+
+
       </nav>
     </div>
   );
