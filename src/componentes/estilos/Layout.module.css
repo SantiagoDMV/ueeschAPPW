@@ -74,10 +74,10 @@
 
 .contenedorBotonesCompartir {
   position: fixed;
-  top: 4rem;
+  top: 0rem;
   /* height: 100%; */
-  min-height: calc(100vh-4rem);
-  max-height: calc(100vh-4rem);
+  min-height: calc(100vh-8rem);
+  max-height: calc(100vh-8rem);
   z-index: 1;
   width: 100%;
   display: flex;
@@ -95,7 +95,6 @@
 }
 
 .botonAbrirOpcionesDeCompartir {
-  
  color: white;
  background-color: #429db2;
   border-radius: 0 10px 10px 0;
@@ -117,12 +116,11 @@
   transition: transform 0.3s ease;
   background-color: white;
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.081);
-  min-height: calc(100vh - 4rem);
-  max-height: calc(100vh - 4rem);
+  min-height: calc(100vh);
+  max-height: calc(100vh);
   padding: 2rem 1px;
   padding-top: 0;
   overflow-y: auto;
-  
 }
 
 .botonesCompartir::-webkit-scrollbar{
@@ -244,4 +242,16 @@
         position: absolute; 
         width: 100%;
     }   
+
+}
+
+
+@media only screen and (max-width:815px) {
+  .botonesCompartir {
+    width: 100%;
+    min-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 4rem);
+    top: 4rem;
+  }   
+
 }

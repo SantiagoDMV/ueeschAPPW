@@ -5,6 +5,7 @@ import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import axios from "axios";
 import Footer from "@/componentes/layout/Footer/Footer";
 import { useState } from "react";
+import NavIzquierdo from "@/componentes/layout/Nav/NavIzquierdoPresentacion/NavIzquierdoIndex";
 
 export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informacion, moodle }: any) {
     const [palabra,setPalabra] = useState<string>();
@@ -12,7 +13,7 @@ export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informaci
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
         <Header informacion={informacion} />
-        <form onSubmit={(e) => {
+        {/* <form onSubmit={(e) => {
     e.preventDefault();
     window.open(`http://www.plataformaconadis.gob.ec/~platafor/diccionario/?s=${palabra}&post_type%5B%5D=st_kb`, '_blank');
 }}>
@@ -23,10 +24,18 @@ export default function Aprendizaje({ usuarioCookie, setUsuarioCookie, informaci
         } />
         <button type="submit">Buscar</button>
     </div>
-</form>
+</form> */}
 
         <div className={estilos.contendorHistoria}>
-        <Contenido informacion={informacion}/>
+        <div className={estilos.izquierda}>
+            <NavIzquierdo
+              usuario={usuarioCookie}
+              setUsuarioCookie={setUsuarioCookie}
+            />
+          </div>
+          <div className={estilos.derecha}>
+            <Contenido informacion={informacion} />
+          </div>
         </div>
         <Footer/>
     </Layout>

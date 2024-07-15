@@ -4,6 +4,7 @@ import axios from "axios";
 import Contenido from "@/componentes/ContenidoStrapi/Contenido";
 import Header from "@/componentes/layout/Header/HeaderLiviano/Header";
 import Footer from "@/componentes/layout/Footer/Footer";
+import NavIzquierdo from "@/componentes/layout/Nav/NavIzquierdoPresentacion/NavIzquierdoIndex";
 
 export default function Entendiendo({ usuarioCookie, setUsuarioCookie, informacion , moodle }: any) {
   
@@ -14,7 +15,15 @@ export default function Entendiendo({ usuarioCookie, setUsuarioCookie, informaci
         
         <div className={estilos.contendorHistoria}>
         
-        <Contenido informacion={informacion}/>
+        <div className={estilos.izquierda}>
+            <NavIzquierdo
+              usuario={usuarioCookie}
+              setUsuarioCookie={setUsuarioCookie}
+            />
+          </div>
+          <div className={estilos.derecha}>
+            <Contenido informacion={informacion} />
+          </div>
 
         </div>
         

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState, useCallback } from "react";
-import { AiOutlineLoading3Quarters, AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineLoading3Quarters,AiFillNotification, AiOutlineCalendar } from "react-icons/ai";
 import Link from 'next/link';
 import Layout from "@/componentes/layout/Layout";
 import Footer from "@/componentes/layout/Footer/Footer";
@@ -134,7 +134,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
         {datosAnuncios && datosAnuncios.length !== 0 && (
                 <div className={style.contenedorPrincipalNoticias}>
                   <h2>
-                <AiOutlineCalendar className={style.iconoPublicacionesRecientes} /> Anuncios
+                <AiFillNotification className={style.iconoPublicacionesRecientes} /> Anuncios
               </h2>
                   <div className={style.contenedorNoticias}>
                     <Anuncios noticias={datosAnuncios} />
