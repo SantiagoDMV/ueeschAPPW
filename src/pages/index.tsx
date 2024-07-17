@@ -182,11 +182,11 @@ export const getServerSideProps = async () => {
     let respuesta;
     let data;
     let attributes
-    try{
-      respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/1?populate[imagen_header][fields][0]=url');
-      data = respuesta.data
-      attributes = data[0].attributes
-    }catch(error){
+    // try{
+    //   respuesta = await axios.get('https://ueeschstrapi.onrender.com/api/paginas/1?populate[imagen_header][fields][0]=url');
+    //   data = respuesta.data
+    //   attributes = data[0].attributes
+    // }catch(error){
       respuesta = {
         data: {
             id: 1,
@@ -211,7 +211,7 @@ export const getServerSideProps = async () => {
     }
     data = respuesta.data;
     attributes = data.attributes;
-    }    
+    // }    
     return {
       props: {
         informacion: attributes,
