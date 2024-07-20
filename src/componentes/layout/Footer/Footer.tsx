@@ -14,13 +14,15 @@ useEffect(()=>{
 const [logo, setLogo] = useState<any>();
 
 const obtenerLogo = async() =>{
-  try {
-    const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
-      setLogo(respuestaMision.data.data.attributes.contenido)
-  } catch (error) {
-    setLogo(logo.src)
-  }
-      
+  // try {
+    //   const respuestaMision = await axios.get('https://ueeschstrapi.onrender.com/api/informacions/7?[fields][0]=nombre&[fields][1]=contenido')
+    //   setLogo(respuestaMision.data.data.attributes.contenido)
+    // } catch (error) {
+    //   setLogo("https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png")
+    // }
+    setLogo(
+      "https://res.cloudinary.com/dxopgkamj/image/upload/v1719795537/logoUnidad_sd3gm9.png"
+    );
 }
 ////////////////////////////
   

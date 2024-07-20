@@ -47,7 +47,8 @@ const obtenerInformacionCursosUser = async() => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/usuario_cursos`,
     { idUsuario: id }
   );
-  
+  console.log('respuestaaaa 1')
+  console.log(respuesta.data)
   setCursosUser(respuesta.data)
 }
 
@@ -88,6 +89,9 @@ const obtenerInformacionCursosUser = async() => {
       const respuesta = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/moodle/core_enrol_get_enrolled_users`,{cursoId: curso, id_moodle: id}
       );
+
+      console.log('respuestaaaa 2')
+  console.log(respuesta.data)
       
       setUsuariosInformacion(respuesta.data.cursosUSer)
       setInformacionCursoUsuario(respuesta.data.informacionUsuario)

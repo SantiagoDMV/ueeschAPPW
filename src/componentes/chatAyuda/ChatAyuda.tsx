@@ -16,14 +16,14 @@ useEffect(()=>{
 },[])
 
 const obtenernumero = async () =>{
-  let respuestaTelefono
-  try {
-    respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
-    setNumero(respuestaTelefono.data.data.attributes.contenido)  
-  } catch (error) {
-    setNumero('0992515443')
-  }
-  
+  // let respuestaTelefono
+  // try {
+  //   respuestaTelefono= await axios.get('https://ueeschstrapi.onrender.com/api/informacions/4?[fields][0]=nombre&[fields][1]=contenido');
+  //   setNumero(respuestaTelefono.data.data.attributes.contenido)  
+  // } catch (error) {
+    setNumero('992515443')
+  // }
+
 }
 
   const abrirCajaChatAyuda = () => {
