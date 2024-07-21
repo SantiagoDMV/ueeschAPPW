@@ -39,12 +39,10 @@ export default async function publicaciones(req,res){
                 break;
             }
             
-            
             if(!servicio.valor) return res.status(servicio.statusCode).json(servicio.mensaje);
             //datosMultimedia
             if(servicio.datos.length === 0) 
             console.warn('Advertencia: La cantidad de publicaciones devuelta es 0. Verifica si existen publicaciones disponibles.');
-    
     
             return res.status(200).json({
                 datos: servicio.datos,
@@ -57,7 +55,6 @@ export default async function publicaciones(req,res){
             if(!peticion.valor)
             return res.status(peticion.statusCode).json(peticion);
 
-            
             return res.status(200).json({mensaje: "Publicación(es) eliminada(s) con exito"})
         }
         
@@ -65,11 +62,9 @@ export default async function publicaciones(req,res){
             const peticion = await eliminarPublicacionIdUnico(req);
             if(!peticion.valor)
             return res.status(peticion.statusCode).json(peticion);
-
             
             return res.status(200).json({mensaje: "Publicación(es) eliminada(s) con exito"})
         }
-
 
         const {publicacionId} = req.query
         if(!publicacionId){

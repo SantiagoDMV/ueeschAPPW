@@ -103,8 +103,8 @@ export async function mostrarPublicacionesInformacionPerfil(req) {
 export async function mostrarPublicacionesInformacion() {
   try {
     const datos = await repo.mostrarPublicaciones();
+    const datosMultimedia = await repoMultimedia.obtenerImagenes(datos);
     
-
     if (!datos.valor)
       return {
         statusCode: 500,
