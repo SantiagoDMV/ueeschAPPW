@@ -138,19 +138,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
           ) : null}
         </div>
 
-        <div className={style.contenedorAgendamiento}>
-          <div className={style.contenedorAgendamientoIzquierda}>
-            <img 
-            src={`${imagen_formulario.src}`} 
-            alt="imagen_formulario" />
-          </div>
-          <div className={style.contenedorAgendamientoDerecha}>
-            <h4>NUESTRO</h4>
-          <h1>Compromiso y propósito</h1>
-          <p>¡Estudiar en la Unidad Educativa Especializada Sordos de Chimborazo es una decisión llena de oportunidades! Nuestro compromiso se centra en educar a jóvenes con capacidades auditivas diferentes, fomentando su conexión con el mundo, desarrollando su pensamiento crítico y global, y vinculándolos con las constantes evoluciones de nuestra sociedad. Nos esforzamos por formar individuos fuertes y saludables, tanto física como emocionalmente, preparados para enfrentar los desafíos del futuro.</p>
-          
-          </div>
-        </div>
+        
 
           <div className={style.contenedorNiveles}>
 
