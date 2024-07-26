@@ -8,6 +8,8 @@ import Head from "next/head";
 import style from "../styles/pestañas/Index.module.css";
 import imagen from '../../public/imagenes/index/header/header.jpg';
 import axios, { AxiosError } from "axios";
+import ContactFormAgendamiento from '@/componentes/layout/Formularios/FormularioAgendamiento/FormularioEmail';
+import imagen_formulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
 
 // Componentes cargados de manera diferida
 const Header = dynamic(() => import("../componentes/layout/Header/Header"));
@@ -136,6 +138,58 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
             </div>
           ) : null}
         </div>
+
+        <div className={style.contenedorAgendamiento}>
+          <div className={style.contenedorAgendamientoIzquierda}>
+            <img 
+            src={`${imagen_formulario.src}`} 
+            alt="imagen_formulario" />
+          </div>
+          <div className={style.contenedorAgendamientoDerecha}>
+            <h4>NUESTRO</h4>
+          <h1>Compromiso y propósito</h1>
+          <p>¡Estudiar en la Unidad Educativa Especializada Sordos de Chimborazo es una decisión llena de oportunidades! Nuestro compromiso se centra en educar a jóvenes con capacidades auditivas diferentes, fomentando su conexión con el mundo, desarrollando su pensamiento crítico y global, y vinculándolos con las constantes evoluciones de nuestra sociedad. Nos esforzamos por formar individuos fuertes y saludables, tanto física como emocionalmente, preparados para enfrentar los desafíos del futuro.</p>
+          
+          </div>
+        </div>
+
+          <div className={style.contenedorNiveles}>
+
+            <h2>Niveles de Formación</h2>
+
+<div className={style.contenedorNivelesContenido}>
+          <div className={style.nivelInicial}>
+          <div className={style.conenedorImagenNiveles}>
+<img src={`${imagen.src}`} alt="imagen_nivel_inicial" />
+            </div>
+            <div className={style.nivelContenido}>
+              <h4>Educación Inicial</h4>
+            <p>En la Educación Inicial, proporcionamos un entorno estimulante y adaptado para los niños con discapacidad auditiva, centrado en el juego y la exploración. Nuestro enfoque es desarrollar habilidades sociales, emocionales y cognitivas, preparando a los pequeños para su futura educación.</p>
+            </div>
+          </div>
+
+          <div className={style.nivelBasica}>
+          <div className={style.conenedorImagenNiveles}>
+          <img src={`${imagen.src}`} alt="imagen_nivel_basica" />
+</div>
+<div className={style.nivelContenido}>
+  <h4>Educación Básica</h4>
+<p>La Educación Básica ofrece una formación académica integral, utilizando métodos visuales y táctiles para fortalecer habilidades en lectura, escritura y matemáticas. Fomentamos la participación en actividades y proyectos que desarrollen la autoestima y habilidades sociales.</p>
+</div>
+          </div>
+
+          <div className={style.nivelBachillerato}>
+          <div className={style.conenedorImagenNiveles}>
+          <img src={`${imagen.src}`} alt="imagen_nivel_bacillerato" />
+</div>
+<div className={style.nivelContenido}>
+  <h4>Bachillerato</h4>
+<p>En el Bachillerato, preparamos a los estudiantes para la educación superior y el mundo laboral con un currículo avanzado y capacitación profesional. Ofrecemos orientación vocacional y apoyo para desarrollar competencias clave para la vida independiente y la integración social.</p>
+</div>
+          </div>
+          </div>
+          </div>
+
       </Layout>
       <Footer />
     </>

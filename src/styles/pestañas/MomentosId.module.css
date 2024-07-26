@@ -13,12 +13,14 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 20px;
+    
 }
 
 .linkOtrasPublicacionesFlechas{
     display: flex;
     gap: 10px;
 }
+
 .linkOtrasPublicacionesIzquierda{
     display: flex;
     flex-direction: column;
@@ -28,6 +30,7 @@
     flex-basis: 0;
     flex-grow: 1;
     align-items: flex-start;
+    cursor: pointer;
 }
 
 .linkOtrasPublicacionesDerecha{
@@ -39,6 +42,15 @@
     flex-basis: 0;
     flex-grow: 1;
     align-items: flex-end;
+    cursor: pointer;
+}
+
+.linkOtrasPublicacionesIzquierda:hover{
+    color: #0f4b6d;
+}
+
+.linkOtrasPublicacionesDerecha:hover{
+    color: #0f4b6d;
 }
 
 .linkOtrasPublicacionesIzquierda span{

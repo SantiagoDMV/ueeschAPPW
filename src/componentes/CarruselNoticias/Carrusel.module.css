@@ -10,15 +10,12 @@
     background-color: black;
     margin: 20px;
   }
-  
-  .carruselSlide{
-    display: none;
 
-  }
   .contenedorPrinpialCarrusel{
     padding: 20px 0;
     background-color: white;
-    max-height: calc(100vh - 14rem);
+    
+    
   }
   .contenedorCarruselInformacion{
     width: 100%;
@@ -29,7 +26,6 @@
     align-items: flex-start;
     flex-direction: row;
     text-align: center;
-    max-height: calc(100vh - 20rem);
     overflow: hidden;
   }
   .contenedorInformacionDatosP{

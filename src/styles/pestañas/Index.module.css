@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(85, 160, 207);
+  background: linear-gradient(135deg, #6E72FC 0%, #1dadeb 100%);
   padding: 50px;
   gap: 2rem;
   color: black;
@@ -133,7 +133,7 @@ padding: 1rem;
   .iconoCarga {  
     animation: spin 1s infinite linear;
   }
-  
+
   @keyframes spin {
     to {
       transform: rotate(360deg);
@@ -145,9 +145,9 @@ padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 4rem);
-    
+    min-height: calc(100vh - 4rem); 
   }
+
   .contenedorBotonVerTodo{
     width: 100%;
     margin-top: 20px;
@@ -160,7 +160,169 @@ padding: 1rem;
     color: white;
   }
 
+
+  .contenedorAgendamiento {
+    width: 100%;
+    min-height: calc(100vh - 10rem);
+    background: linear-gradient(135deg, #5c50ff, #1E90FF);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedorAgendamiento::before,
+.contenedorAgendamiento::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+}
+.contenedorAgendamiento::before {
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: rotate(-30deg);
+}
+.contenedorAgendamiento::after {
+    background: radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: rotate(30deg);
+}
+.contenedorAgendamientoIzquierda {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+.contenedorAgendamientoIzquierda img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    padding: 0 20px 0 0;
+}
+.contenedorAgendamientoDerecha {
+    flex-grow: 1;
+    flex-basis: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: justify;
+    justify-content: center;
+    gap: 10px;
+    z-index: 0;
+}
+
+.contenedorNiveles{
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.contenedorNiveles h2{
+  color: #2d6fa4;
+}
+
+.contenedorNivelesContenido{
+display:flex;
+gap: 3rem;
+}
+
+.nivelInicial{
+  flex-grow: 1;
+  flex-basis: 0;
+  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  
+}
+
+.nivelBasica{
+  flex-grow: 1;
+  flex-basis: 0;
+  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+}
+
+.nivelBachillerato{
+  flex-grow: 1;
+  flex-basis: 0;
+  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+}
+
+.conenedorImagenNiveles{
+max-width: 100%;
+}
+
+.conenedorImagenNiveles img{
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px 10px 0 0;
+}
+
+.nivelContenido{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.nivelContenido h4{
+  color: #387eb7;
+}
+
+.nivelContenido p{
+  color: rgba(71, 70, 70, 0.759);
+  font-size: 0.9rem;
+  padding: 0 10px 10px 10px;
+}
+
   @media only screen and (max-width:750px) {
+
+    .contenedorAgendamientoIzquierda{
+      padding: 1rem;
+    }
+    .contenedorAgendamientoDerecha{
+      padding: 1rem;
+    }
+
+    .contenedorNivelesContenido{
+      
+      flex-direction: column;
+      }
+
+    .contenedorAgendamiento{
+      flex-direction: column;
+      padding: 10px 0 0 0;
+    }
+
+    .contenedorAgendamientoIzquierda{
+      width: 100%;
+      min-height: 200px;
+    }
+  
+    .contenedorAgendamientoIzquierda img{
+      background-color: transparent;
+      min-width: 100%;
+      padding: 10px;
+      object-position: center;
+      border-radius: 20px;
+    }
+  
+
    .contenedorInferior{
     flex-direction: column;
    }
