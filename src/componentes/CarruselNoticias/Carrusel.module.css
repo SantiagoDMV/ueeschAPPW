@@ -11,9 +11,14 @@
     margin: 20px;
   }
   
+  .carruselSlide{
+    display: none;
+
+  }
   .contenedorPrinpialCarrusel{
-    padding: 30px 0;
+    padding: 20px 0;
     background-color: white;
+    max-height: calc(100vh - 14rem);
   }
   .contenedorCarruselInformacion{
     width: 100%;
@@ -21,19 +26,72 @@
     padding: 0 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: row;
     text-align: center;
+    max-height: calc(100vh - 20rem);
+    overflow: hidden;
+  }
+  .contenedorInformacionDatosP{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    line-height: 1.5em; /* Ajusta según la altura de la línea */
+    max-height: 4.5em; /* Ajusta según el número de líneas permitidas */
+    white-space: normal;
+    position: relative;
+  }
+
+  .contenedorInformacionDatosP::after {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: white; /* Ajusta el fondo según el fondo del contenedor */
+    padding: 0 0.25em;
+  }
+
+  .contenedorInformacionDatos{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: justify;
+  }
+  .carouselSlide{
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+  }
+  .contenedorInformacionDatosSinImagenes{
+    width: 70%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: justify;
   }
 
   .contenedorCarruselInformacion h4{
     height: auto;
     word-wrap: break-word; /* Permite que las palabras largas se dividan y ajusten al ancho del contenedor */
     word-break: break-all; /* Fuerza a las palabras a romperse en cualquier punto si es necesario */
+    padding: 10px;
+    font-size: 1.5rem;
+    color: rgb(8, 52, 98);
+  }
+
+  .contenedorCarruselInformacion p{
+    padding: 0 10px;
+    font-size: 14px;
   }
 
   .contenedorCarruselInformacion .LinkButton{
     margin-top: 10px;
+    margin-left: 10px;
     width: 30%;
     border: none;
     outline-offset: none;

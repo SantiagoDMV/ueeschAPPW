@@ -26,8 +26,8 @@ interface Props {
 export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moodle }: Props) {
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>(null);
   const [datosMultimedia, setDatosMultimedia] = useState<any>(null);
-  const [datosAnuncios, setDatosAnuncios] = useState<any>(null);
-
+  const [datosPublicacionesAnuncios, setDatosPublicacionesAnuncios] = useState<any>(null);
+  const [datosMultimediaAnuncios, setDatosMultimediaAnuncios] = useState<any>(null);
   const [mostrarCarga, setMostrarCarga] = useState(true);
 
   const obtenerDatosPublicaciones = async () => {
@@ -35,30 +35,16 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
       const respuesta = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/noticiasIndex`
       );
+
+      const respuestaAnuncios = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/anunciosIndex`
+      );
+
       setDatosPublicaciones(respuesta.data.datos);
       setDatosMultimedia(respuesta.data.datosMultimedia);
-    } catch (error) {
-      console.error("Error al obtener las publicaciones:", error);
-    }
-  }
+      setDatosPublicacionesAnuncios(respuestaAnuncios.data.datos);
+      setDatosMultimediaAnuncios(respuestaAnuncios.data.datosMultimedia);
 
-  const obtenerInformacionPublicaciones = useCallback(async () => {
-    obtenerDatosPublicaciones();
-    try {
-      const respuesta = await axios.post(`/api/publicaciones`, { pagina: "index" });
-      const { datos } = respuesta.data;
-      console.log(datos);
-
-      if (datos.length === 0) {
-        document.getElementById("contenedorSeccionPublicaciones")?.remove();
-        return;
-      }
-
-      const datosAnuncios = datos.filter((e: any) => e.id_tipo_publicacion === 2);
-      const datosNoticias = datos.filter((e: any) => e.id_tipo_publicacion === 3);
-
-      setDatosAnuncios(datosAnuncios);
-      setDatosPublicaciones(datosNoticias);
     } catch (error) {
       const errorMensaje = (error as AxiosError).response?.data;
       console.error("Error al obtener las publicaciones:", error);
@@ -67,24 +53,11 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
     } finally {
       setMostrarCarga(false);
     }
-  }, []);
+  }
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 100) {
-        obtenerInformacionPublicaciones();
-        window.removeEventListener('scroll', handleScroll);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    obtenerInformacionPublicaciones();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [obtenerInformacionPublicaciones]);
+    obtenerDatosPublicaciones();
+  }, []);
 
   // Forzar todos los eventos de desplazamiento a pasivos
   const overrideEventListeners = () => {
@@ -128,13 +101,13 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
           </div>
         </div>
 
-        {datosAnuncios && datosAnuncios.length !== 0 && (
+        {datosPublicacionesAnuncios && datosPublicacionesAnuncios.length !== 0 && (
           <div className={style.contenedorPrincipalNoticias}>
             <h2>
               <AiFillNotification className={style.iconoPublicacionesRecientes} aria-hidden="true" /> Anuncios
             </h2>
             <div className={style.contenedorNoticias}>
-              <Anuncios noticias={datosAnuncios} />
+              <Anuncios noticias={datosPublicacionesAnuncios} datosMultimediaAnuncios={datosMultimediaAnuncios}/>
             </div>
           </div>
         )}

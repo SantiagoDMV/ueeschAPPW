@@ -118,19 +118,6 @@ padding: 1rem;
     gap: 1em;     
 }
 
-.contenedorPrincipalNoticias{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.contenedorNoticias{
-    width: 70%;
-    padding: 10px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.081);
-}
 
 @media only screen and (max-width: 850px){
     .contenedorNoticias{

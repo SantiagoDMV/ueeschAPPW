@@ -77,6 +77,7 @@
 .navContenido {
   width: 100%;
   padding: 0 10px;
+  display: flex;
 }
 
 .links {
@@ -106,7 +107,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
   margin-right: 40px;
 }
 
@@ -130,8 +130,7 @@
   
 }
 
-.iconosNav .ulCompuestoUser {
-  
+.iconosNav .ulCompuestoUser {  
   background-color: rgb(249, 248, 248);
   color: black;
   box-shadow: 0 0 9px 5px rgba(0, 0, 0, 0.123);
@@ -140,7 +139,6 @@
 
 
 .iconosNav .ulCompuestoUser li{
-  
   display: flex;
   justify-content: center;
   padding: 0;
@@ -186,6 +184,15 @@
 .contenedorLinkCompuesto{
   position: relative;
   color: black;
+}
+.contenedorLinkCompuestoUser{
+  border-left: 1px solid rgba(0, 0, 0, 0.358);
+}
+
+.linksUser{
+display: flex;
+align-items: center;
+padding: 0 10px;
 }
 
 .link:hover{
@@ -259,6 +266,10 @@ color: black;
   .principalEnlaces{
     display: none;
   }
+  .contenedorLinkCompuestoUser{
+    border-left: none;
+    padding: 10px;
+  }
 }
 
 @media only screen and (max-width: 815px) {
@@ -303,7 +314,6 @@ color: black;
   .links {
     flex-direction: column;
     width: 100%;
-    
   }
 
   .link {

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Layout from "@/componentes/layout/Layout";
-import Anuncios from "@/componentes/layout/secciones/AnunciosPublicaciones/Anuncio";
 import Header from "../componentes/layout/Header/HeaderLiviano/Header";
 import Footer from "@/componentes/layout/Footer/Footer";
 import SeccionPublicaciones from "../componentes/layout/secciones/PublicacionesMomentos";
@@ -14,12 +13,12 @@ export default function Publicaciones({ usuarioCookie, setUsuarioCookie,
 
   const [datosPublicaciones, setDatosPublicaciones] = useState<any>();
   const [datosMultimedia, setDatosMultimedia] = useState<any>();
-  const [datosAnuncios, setDatosAnuncios] = useState<any>();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     obtenerDatosPublicaciones();
-    obtenerDatosAnuncios();
+
   }, []);
 
   const obtenerDatosPublicaciones = async () => {
@@ -35,17 +34,6 @@ export default function Publicaciones({ usuarioCookie, setUsuarioCookie,
     }
   }
 
-  const obtenerDatosAnuncios = async () => {
-    try {
-      const respuesta = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/publicaciones/anuncios`
-      );
-      setDatosAnuncios(respuesta.data.datos);
-    } catch (error) {
-      console.error("Error al obtener los anuncios:", error);
-    }
-  }
-
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
        {informacion &&  
@@ -54,13 +42,6 @@ export default function Publicaciones({ usuarioCookie, setUsuarioCookie,
       <div className={estilos.contenedorPrincipalMomentos}>
         <div className={estilos.contenedorPrincipalPublicacionesFijo}>
           <div className={estilos.contenedorPrincipalPublicaciones}>
-            {datosAnuncios && datosAnuncios.length !== 0 &&
-              <div className={estilos.contenedorPrincipalNoticias}>
-                <div className={estilos.contenedorNoticias}>
-                  <Anuncios noticias={datosAnuncios} />
-                </div>
-              </div>
-            }
             {loading ? (
               <div className={estilos.seccionPublicacionesCarga}>
                 <h4>Obteniendo Publicaciones</h4>

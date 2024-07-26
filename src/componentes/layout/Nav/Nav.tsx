@@ -106,54 +106,8 @@ export default function Nav({ usuario, setUsuarioCookie }: any) {
           />
         </div>
 
-        <div className={styles.navContenido}>
-          <div className={styles.iconos}>
-            <div
-              onClick={() => masOpciones("usuario")}
-              className={styles.contenedorLinkCompuesto}
-            >
-              {usuario ? (
-                <div className={styles.iconosNav} id="iconosNav">
-                  <div className={styles.iconosIcono}>
-                    {usuario.nombre} {usuario.apellido}
-                    <AiOutlineUser className={styles.iconoUser} />
-                  </div>
-                  <ul className={styles.ulCompuestoUser} id="ulCompuestoUser">
-                    <li>
-                      <Link className={styles.linksIconos} href={"/perfil"}>
-                        Perfil
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        onClick={cerrarSesion}
-                        className={styles.linksIconos}
-                      >
-                        Salir
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                <div className={styles.iconosNav} id="iconosNav">
-                  <div className={styles.iconosIcono}>
-                    <button className={styles.botonIconoLogin}>INGRESAR</button>
-                    {
-                      //<AiOutlineUser className={styles.iconoUser} />
-                    }
-                  </div>
-                  <ul className={styles.ulCompuestoUser} id="ulCompuestoUser">
-                    <li className={styles.ulCompuestoUserLi}>
-                      <Link className={styles.linksIconos} href={"/login"}>
-                        Login
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
+        <div className={ styles.navContenido}>
+          
 
           <div className={styles.links} id="links">
             
@@ -175,9 +129,9 @@ export default function Nav({ usuario, setUsuarioCookie }: any) {
               Servicios
             </Link>
 
-            <Link className={styles.link} href={"https://eduinclusivaec.com/"}>
+            {/* <Link className={styles.link} href={"https://eduinclusivaec.com/"}>
               Moodle
-            </Link>
+            </Link> */}
 
             <Link className={styles.link} href={"/publicaciones"}>
               Publicaciones
@@ -190,7 +144,78 @@ export default function Nav({ usuario, setUsuarioCookie }: any) {
               Contáctanos
             </Link>
           </div>
+
+
+
+          <div className={styles.iconos}>
+            <div
+              // onClick={() => masOpciones("usuario")}
+              className={styles.contenedorLinkCompuesto}
+            >
+              {usuario ? (
+                // <div className={styles.iconosNav} id="iconosNav">
+                //   <div className={styles.iconosIcono}>
+                //     {usuario.nombre} {usuario.apellido}
+                //     <AiOutlineUser className={styles.iconoUser} />
+                //   </div>
+                //   <ul className={styles.ulCompuestoUser} id="ulCompuestoUser">
+                //     <li>
+                //       <Link className={styles.linksIconos} href={"/perfil"}>
+                //         Perfil
+                //       </Link>
+                //     </li>
+                //     <li>
+                //       <Link
+                //         href="/"
+                //         onClick={cerrarSesion}
+                //         className={styles.linksIconos}
+                //       >
+                //         Salir
+                //       </Link>
+                //     </li>
+                //   </ul>
+                // </div>
+                <div
+              // onClick={() => masOpciones("servicios")}
+              className={`${styles.contenedorLinkCompuesto} ${styles.contenedorLinkCompuestoUser}`}
+            >
+              <div className={styles.linksUser}>
+                {usuario.nombre} {usuario.apellido}
+                   <AiOutlineUser className={styles.iconoUser} />
+              </div>
+              <ul>
+                <li><Link className={styles.link} href={"/perfil"}>Mi perfil</Link></li>
+                <li><Link className={styles.link} 
+                onClick={cerrarSesion} href={"/"}>Salir</Link></li>
+              </ul>
+                </div>
+                
+
+              ) : (
+                <></>
+                // <div className={styles.iconosNav} id="iconosNav">
+                //   <div className={styles.iconosIcono}>
+                //     <button className={styles.botonIconoLogin}>INGRESAR</button>
+                //     {
+                //       //<AiOutlineUser className={styles.iconoUser} />
+                //     }
+                //   </div>
+                //   <ul className={styles.ulCompuestoUser} id="ulCompuestoUser">
+                //     <li className={styles.ulCompuestoUserLi}>
+                //       <Link className={styles.linksIconos} href={"/login"}>
+                //         Login
+                //       </Link>
+                //     </li>
+                //   </ul>
+                // </div>
+              )}
+            </div>
+          </div>
+
+
+
         </div>
+
         </div>
 
 

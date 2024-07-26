@@ -47,6 +47,7 @@
   padding: 50px;
   gap: 2rem;
   color: black;
+  /* max-height: calc(100vh- 10rem); */
 }
 .contenedorPrincipalNoticias h2{
   color: white;

@@ -98,9 +98,9 @@ export default function Publicaciones({ publicacion, multimedia, informacionUsua
                 </div>
                 
                 {processedContent ? (
-                  <div dangerouslySetInnerHTML={{ __html: processedContent }}/>
+                  <div className={style.elementosContenido} dangerouslySetInnerHTML={{ __html: processedContent }}/>
                 ) : (
-                  <ReactMarkdown>{publicacion.contenido_publicacion}</ReactMarkdown>
+                  <ReactMarkdown className={style.elementosContenido}>{publicacion.contenido_publicacion}</ReactMarkdown>
                 )}
               </div>
             </div>

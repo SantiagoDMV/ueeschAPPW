@@ -157,10 +157,9 @@ export async function mostrarPublicacionId(req) {
   try {
     const publicacionId = parseInt(req.query.publicacionId, 10);
     const datos = await repo.obtenerPublicacion(publicacionId);
-    const datosMultimedia = await repoMultimedia.obtenerImagenesIdPublicacion(
-      publicacionId
+    const datosMultimedia = await repoMultimedia.obtenerImagenes(
+      datos
     );
-
     if (!datos || !datosMultimedia)
       return {
         statusCode: 500,

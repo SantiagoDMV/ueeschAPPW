@@ -114,6 +114,23 @@ async function mostrarNoticiasIndex() {
     }
 }
 
+
+async function mostrarAnunciosIndex() {
+    let connection;
+    try {
+        connection = await pool.getConnection();
+        const [rows] = await connection.query(
+            "SELECT * FROM publicacion WHERE id_tipo_publicacion = 2 AND eliminado_en IS NULL ORDER BY creado_en DESC LIMIT 3;"
+        );
+        return rows;
+    } catch (error) {
+        console.error(error);
+        return false;
+    } finally {
+        if (connection) connection.release();
+    }
+}
+
 async function mostrarServicios() {
     let connection;
     try {
@@ -147,15 +164,105 @@ async function mostrarServiciosUsuarioRegistrado(ids) {
     }
 }
 
+
+// async function obtenerPublicacion(idPublicacion) {
+//     let connection;
+//     try {
+//         connection = await pool.getConnection();
+        
+//         // Obtener todas las publicaciones
+//         const [allRows] = await connection.query("SELECT id_publicacion FROM publicacion ORDER BY id_publicacion ASC;");
+//         const ids = allRows.map(row => row.id_publicacion);
+
+//         // Encontrar la posición del idPublicacion
+//         const index = ids.indexOf(idPublicacion);
+
+//         if (index === -1) {
+//             // El idPublicacion no existe en la base de datos
+//             return false;
+//         }
+
+//         // Obtener los ids de las tres publicaciones
+//         const previousIndex = (index - 1 + ids.length) % ids.length;
+//         const nextIndex = (index + 1) % ids.length;
+
+//         const publicationIds = [
+//             ids[previousIndex],
+//             ids[index],
+//             ids[nextIndex]
+//         ];
+
+//         // Obtener las publicaciones correspondientes
+//         const [rows] = await connection.query(
+//             "SELECT * FROM publicacion WHERE id_publicacion IN (?, ?, ?);",
+//             publicationIds
+//         );
+
+//         // Ordenar las publicaciones de acuerdo al orden de publicationIds
+//         const sortedRows = publicationIds.map(id => rows.find(row => row.id_publicacion === id));
+
+//         return sortedRows;
+//     } catch (error) {
+//         console.error(error);
+//         return false;
+//     } finally {
+//         if (connection) connection.release();
+//     }
+// }
 async function obtenerPublicacion(idPublicacion) {
     let connection;
     try {
         connection = await pool.getConnection();
-        const [row] = await connection.query(
-            "SELECT * FROM publicacion WHERE id_publicacion = ?;",
+
+        // Obtener la publicación central para obtener su id_tipo_publicacion
+        const [centralRow] = await connection.query(
+            "SELECT id_publicacion, id_tipo_publicacion FROM publicacion WHERE id_publicacion = ?;",
             [idPublicacion]
         );
-        return row[0] || null;
+
+        if (centralRow.length === 0) {
+            // La publicación central no existe
+            return false;
+        }
+
+        const idTipoPublicacion = centralRow[0].id_tipo_publicacion;
+
+        // Obtener todas las publicaciones del mismo id_tipo_publicacion ordenadas por id_publicacion
+        const [allRows] = await connection.query(
+            "SELECT id_publicacion FROM publicacion WHERE id_tipo_publicacion = ? ORDER BY id_publicacion ASC;",
+            [idTipoPublicacion]
+        );
+
+        const ids = allRows.map(row => row.id_publicacion);
+
+        // Encontrar la posición del idPublicacion
+        const index = ids.indexOf(idPublicacion);
+
+        if (index === -1) {
+            // El idPublicacion no existe en la base de datos
+            return false;
+        }
+
+        // Obtener los ids de las tres publicaciones
+        const previousIndex = (index - 1 + ids.length) % ids.length;
+        const nextIndex = (index + 1) % ids.length;
+
+        const publicationIds = [
+            ids[previousIndex],
+            ids[index],
+            ids[nextIndex]
+        ];
+
+        // Obtener las publicaciones correspondientes
+        const [rows] = await connection.query(
+            "SELECT * FROM publicacion WHERE id_publicacion IN (?, ?, ?);",
+            publicationIds
+        );
+
+        // Ordenar las publicaciones de acuerdo al orden de publicationIds
+        const sortedRows = publicationIds.map(id => rows.find(row => row.id_publicacion === id));
+
+        return sortedRows;
     } catch (error) {
         console.error(error);
         return false;
@@ -163,6 +270,7 @@ async function obtenerPublicacion(idPublicacion) {
         if (connection) connection.release();
     }
 }
+
 
 async function crearPublicacion(idUser, titulo, contenido, id_tipo_publicacion, fecha_eliminacion) {
     let connection;
@@ -397,6 +505,7 @@ module.exports = {
   mostrarAnuncios,
   mostrarNoticias,
   mostrarNoticiasIndex,
+  mostrarAnunciosIndex,
   mostrarServicios,
   mostrarServiciosUsuarioRegistrado,
   obtenerPublicacion,

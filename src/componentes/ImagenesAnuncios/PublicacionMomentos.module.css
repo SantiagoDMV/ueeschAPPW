@@ -1,0 +1,42 @@
+.imagenPublicacion {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.estiloContenedor{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 50%;
+  min-height: 300px;
+  max-height: 300px;
+  background-color: rgba(128, 128, 128, 0.141);
+}
+
+.botonesCarrusel{
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  position: absolute; 
+  top: 0%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.279);
+  cursor: pointer;
+}
+
+.boton:hover{
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+}
+
+.imagenPublicacion:hover {
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 1130px) {
+.contenedorImagenPublicacion{
+    width: 90%;
+}
+}
