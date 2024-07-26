@@ -8,7 +8,6 @@ import Head from "next/head";
 import style from "../styles/pestañas/Index.module.css";
 import imagen from '../../public/imagenes/index/header/header.jpg';
 import axios, { AxiosError } from "axios";
-import ContactFormAgendamiento from '@/componentes/layout/Formularios/FormularioAgendamiento/FormularioEmail';
 import imagen_formulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
 
 // Componentes cargados de manera diferida
