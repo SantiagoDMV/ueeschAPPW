@@ -292,7 +292,7 @@ const convertirTimestampAFecha = (timestamp:any) => {
 
 <div className={style.scrollContainer}>
           {
-              cursoSeleccionado &&
+              cursoSeleccionado ?
               (
                 cursoSeleccionado.length > 0 ?
               cursoSeleccionado.map((e:any,index:number)=>(
@@ -310,7 +310,10 @@ const convertirTimestampAFecha = (timestamp:any) => {
               <div className={style.contenedorTareaCalendario}>
                 <h4>No te preocupes, no hay tareas próximas en este curso por ahora.</h4>
                 </div>
-              )
+              ):
+              <div className={style.contenedorTareaCalendario}>
+                <h4>No te preocupes, no hay tareas próximas en este curso por ahora.</h4>
+                </div>
             }
 </div>
                     </div>
