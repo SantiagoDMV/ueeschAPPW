@@ -3,15 +3,14 @@ import Link from "next/link";
 import style from "../estilos/Layout.module.css";
 import ChatAyuda from "../chatAyuda/ChatAyuda";
 import ChatDiccionario from "../chatDiccionario/ChatDiccionario";
+import ChatTareas from "../ChatTareas/ChatDiccionario";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Ventana from "../ventanas/Ventana";
+import VentanaTareas from "../ventanas/VentanaTareas";
 import {
-  AiOutlineWhatsApp,
-  AiOutlineFacebook,
   AiOutlineLeft,
-  AiOutlineTwitter,
   AiOutlineRight,
+  AiFillCaretDown,
 } from "react-icons/ai";
 import axios from "axios";
 
@@ -87,7 +86,6 @@ const convertirTimestampAFecha = (timestamp:any) => {
   const fecha = new Date(timestamp * 1000);
   return fecha.toLocaleString(); // Convertir a formato entendible
 };
-
 
 
   return (
@@ -174,8 +172,7 @@ const convertirTimestampAFecha = (timestamp:any) => {
                 <Link href={'/moodle/creartarea'} className={style.link}><span>Crear una tarea</span></Link>
                 </>
                 }
-                <span className={style.link} onClick={()=>{setEstadoVentana(!estadoVentana);
-                obtenerInformacionCursos()}}>Proximos Eventos/Tareas</span>
+                
 
 
                 {/* OPCIONES DE COMPARTIR EN REDES SOCIALES */}
@@ -251,6 +248,11 @@ const convertirTimestampAFecha = (timestamp:any) => {
             
             }
 
+            <div className={style.chatTareas} onClick={()=>{setEstadoVentana(!estadoVentana);
+                obtenerInformacionCursos()}}>
+              <ChatTareas />
+            </div>
+
             <div className={style.chatDiccionario}>
               <ChatDiccionario />
             </div>
@@ -262,12 +264,12 @@ const convertirTimestampAFecha = (timestamp:any) => {
             {/* VENTANA PARA VER EL CALENDARIO */}
           {
                   estadoVentana &&
-                  <Ventana estado={true}>
+                  <VentanaTareas estado={true}>
                     <div className={style.fondoPrincipalCalendario}>
                       <p onClick={()=>{setEstadoVentana(!estadoVentana);
                       setCursoSeleccionado(null)}}
                       className={style.btnCerrar}
-                      >x</p>
+                      ><AiFillCaretDown/></p>
                       <h3>Próximos eventos y tareas en Moodle</h3>
                       <div className={style.formGroup}>
             <label htmlFor="course">Curso</label>
@@ -287,6 +289,7 @@ const convertirTimestampAFecha = (timestamp:any) => {
             </select>
           </div>
 
+<div className={style.scrollContainer}>
           {
               cursoSeleccionado &&
               (
@@ -308,9 +311,9 @@ const convertirTimestampAFecha = (timestamp:any) => {
                 </div>
               )
             }
-
+</div>
                     </div>
-                  </Ventana>  
+                  </VentanaTareas>  
                 }
 {/* FIN DE LA VENTAN PARA VER EL CALENDARIO */}
             {children}

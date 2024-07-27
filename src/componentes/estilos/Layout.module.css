@@ -7,10 +7,16 @@
   align-items: center;
   gap: 1rem;
   text-align: center;
+  color: white;
 }
 
 .fondoPrincipalCalendario select{
   padding: 10px;
+  border-radius: 20px;
+}
+
+.fondoPrincipalCalendario select option{
+  font-size: 1rem;
 }
 
 .formGroup{
@@ -19,6 +25,33 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.scrollContainer{
+    height: auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    box-sizing: border-box;
+    max-height: 225px;
+    border-radius: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(220, 216, 216, 0);
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: rgb(51, 58, 153);
+  border-radius: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(31, 48, 102);
 }
 
 .contenedorTareaCalendario{
@@ -31,7 +64,10 @@
   border-radius: 5px;
   gap: 10px;
   text-align: center;
+  background-color: white;
+  color: black;
 }
+
 .contenedorTareaCalendario:hover{
   color: #4267b2;
 }
@@ -51,9 +87,15 @@
  color: white;
 }
 .btnCerrar{
-  color: rgb(246, 8, 8);
-  font-size: 1.3rem;
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
   cursor: pointer;
+}
+
+.btnCerrar:hover{
+  color: #0e234d;
+  transform: scale(1.5);
+  transition: all 0.2s ease-in-out;
 }
 /* FIN DE LA VENTANA CALENDARIO */
 
@@ -225,6 +267,7 @@
   transform: translateX(0);
 }
 
+
 .chatAyuda {
   position: fixed;
   bottom: 10px;
@@ -234,6 +277,13 @@
 .chatDiccionario
 {position: fixed;
   bottom: 90px;
+  right: 10px;
+  z-index: 1;
+
+}
+.chatTareas{
+  position: fixed;
+  bottom: 170px;
   right: 10px;
   z-index: 1;
 }
@@ -253,5 +303,8 @@
     max-height: calc(100vh - 4rem);
     top: 4rem;
   }   
+  .btnCerrar{
+    margin-top: 20px;
+  }
 
 }

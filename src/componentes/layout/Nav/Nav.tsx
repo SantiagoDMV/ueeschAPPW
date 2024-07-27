@@ -80,7 +80,7 @@ export default function Nav({ usuario, setUsuarioCookie }: any) {
             <Link href={"https://eduinclusivaec.com/"} className={styles.linksCompartidos}>
             <AiFillBook/>
               Educación Virtual</Link></p>
-            <label><AiFillFacebook/></label>
+            <label><Link href={'https://www.facebook.com/UEESCH/'}><AiFillFacebook/></Link></label>
             <label><AiFillInstagram/></label>
           </div>
         </div>

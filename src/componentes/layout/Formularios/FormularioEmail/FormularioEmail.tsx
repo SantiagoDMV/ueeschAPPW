@@ -1,6 +1,8 @@
 import { useState } from "react";
-import axios from "axios"; // Asegúrate de tener axios instalado
+import axios, { AxiosError } from "axios";
 import estilos from './FormularioEmail.module.css'
+import { Toaster, toast } from "sonner";
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -16,18 +18,49 @@ const ContactForm = () => {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
+    let loadingToastId:any = null; 
+  
     try {
-      const response = await axios.post(
+      loadingToastId = toast.info("Enviando mensaje, esto puede llevar un momento...", {
+        style: {
+          border: 'none'
+        },
+      });
+
+        const response = await axios.post(
         '/api/correos',
         formData
       );
+
+      toast.dismiss(loadingToastId);
+  
+      toast.success("El mensaje fue enciado exitosamente.", {
+        style: {
+          backgroundColor: "rgb(90,203,154)",
+          border: "none",
+        },
+      });
+
+      setFormData(  {name: "",
+        email: "",
+        message: "",})
       //console.log(response.data); 
     } catch (error) {
-      console.error("Error al enviar el formulario", error);
+      ////////////////////////////////////////////////////////////////////////
+      const errorMensaje: any = (error as AxiosError).response?.data;
+      toast.dismiss(loadingToastId);
+  
+      toast.error('No es posible enviar el mensaje. Inténtalo de nuevo más tarde', {
+        style: {
+          backgroundColor: 'rgb(203,90,90)',
+          border: 'none'
+        },
+      });
     }
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit} className={estilos.contenedorFormulario}>
         
       <div>
@@ -65,6 +98,13 @@ const ContactForm = () => {
       </div>
       <button type="submit">Enviar</button>
     </form>
+    <Toaster 
+      theme="dark"
+      position="bottom-left"
+      visibleToasts={3}
+      duration={3000}
+      />
+</>    
   );
 };
 

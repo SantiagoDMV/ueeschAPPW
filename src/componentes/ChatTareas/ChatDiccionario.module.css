@@ -1,0 +1,102 @@
+.contenedorChatAyuda{
+    font-size: 40px;
+    background-color: rgb(93, 53, 146);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    box-shadow: 0px 0px 4px 2px rgba(20, 20, 20, 0.171);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+
+.cajaContenedorAyuda
+{
+    position: absolute;
+    min-width: 250px;
+    top: -380%;
+    left: -330%;
+    box-shadow: 0px 0px 4px 2px rgba(20, 20, 20, 0.171);
+    font-size: 20px;
+    transform: translateY(5px); 
+    transition: transform 0.5s ease-in-out; /* Transición suave */
+  }
+  
+.cajaContenedorAyuda:hover {
+    transform: translateY(0);
+  }
+
+.contenedorContacto{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(146, 53, 67);
+}
+.imagenContacto{
+    background-color: white;
+    border-radius: 50%;
+}
+
+.contenedorMensajeEnviado{    
+    padding: 20px 10px;
+    background-color: rgb(231, 239, 241);
+    
+    width: 100%;
+}
+.cajaContenedorAyuda .input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0 10px 10px 10px;
+    outline: none;
+    background-color: white;
+    color: black;
+    font-size: 0.8rem;
+}
+
+.contenedorEnviarMensaje{
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedorEnviarMensaje form{
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.contenedorEnviarMensaje form button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.contenedorEnviarMensaje form input{
+    resize: none;
+    width: 100%;   
+    padding: 10px;
+    outline: none;
+    border: 1px solid rgb(150, 150, 150);
+    background-color: white;
+    color: black;
+}
+
+.iconoEnviar{
+    font-size: 25px;
+}

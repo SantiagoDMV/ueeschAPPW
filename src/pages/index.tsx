@@ -143,6 +143,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
             {/* <img 
             src={`${imagen_formulario.src}`} 
             alt="imagen_formulario" /> */}
+            <img src={`${imagen.src}`} alt="imagen_nivel_bacillerato" />
           </div>
           <div className={style.contenedorAgendamientoDerecha}>
             <h4>NUESTRO</h4>
