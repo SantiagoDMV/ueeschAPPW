@@ -1,3 +1,51 @@
+/*historial*/
+.contenedorHistorialCalificaciones
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    min-width: 100%;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.044);
+    gap: 10px;
+}
+.contenedorHistorialCalificaciones form{
+    width: 100%;
+}
+
+.contenedorHistorialCalificaciones form div{
+display: flex;
+align-items: flex-start;
+flex-direction: column;
+gap: 10px;
+min-width: 100%;
+}
+
+.contenedorHistorialCalificaciones select{
+    padding: 10px;
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+
+.contenedorHistorialCalificaciones select option{
+    font-size: 1rem;
+}
+
+.contenedorHistorialCalificaciones button{
+    padding: 10px;
+    border: none;
+    outline-offset: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: auto;
+    width: 100%;
+}
+
+/**/
 .contenedorPagina{
     display: flex;
     flex-wrap: wrap;

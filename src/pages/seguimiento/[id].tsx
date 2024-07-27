@@ -62,11 +62,11 @@ export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,s
   const progresosNulos = cursosUser.every((curso: any) => curso.progress === null);
 
   const data = {
-    labels: cursosUser && cursosUser.map((curso: any) => curso.fullname),
+    labels: cursoSeleccionado && cursoSeleccionado.fullname,
     datasets: [
       {
         label: "Progreso de los cursos",
-        data: cursosUser.map((curso: any) => (curso.progress !== null ? curso.progress : 0)),
+        data: cursoSeleccionado && cursoSeleccionado.progress !== null ? cursoSeleccionado.progress : 0,
         backgroundColor: "#3498db",
         borderColor: "#2980b9",
         borderWidth: 1,
@@ -159,6 +159,15 @@ export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,s
 }
 
 
+const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();
+  const form = document.getElementById('moodleDownloadForm') as HTMLFormElement;
+  if (form) {
+    form.submit();
+  }
+};
+
+
   return (
     <Layout usuario={usuarioCookie} setUsuarioCookie={setUsuarioCookie} moodle={moodle}>
       <div className={estilos.contenedorPagina}>
@@ -178,8 +187,8 @@ export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,s
              }
           }) }</h4>
           <h4>Rol Actual en el curso: Estudiante</h4>
-          <Link href={`/reportes/notas?id=${userId}&curso=${cursoSeleccionado}`} 
-          className={estilos.reporteNotasSpan}>Reporte de notas</Link>
+          {/* <Link href={`/reportes/notas?id=${userId}&curso=${cursoSeleccionado}`} 
+          className={estilos.reporteNotasSpan}>Reporte de notas</Link> */}
           <div className={estilos.tareasCursos}>
                 <InformacionModulosMoodle cursoId = {cursoSeleccionado} userId = {userId} moodle ={ moodle} obtenerTareasMoodle={obtenerTareasMoodle} tareas={tareas} setTareas={setTareas}/>
           </div>
@@ -193,7 +202,7 @@ export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,s
              }
           }) }</h4>
           <h4>Rol Actual en el curso: Profesor</h4>        
-          
+          {/* <h4>Informes</h4> */}
           <InformacionUsuarios usersInf = {usuariosInformacion} cursoId = {cursoSeleccionado}/>
            </> 
           : informacionCursoUsuario && (informacionCursoUsuario.roles[0].roleid === 2) &&
@@ -211,6 +220,51 @@ export default function Seguimientoacademico({ cursosUser,userId,usuarioCookie,s
           informacionCursoUsuario && informacionCursoUsuario.roles[0].roleid === 5 &&          
         <div className={estilos.contendorGraficas}>
         <h4>Progreso Académico Actual</h4>
+
+          <div className={estilos.contenedorHistorialCalificaciones}>
+            <h4>Historial de calificaciones</h4>
+            <form
+              method="get"
+              action="https://eduinclusivaec.com/grade/report/history/index.php"
+              className="dataformatselector m-1"
+              id="moodleDownloadForm"
+            >
+              <div className="form-inline text-xs-right">
+                <input type="hidden" name="sesskey" value="ONtV69bMjm" />
+                <input type="hidden" name="id" value="2" />
+                <input type="hidden" name="showreport" value={`${cursoSeleccionado}`} />
+                <input type="hidden" name="itemid" value="0" />
+                <input type="hidden" name="grader" value="0" />
+                <input type="hidden" name="datefrom" value="0" />
+                <input type="hidden" name="datetill" value="0" />
+                <input type="hidden" name="userids" value={`${userId}`} />
+
+                <label htmlFor="downloadtype_download" className="mr-1">
+                  Descargar datos de como
+                </label>
+                <select
+                  name="download"
+                  id="downloadtype_download"
+                  className="form-control custom-select mr-1"
+                >
+                  <option value="csv">Valores separados por comas (.csv)</option>
+                  <option value="excel">Microsoft Excel (.xlsx)</option>
+                  <option value="html">Tabla HTML</option>
+                  <option value="json">Javascript Object Notation (.json)</option>
+                  <option value="ods">OpenDocument (.ods)</option>
+                  <option value="pdf">Portable Document Format (.pdf)</option>
+                </select>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleSubmit}
+                >
+                  Descargar
+                </button>
+              </div>
+            </form>
+          </div>
+
           <div className={estilos.graficoPastel}>
             {
               progresosNulos?(

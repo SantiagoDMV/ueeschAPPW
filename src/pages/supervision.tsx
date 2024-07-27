@@ -24,6 +24,7 @@ export default function Supervision({
   ChartJS.defaults.plugins.tooltip.mode = "index";
   ChartJS.defaults.plugins.tooltip.intersect = false;
 
+
   useEffect(() => {
     obtenerInformacionCurso();
   }, []);
@@ -155,6 +156,15 @@ const datosGrafico = {
 
   ////////////////////////////////////
 
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const form = document.getElementById('moodleDownloadForm') as HTMLFormElement;
+    if (form) {
+      form.submit();
+    }
+  };
+
   return (
     <Layout
       usuario={usuarioCookie}
@@ -212,7 +222,9 @@ color={"#558"} loading={true} size={70}/>
                             informacioEstudiante.lastaccess
                           )}
                         </span>
-                        <Link className={estilos.reporteNotasSpan} href={`/reportes/notas?id=${id_estudiante_number}&curso=${curso_id_number}`}>Reporte de notas</Link>
+                        {/* <Link className={estilos.reporteNotasSpan} href={`/reportes/notas?id=${id_estudiante_number}&curso=${curso_id_number}`}>Reporte de notas</Link> */}
+
+
                       </div>
                     </div>
                   )}
@@ -234,7 +246,54 @@ color={"#558"} loading={true} size={70}/>
                   </div>
                 </div>
 
+
+
                 <div className={estilos.contendorDatos}>
+                <div className={estilos.contenedorHistorialCalificaciones}>
+            <h4>Historial de calificaciones</h4>
+            <form
+              method="get"
+              action="https://eduinclusivaec.com/grade/report/history/index.php"
+              className="dataformatselector m-1"
+              id="moodleDownloadForm"
+            >
+              <div className="form-inline text-xs-right">
+                <input type="hidden" name="sesskey" value="ONtV69bMjm" />
+                <input type="hidden" name="id" value="2" />
+                <input type="hidden" name="showreport" value={`${curso_id_number}`} />
+                <input type="hidden" name="itemid" value="0" />
+                <input type="hidden" name="grader" value="0" />
+                <input type="hidden" name="datefrom" value="0" />
+                <input type="hidden" name="datetill" value="0" />
+                <input type="hidden" name="userids" value={`${id_estudiante_number}`} />
+
+                <label htmlFor="downloadtype_download" className="mr-1">
+                  Descargar datos de como
+                </label>
+                <select
+                  name="download"
+                  id="downloadtype_download"
+                  className="form-control custom-select mr-1"
+                >
+                  <option value="csv">Valores separados por comas (.csv)</option>
+                  <option value="excel">Microsoft Excel (.xlsx)</option>
+                  <option value="html">Tabla HTML</option>
+                  <option value="json">Javascript Object Notation (.json)</option>
+                  <option value="ods">OpenDocument (.ods)</option>
+                  <option value="pdf">Portable Document Format (.pdf)</option>
+                </select>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleSubmit}
+                >
+                  Descargar
+                </button>
+              </div>
+            </form>
+          </div>
+
+
                   <div className={estilos.datos}>
                     <Doughnut
                       data={progresoCursoData}
