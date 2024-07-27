@@ -248,11 +248,12 @@ const convertirTimestampAFecha = (timestamp:any) => {
             
             }
 
+{usuario && 
             <div className={style.chatTareas} onClick={()=>{setEstadoVentana(!estadoVentana);
-                obtenerInformacionCursos()}}>
-              <ChatTareas />
-            </div>
-
+              obtenerInformacionCursos()}}>
+            <ChatTareas />
+          </div>
+}
             <div className={style.chatDiccionario}>
               <ChatDiccionario />
             </div>
