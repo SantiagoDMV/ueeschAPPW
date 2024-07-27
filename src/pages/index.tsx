@@ -8,7 +8,7 @@ import Head from "next/head";
 import style from "../styles/pestañas/Index.module.css";
 import imagen from '../../public/imagenes/index/header/header.jpg';
 import axios, { AxiosError } from "axios";
-import imagen_formulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
+// import imagen_formulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
 
 // Componentes cargados de manera diferida
 const Header = dynamic(() => import("../componentes/layout/Header/Header"));
@@ -140,9 +140,9 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 
         <div className={style.contenedorAgendamiento}>
           <div className={style.contenedorAgendamientoIzquierda}>
-            <img 
+            {/* <img 
             src={`${imagen_formulario.src}`} 
-            alt="imagen_formulario" />
+            alt="imagen_formulario" /> */}
           </div>
           <div className={style.contenedorAgendamientoDerecha}>
             <h4>NUESTRO</h4>
@@ -159,7 +159,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 <div className={style.contenedorNivelesContenido}>
           <div className={style.nivelInicial}>
           <div className={style.conenedorImagenNiveles}>
-{/* <img src={`${imagen.src}`} alt="imagen_nivel_inicial" /> */}
+          <img src={`${imagen.src}`} alt="imagen_nivel_inicial" />
             </div>
             <div className={style.nivelContenido}>
               <h4>Educación Inicial</h4>
