@@ -1,18 +1,23 @@
 
 /* INICIO DE LA VENTANA CALENDARIO */
 .fondoPrincipalCalendario{
-  padding: 2rem;
+  width: 100%;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   text-align: center;
   color: white;
+  
 }
 
 .fondoPrincipalCalendario select{
   padding: 10px;
   border-radius: 20px;
+  width: 90%;
+  outline: none;
+  background-color: white;
 }
 
 .fondoPrincipalCalendario select option{
