@@ -259,8 +259,8 @@ color={"#558"} loading={true} size={70}/>
             >
               <div className="form-inline text-xs-right">
                 <input type="hidden" name="sesskey" value="ONtV69bMjm" />
-                <input type="hidden" name="id" value="2" />
-                <input type="hidden" name="showreport" value={`${curso_id_number}`} />
+                <input type="hidden" name="id" value={`${curso_id_number}`} />
+                <input type="hidden" name="showreport" value="1"  />
                 <input type="hidden" name="itemid" value="0" />
                 <input type="hidden" name="grader" value="0" />
                 <input type="hidden" name="datefrom" value="0" />
@@ -268,7 +268,7 @@ color={"#558"} loading={true} size={70}/>
                 <input type="hidden" name="userids" value={`${id_estudiante_number}`} />
 
                 <label htmlFor="downloadtype_download" className="mr-1">
-                  Descargar datos de como
+                  Descargar datos como
                 </label>
                 <select
                   name="download"

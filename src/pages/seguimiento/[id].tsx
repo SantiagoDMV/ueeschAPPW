@@ -231,8 +231,8 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
             >
               <div className="form-inline text-xs-right">
                 <input type="hidden" name="sesskey" value="ONtV69bMjm" />
-                <input type="hidden" name="id" value="2" />
-                <input type="hidden" name="showreport" value={`${cursoSeleccionado}`} />
+                <input type="hidden" name="id" value={`${cursoSeleccionado}`}  />
+                <input type="hidden" name="showreport"  value="1"/>
                 <input type="hidden" name="itemid" value="0" />
                 <input type="hidden" name="grader" value="0" />
                 <input type="hidden" name="datefrom" value="0" />

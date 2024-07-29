@@ -223,7 +223,7 @@ padding: 1rem;
 }
 
 .contenedorNiveles{
-  padding: 40px;
+  padding: 4rem  40px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -239,38 +239,46 @@ padding: 1rem;
 .contenedorNivelesContenido{
 display:flex;
 gap: 3rem;
+padding: 20px;
 }
 
 .nivelInicial{
   flex-grow: 1;
   flex-basis: 0;
-  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  /* box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07); */
   border-radius: 10px;
-  
 }
 
 .nivelBasica{
   flex-grow: 1;
   flex-basis: 0;
-  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  /* box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07); */
   border-radius: 10px;
 }
 
 .nivelBachillerato{
   flex-grow: 1;
   flex-basis: 0;
-  box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07);
+  /* box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.07); */
   border-radius: 10px;
 }
 
 .conenedorImagenNiveles{
-max-width: 100%;
+/* max-width: 100%;
+max-height: 200px;
+min-height: 200px; */
+height: 200px;
+width: 200px;
+border-radius: 50%;
+display: flex;
+margin: auto;
+overflow-y: hidden;
 }
 
 .conenedorImagenNiveles img{
+  min-height: 200px;  
   max-width: 100%;
-  object-fit: contain;
-  border-radius: 10px 10px 0 0;
+  object-fit: cover;
 }
 
 .nivelContenido{
@@ -291,7 +299,28 @@ max-width: 100%;
   padding: 0 10px 10px 10px;
 }
 
+
   @media only screen and (max-width:750px) {
+
+    .conenedorImagenNiveles{
+      max-width: 100%;
+      min-width: 100%;
+      min-height: auto;
+      max-height: none;
+      overflow-y: auto;
+      margin: 0;
+      border-radius: 0;
+      display: block;
+      height: auto;
+      }
+      
+      .conenedorImagenNiveles img{
+        min-height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        
+      }
+
 
     .contenedorAgendamientoIzquierda{
       padding: 1rem;
@@ -313,10 +342,12 @@ max-width: 100%;
     .contenedorAgendamientoIzquierda{
       width: 100%;
       min-height: 200px;
+      max-height: auto;
     }
   
     .contenedorAgendamientoIzquierda img{
       background-color: transparent;
+      max-height: auto;
       min-width: 100%;
       padding: 10px;
       object-position: center;

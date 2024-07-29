@@ -1,3 +1,8 @@
+.linkTitulo:hover{
+    color:rgb(28, 81, 156);
+    font-weight: bold;
+}
+
 .contenedorBuscador {
     margin-bottom: 20px;
     display: flex;

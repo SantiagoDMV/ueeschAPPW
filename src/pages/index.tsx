@@ -7,6 +7,10 @@ import Footer from "@/componentes/layout/Footer/Footer";
 import Head from "next/head";
 import style from "../styles/pestañas/Index.module.css";
 import imagen from '../../public/imagenes/index/header/header.jpg';
+import imagenFormulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
+import imagenBachillerato from '../../public/imagenes/index/niveles/bachillerato.jpeg'
+import imagenBasica from '../../public/imagenes/index/niveles/basica.jpeg'
+import imagenInicial from '../../public/imagenes/index/niveles/inicial.jpeg'
 import axios, { AxiosError } from "axios";
 // import imagen_formulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
 
@@ -140,10 +144,9 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 
         <div className={style.contenedorAgendamiento}>
           <div className={style.contenedorAgendamientoIzquierda}>
-            {/* <img 
-            src={`${imagen_formulario.src}`} 
-            alt="imagen_formulario" /> */}
-            <img src={`${imagen.src}`} alt="imagen_nivel_bacillerato" />
+            <img 
+            src={`${imagenFormulario.src}`} 
+            alt="imagen_formulario" />
           </div>
           <div className={style.contenedorAgendamientoDerecha}>
             <h4>NUESTRO</h4>
@@ -160,7 +163,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 <div className={style.contenedorNivelesContenido}>
           <div className={style.nivelInicial}>
           <div className={style.conenedorImagenNiveles}>
-          <img src={`${imagen.src}`} alt="imagen_nivel_inicial" />
+          <img src={`${imagenInicial.src}`} alt="imagen_nivel_inicial" />
             </div>
             <div className={style.nivelContenido}>
               <h4>Educación Inicial</h4>
@@ -170,7 +173,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 
           <div className={style.nivelBasica}>
           <div className={style.conenedorImagenNiveles}>
-          <img src={`${imagen.src}`} alt="imagen_nivel_basica" />
+          <img src={`${imagenBasica.src}`} alt="imagen_nivel_basica" />
 </div>
 <div className={style.nivelContenido}>
   <h4>Educación Básica</h4>
@@ -180,7 +183,7 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 
           <div className={style.nivelBachillerato}>
           <div className={style.conenedorImagenNiveles}>
-          <img src={`${imagen.src}`} alt="imagen_nivel_bacillerato" />
+          <img src={`${imagenBachillerato.src}`} alt="imagen_nivel_bacillerato" />
 </div>
 <div className={style.nivelContenido}>
   <h4>Bachillerato</h4>

@@ -106,7 +106,9 @@ export default function TablaInformacion({
 
                   <td className={estilos.filas}>
                     <div className={estilos.contenido}>
+                      <Link className={estilos.linkTitulo} href={`publicaciones/publicacion/${e.id_publicacion}`}>
                       {e.titulo_publicacion}
+                      </Link>
                     </div>
                   </td>
                   {/* <td className={estilos.fila_contenido}><div className={estilos.contenido}>{e.contenido_publicacion}</div></td>                 */}

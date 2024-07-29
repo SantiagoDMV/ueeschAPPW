@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import style from "../estilos/Ventanas/Ventana.module.css";
+import style from "../estilos/Ventanas/VentanaTareas.module.css";
 
 export default function VentanaTareas({ children, estado}: any) {
   useEffect(() => {

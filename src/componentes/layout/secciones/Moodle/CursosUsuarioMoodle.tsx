@@ -3,6 +3,11 @@ import estilos from "../../../estilos/ServiciosMoodle/UsuarioCursos.module.css";
 
 export default function CursosUsuarioMoodle({ mostrarTareas, cursos }: any) {
 
+  const decimalesProgreso = (progreso:any) =>{
+    return progreso.toFixed(2);
+  }
+  
+
   return (
     <>
       {cursos.length > 0 ?
@@ -17,7 +22,7 @@ export default function CursosUsuarioMoodle({ mostrarTareas, cursos }: any) {
                 <p>{e.fullname}</p>
                 {e.progress != null ?
                   (<p className={estilos.progreso}>
-                    Progreso: {e.progress}%
+                    Progreso: {decimalesProgreso(e.progress)}%
                   </p>) :
                   (<p className={estilos.sinProgreso}>
                     {
