@@ -8,6 +8,7 @@ import Head from "next/head";
 import style from "../styles/pestañas/Index.module.css";
 import imagen from '../../public/imagenes/index/header/header.jpg';
 // import imagenFormulario from '../../public/imagenes/index/formulario/imagen_formulario.jpg';
+import imagenForm from '../../public/imagenes/index/form/imagenFormulario.jpeg'
 import imagenBachillerato from '../../public/imagenes/index/niveles/bachillerato.jpeg'
 import imagenBasica from '../../public/imagenes/index/niveles/basica.jpeg'
 import imagenInicial from '../../public/imagenes/index/niveles/inicial.jpeg'
@@ -144,11 +145,11 @@ export default function Home({ usuarioCookie, setUsuarioCookie, informacion, moo
 
         <div className={style.contenedorAgendamiento}>
           <div className={style.contenedorAgendamientoIzquierda}>
-            {/* <img 
-            src={`${imagenFormulario.src}`} 
+            <img 
+            src={`${imagenForm.src}`} 
             alt="imagen_formulario" />
-             */}
-             <img src={`${imagenInicial.src}`} alt="imagen_nivel_inicial" />
+            
+             
           </div>
           <div className={style.contenedorAgendamientoDerecha}>
             <h4>NUESTRO</h4>
