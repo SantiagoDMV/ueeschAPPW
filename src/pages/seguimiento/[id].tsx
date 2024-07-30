@@ -265,7 +265,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
             </form>
           </div>
 
-          <div className={estilos.graficoPastel}>
+          {/* <div className={estilos.graficoPastel}>
             {
               progresosNulos?(
               <div className={estilos.pastel}>
@@ -275,7 +275,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                <Bar data={data} options={options} className={estilos.pastel} />
               )
             }
-          </div>
+          </div> */}
           {/* <div className={estilos.graficoPastel}>
           <div className={estilos.pastel}>
             <Pie data={dataCursosCompletados} options={optionsCursosCompletados} />

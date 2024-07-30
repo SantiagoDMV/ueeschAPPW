@@ -20,12 +20,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
-    width: 100%;
 }
 
 .contenedorHistoria img{
-    min-width: 100% ;
+    width: 100% ;
+    
 }
 .contenedorHistoria table{
     min-width: 100%;

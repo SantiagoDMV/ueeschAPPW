@@ -1,6 +1,6 @@
 import style from "./SeccionOpciones.module.css";
 import {
-  AiOutlineHistory,
+  AiOutlineOrderedList,
   AiFillInfoCircle,
   AiOutlineApi,
 } from "react-icons/ai";
@@ -14,7 +14,7 @@ export default function SeccionOpciones() {
             className={style.hijo}
             onClick={() => (window.location.href = `/matriculate`)}
           >
-            <div className={style.contenedorIcono}><AiOutlineHistory className={style.iconoHijo} /></div>
+            <div className={style.contenedorIcono}><AiOutlineOrderedList className={style.iconoHijo} /></div>
             <h3>Requisitos de Matriculación</h3>
           </div>
 

@@ -303,9 +303,9 @@ color={"#558"} loading={true} size={70}/>
                   </div>
 
 
-                  <div className={estilos.datos}>
+                  {/* <div className={estilos.datos}>
     <Doughnut data={datosGrafico} options={opcionesGraficoDos} />
-  </div>
+  </div> */}
 
                 </div>
               </div>
