@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { SyncLoader } from "react-spinners";
 import Carrusel from "../componentes/Carrrusel/CarruselPersonalPublicacion";
 import ReactMarkdown from "react-markdown";
-import Ventana from "@/componentes/ventanas/Ventana";
+import Ventana from "@/componentes/ventanas/VentanaAsistencia";
 import InformacionUsuariosAsistentes from "@/componentes/layout/secciones/informacionUsuariosAsistentes/InformacionUsuariosAsistentes";
 import cheerio from "cheerio";
 import ReactDOMServer from "react-dom/server";

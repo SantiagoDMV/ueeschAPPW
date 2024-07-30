@@ -1,0 +1,65 @@
+/* Fondo */
+.fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(52, 51, 53, 0.5); /* Ajusta la opacidad del fondo */
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Contenedor Hijo */
+.contenedorHijo {
+    width: 90%;
+    max-width: 800px; /* Limita el ancho máximo para mayor control */
+    background-color: #ffffff;
+    border-radius: 15px; /* Añadido borde redondeado para un estilo más moderno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Suaviza la sombra */
+    color: #333;
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    padding: 2rem; /* Añadido relleno interno */
+    animation: slideUp 0.5s ease-out; /* Animación para aparecer */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .fondo {
+        top: 4rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .contenedorHijo {
+        width: 100%;
+        border-radius: 0px;
+    }
+}
+

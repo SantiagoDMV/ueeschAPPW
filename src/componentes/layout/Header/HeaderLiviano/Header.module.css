@@ -51,7 +51,7 @@
     flex-direction: column;
     padding: 2rem;
     min-width: 100%;
-    background-color: rgba(22, 97, 107, 0.176);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.794), transparent);
     min-height: 50vh;
     font-size: 1.7rem;
   }

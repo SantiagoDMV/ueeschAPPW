@@ -116,8 +116,8 @@
 }
 
 .hijos {
-  /* margin-top: 4rem; */
   background-color: #f4f6f8;
+
 }
 
 .contenedorBotonesCompartir {
@@ -303,6 +303,9 @@
 
 
 @media only screen and (max-width:815px) {
+  .hijos{
+    margin-top: 2rem;
+  }
   .botonesCompartir {
     width: 100%;
     min-height: calc(100vh - 4rem);
